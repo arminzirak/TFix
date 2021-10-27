@@ -3,7 +3,7 @@ import argparse
 import os
 import sys
 
-sys.path.append("..")
+sys.path.append(".")
 
 from transformers import Seq2SeqTrainer
 from transformers import Seq2SeqTrainingArguments
@@ -61,8 +61,8 @@ with open(os.path.join(model_directory, "commandline_args.txt"), "w") as f:
     f.write("\n".join(sys.argv[1:]))
 
 # Read and prepare data
-data = GetDataAsPython("data_and_models/data/data_autofix_tracking_repo_specific_final.json")
-data_eslint = GetDataAsPython("data_and_models/data/data_autofix_tracking_eslint_final.json")
+data = GetDataAsPython("./data_and_models/data/data_autofix_tracking_repo_specific_final.json")
+data_eslint = GetDataAsPython("./data_and_models/data/data_autofix_tracking_eslint_final.json")
 data += data_eslint
 all_warning_types = extract_warning_types(data)
 if args.error_type != "":
