@@ -25,8 +25,8 @@ set_seed(42)
 print("start time: ", get_current_time())
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-e", "--epochs", type=int, default=1)
-parser.add_argument("-bs", "--batch-size", type=int, default=1)
+parser.add_argument("-e", "--epochs", type=int, default=30)
+parser.add_argument("-bs", "--batch-size", type=int, default=32)
 parser.add_argument("-lr", "--learning-rate", type=float, default=1e-4)
 parser.add_argument("-gcv", "--gradient-clip-val", type=float, default=0.0)
 parser.add_argument("-wd", "--weight-decay", type=float, default=0)
@@ -42,6 +42,7 @@ parser.add_argument("-md", "--model-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
 parser.add_argument("-stl", "--save-total-limit", type=int, default=-1)
 parser.add_argument("-pt", "--pre-trained", type=boolean_string, default=True)
+parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new'])
 args = parser.parse_args()
 
 # Create job directory
@@ -51,8 +52,9 @@ if args.model_dir != "":
 else:
     now = datetime.now()
     dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
-    model_directory = "t5global" + "_" + dt_string
-    model_directory = model_name + "_global_" + dt_string
+    # model_directory = "t5global" + "_" + dt_string
+    model_directory = f'{model_name}_global_{args.design}_{dt_string}'
+print(f'model dir: {model_directory}')
 
 os.makedirs(model_directory)
 with open(os.path.join(model_directory, "commandline_args.txt"), "w") as f:
@@ -76,7 +78,7 @@ print(all_warning_types)
     train_info,
     val_info,
     test_info,
-) = create_data(data, all_warning_types, include_warning=True, model_name=model_name)
+) = create_data(data, all_warning_types, include_warning=True, model_name=model_name, design=args.design)
 
 # Create the tokenizer and the model
 tokenizer = T5Tokenizer.from_pretrained(

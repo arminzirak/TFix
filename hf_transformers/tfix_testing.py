@@ -29,8 +29,10 @@ from utils import get_current_time
 set_seed(42)
 print("start time: ", get_current_time())
 
+current_dir = '.'
+
 parser = argparse.ArgumentParser()
-parser.add_argument("-bs", "--batch-size", type=int, default=1)
+parser.add_argument("-bs", "--batch-size", type=int, default=32)
 parser.add_argument(
     "-mn",
     "--model-name",
@@ -40,13 +42,15 @@ parser.add_argument(
 )
 parser.add_argument(
     "-lm", "--load-model", type=str, default=""
-)  #  Checkpoint dir to load the model. Example: t5-small_global_14-12-2020_16-29-22/checkpoint-10
+)  # Checkpoint dir to load the model. Example: t5-small_global_14-12-2020_16-29-22/checkpoint-10
 parser.add_argument(
     "-ea", "--eval-all", type=boolean_string, default=False
 )  # to evaluate on all data or not
 parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
 parser.add_argument("-md", "--model-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
+parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new'])
+
 args = parser.parse_args()
 
 # Create job's directory
@@ -56,38 +60,29 @@ if args.model_dir != "":
 else:
     now = datetime.now()
     dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
-    model_directory = "t5global" + "_" + dt_string
-    model_directory = model_name + "_global_" + dt_string
+    model_directory = f'{model_name}_test_{args.design}_{dt_string}'
 
-os.makedirs(model_directory)
+os.makedirs(model_directory, exist_ok=True)
 with open(os.path.join(model_directory, "commandline_args.txt"), "w") as f:
     f.write("\n".join(sys.argv[1:]))
 
 # Read data
-data = GetDataAsPython("data_and_models/data/data_autofix_tracking_repo_specific_final.json")
-data_eslint = GetDataAsPython("data_and_models/data/data_autofix_tracking_eslint_final.json")
+data = GetDataAsPython(f"{current_dir}/data_and_models/data/data_autofix_tracking_repo_specific_final.json")
+data_eslint = GetDataAsPython(f"{current_dir}/data_and_models/data/data_autofix_tracking_eslint_final.json")
 data += data_eslint
 all_warning_types = extract_warning_types(data)
 if args.error_type != "":
     all_warning_types = [args.error_type]
 print(all_warning_types)
-(
-    train_inputs,
-    train_labels,
-    val_inputs,
-    val_labels,
-    test_inputs,
-    test_labels,
-    train_info,
-    val_info,
-    test_info,
-) = create_data(data, all_warning_types, include_warning=True, model_name=model_name)
+(train_inputs, train_labels, val_inputs, val_labels, test_inputs, test_labels, train_info, val_info, test_info, ) =\
+    create_data(data, all_warning_types, include_warning=True, model_name=model_name, design=args.design)
 
 # Load the tokenizer and the model that will be tested.
 tokenizer = T5Tokenizer.from_pretrained(args.load_model)
 print("Loaded tokenizer from directory {}".format(args.load_model))
 model = T5ForConditionalGeneration.from_pretrained(args.load_model)
 print("Loaded model from directory {}".format(args.load_model))
+print(f"cuda:{torch.cuda.current_device()}")
 model.to(f"cuda:{torch.cuda.current_device()}")
 model.resize_token_embeddings(len(tokenizer))
 model.eval()

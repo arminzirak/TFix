@@ -8,14 +8,14 @@ JsonDict = Dict[str, Any]
 
 class Instruction:
     def __init__(
-        self,
-        inst_type: str,
-        text: str,
-        line_number: str,
-        line_column: str,
-        global_idx: str,
-        description: str,
-        relativ_pos: str,
+            self,
+            inst_type: str,
+            text: str,
+            line_number: str,
+            line_column: str,
+            global_idx: str,
+            description: str,
+            relativ_pos: str,
     ):
         self.type = inst_type
         self.text = text
@@ -31,15 +31,15 @@ class Instruction:
 
 class LinterReport:
     def __init__(
-        self,
-        rule_id: str,
-        message: str,
-        evidence: str,
-        col_begin: str,
-        col_end: str,
-        line_begin: str,
-        line_end: str,
-        severity: str,
+            self,
+            rule_id: str,
+            message: str,
+            evidence: str,
+            col_begin: str,
+            col_end: str,
+            line_begin: str,
+            line_end: str,
+            severity: str,
     ):
         self.rule_id = rule_id
         self.message = message
@@ -53,19 +53,19 @@ class LinterReport:
 
 class DataPoint:
     def __init__(
-        self,
-        source_code: str,
-        target_code: str,
-        warning_line: str,
-        linter_report: LinterReport,
-        instructions: List[Instruction],
-        source_file: str,
-        target_file: str,
-        repo: str,
-        source_filename: str,
-        target_filename: str,
-        source_changeid: str,
-        target_changeid: str,
+            self,
+            source_code: str,
+            target_code: str,
+            warning_line: str,
+            linter_report: LinterReport,
+            instructions: List[Instruction],
+            source_file: str,
+            target_file: str,
+            repo: str,
+            source_filename: str,
+            target_filename: str,
+            source_changeid: str,
+            target_changeid: str,
     ):
 
         self.source_code = source_code
@@ -83,13 +83,13 @@ class DataPoint:
 
     def GetDescription(self) -> str:
         desc = (
-            "WARNING\n"
-            + self.linter_report.rule_id
-            + " "
-            + self.linter_report.message
-            + " at line: "
-            + str(self.linter_report.line_begin)
-            + "\n"
+                "WARNING\n"
+                + self.linter_report.rule_id
+                + " "
+                + self.linter_report.message
+                + " at line: "
+                + str(self.linter_report.line_begin)
+                + "\n"
         )
 
         desc += "WARNING LINE\n" + self.warning_line + "\n"
@@ -103,15 +103,15 @@ class DataPoint:
     def GetT5Representation(self, include_warning: bool) -> Tuple[str, str]:
         if include_warning:
             inputs = (
-                "fix "
-                + self.linter_report.rule_id
-                + " "
-                + self.linter_report.message
-                + " "
-                + self.warning_line
-                + ":\n"
-                + self.source_code
-                + " </s>"
+                    "fix "
+                    + self.linter_report.rule_id
+                    + " "
+                    + self.linter_report.message
+                    + " "
+                    + self.warning_line
+                    + ":\n"
+                    + self.source_code
+                    + " </s>"
             )
         else:
             inputs = "fix " + self.source_code + " </s>"
