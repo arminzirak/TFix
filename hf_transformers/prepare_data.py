@@ -36,7 +36,6 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, model_
     test_size = 0.1 if len(inputs) >= 10 else 1 / len(inputs)
 
     if design == 'new':
-        print('splitting by new design')
         repos = Counter([data.repo for data in filtered_data])
         test_repos = list()
         test_current_count = 0
@@ -45,7 +44,6 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, model_
             test_repos.append(repo)
             if test_current_count >= test_size * len(filtered_data):
                 break
-        sum([int(item[1]) for item in repos.most_common(10000)]) / sum(repos.values())
         train_inputs, train_labels, train_info = list(), list(), list()
         test_inputs, test_labels, test_info = list(), list(), list()
 
@@ -59,17 +57,13 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, model_
                 test_labels.append(b)
                 test_info.append(c)
     elif design == 'old':
-        print('splitting by old design')
         train_inputs, test_inputs, train_labels, test_labels = train_test_split(
             inputs, outputs, shuffle=True, random_state=seed, test_size=test_size
         )
+        train_info, test_info = train_test_split(filtered_data, shuffle=True, random_state=seed, test_size=test_size)
     else:
         print(f'wrong design argument {design}')
         return
-
-    train_info, test_info = train_test_split(
-        filtered_data, shuffle=True, random_state=seed, test_size=test_size
-    )
 
     print(f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
 
@@ -78,9 +72,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, model_
         train_inputs, train_labels, shuffle=True, random_state=seed, test_size=val_size
     )
 
-    train_info, val_info = train_test_split(
-        train_info, shuffle=True, random_state=seed, test_size=val_size
-    )
+    train_info, val_info = train_test_split(train_info, shuffle=True, random_state=seed, test_size=val_size)
 
     return (
         train_inputs,
@@ -108,8 +100,9 @@ def create_data(data: List[DataPoint], linter_warnings: List[str], include_warni
     train_info: List[DataPoint] = []
     val_info: List[DataPoint] = []
     test_info: DefaultDict[str, List[DataPoint]] = defaultdict(list)
-
+    print(f'splitting by : {design}')
     for warning in linter_warnings:
+        print(f'warning: {warning}')
         filtered_data = filter_rule(data, warning)
         (train_w, train_w_labels, val_w, val_w_labels, test_w, test_w_labels, train_w_info, val_w_info, test_w_info,) \
             = split_filtered(filtered_data, include_warning, model_name, design)
