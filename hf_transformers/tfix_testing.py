@@ -6,7 +6,7 @@ import os
 import sys
 from typing import DefaultDict, List
 
-sys.path.append("..")
+sys.path.append(".")
 
 from transformers import Seq2SeqTrainer
 from transformers import Seq2SeqTrainingArguments
@@ -29,7 +29,6 @@ from utils import get_current_time
 set_seed(42)
 print("start time: ", get_current_time())
 
-current_dir = '.'
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-bs", "--batch-size", type=int, default=32)
@@ -47,28 +46,37 @@ parser.add_argument(
     "-ea", "--eval-all", type=boolean_string, default=False
 )  # to evaluate on all data or not
 parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
-parser.add_argument("-md", "--model-dir", type=str, default="")
+parser.add_argument("-md", "--result-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
 parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new'])
 
 args = parser.parse_args()
 
-# Create job's directory
+local = False
+
 model_name = args.model_name
-if args.model_dir != "":
-    model_directory = args.model_dir
+
+if local:
+    storage_directory = '.'
+else:
+    storage_directory = '/project/def-hemmati-ab/arminz/'
+
+
+# Create job's directory
+if args.result_dir != "":
+    test_result_directory = args.result_dir
 else:
     now = datetime.now()
     dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
-    model_directory = f'{model_name}_test_{args.design}_{dt_string}'
+    test_result_directory = f'{storage_directory}/{model_name}_test_{args.design}_{dt_string}'
 
-os.makedirs(model_directory, exist_ok=True)
-with open(os.path.join(model_directory, "commandline_args.txt"), "w") as f:
+os.makedirs(test_result_directory, exist_ok=True)
+with open(os.path.join(test_result_directory, "commandline_args.txt"), "w") as f:
     f.write("\n".join(sys.argv[1:]))
 
 # Read data
-data = GetDataAsPython(f"{current_dir}/data_and_models/data/data_autofix_tracking_repo_specific_final.json")
-data_eslint = GetDataAsPython(f"{current_dir}/data_and_models/data/data_autofix_tracking_eslint_final.json")
+data = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_repo_specific_final.json")
+data_eslint = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_eslint_final.json")
 data += data_eslint
 all_warning_types = extract_warning_types(data)
 if args.error_type != "":
@@ -97,10 +105,10 @@ val_dataset = create_dataset(val_inputs, val_labels, tokenizer, pad_truncate=Tru
 # Note that Seq2SeqTrainer class has a method predict() that will be used to generate predictions.
 # That is why we still need to create a trainer instance and its arguments even though we are in testing
 training_args = Seq2SeqTrainingArguments(
-    output_dir=model_directory,
+    output_dir=test_result_directory,
     num_train_epochs=0,
     per_device_eval_batch_size=args.batch_size,
-    logging_dir=model_directory,
+    logging_dir=test_result_directory,
     logging_steps=100,
     do_eval=True,
     evaluation_strategy="epoch",
@@ -126,8 +134,8 @@ if args.eval_all:
     print("size before addition of filtered samples: ", counter)
 
     file_paths = [
-        "data_and_models/data/data_autofix_tracking_repo_specific_filtered.json",
-        "data_and_models/data/data_autofix_tracking_eslint_filtered.json",
+        f"{storage_directory}/data_and_models/data/data_autofix_tracking_repo_specific_filtered.json",
+        f"{storage_directory}/data_and_models/data/data_autofix_tracking_eslint_filtered.json",
     ]
 
     for path in file_paths:
@@ -228,13 +236,13 @@ test_list: List[DataPoint] = []
 for key in test_info:
     test_list += test_info[key]
 
-with open(os.path.join(model_directory, "test_data.json"), "w") as outfile:
+with open(os.path.join(test_result_directory, "test_data.json"), "w") as outfile:
     json.dump(
         [datapoint.__dict__ for datapoint in test_list], outfile, default=lambda o: o.__dict__
     )
 
 serialized_scores = json.dumps(scores, indent=4)
-output_file = open(os.path.join(model_directory, "first_accs.txt"), "w+")
+output_file = open(os.path.join(test_result_directory, "first_accs.txt"), "w+")
 output_file.write(serialized_scores)
 output_file.close()
 

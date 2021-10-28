@@ -45,15 +45,26 @@ parser.add_argument("-pt", "--pre-trained", type=boolean_string, default=True)
 parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new'])
 args = parser.parse_args()
 
-# Create job directory
+local = False
+
 model_name = args.model_name
+
+if local:
+    storage_directory = '.'
+    pretrained_model = model_name
+else:
+    storage_directory = '/project/def-hemmati-ab/arminz/'
+    pretrained_model = f'{storage_directory}/pretrained/{model_name}'
+
+
+# Create job directory
 if args.model_dir != "":
     model_directory = args.model_dir
 else:
     now = datetime.now()
     dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
     # model_directory = "t5global" + "_" + dt_string
-    model_directory = f'{model_name}_global_{args.design}_{dt_string}'
+    model_directory = f'{storage_directory}/{model_name}_global_{args.design}_{dt_string}'
 print(f'model dir: {model_directory}')
 
 os.makedirs(model_directory)
@@ -61,8 +72,8 @@ with open(os.path.join(model_directory, "commandline_args.txt"), "w") as f:
     f.write("\n".join(sys.argv[1:]))
 
 # Read and prepare data
-data = GetDataAsPython("./data_and_models/data/data_autofix_tracking_repo_specific_final.json")
-data_eslint = GetDataAsPython("./data_and_models/data/data_autofix_tracking_eslint_final.json")
+data = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_repo_specific_final.json")
+data_eslint = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_eslint_final.json")
 data += data_eslint
 all_warning_types = extract_warning_types(data)
 if args.error_type != "":
@@ -82,15 +93,15 @@ print(all_warning_types)
 
 # Create the tokenizer and the model
 tokenizer = T5Tokenizer.from_pretrained(
-    model_name,
+    pretrained_model,
 )
 tokenizer.add_tokens(["{", "}", ">", "\\", "^"])
 tokenizer.save_pretrained(model_directory)
 if args.pre_trained:
-    model = T5ForConditionalGeneration.from_pretrained(model_name, return_dict=False)
+    model = T5ForConditionalGeneration.from_pretrained(pretrained_model, return_dict=False)
 else:
     print("Training from scratch")
-    config = T5Config.from_pretrained(model_name)
+    config = T5Config.from_pretrained(pretrained_model)
     model = T5ForConditionalGeneration(config)
 model.parallelize()
 model.resize_token_embeddings(len(tokenizer))
