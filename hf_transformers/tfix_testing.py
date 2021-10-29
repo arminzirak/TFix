@@ -83,7 +83,7 @@ if args.error_type != "":
     all_warning_types = [args.error_type]
 print(all_warning_types)
 (train_inputs, train_labels, val_inputs, val_labels, test_inputs, test_labels, train_info, val_info, test_info, ) =\
-    create_data(data, all_warning_types, include_warning=True, model_name=model_name, design=args.design)
+    create_data(data, all_warning_types, include_warning=True, design=args.design)
 
 # Load the tokenizer and the model that will be tested.
 tokenizer = T5Tokenizer.from_pretrained(args.load_model)

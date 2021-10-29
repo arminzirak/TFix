@@ -9,7 +9,7 @@ from transformers import BatchEncoding
 
 from data_reader import DataPoint
 from collections import Counter
-
+import pandas as pd
 
 def extract_warning_types(data: List[DataPoint]) -> List[str]:
     all_warnings: List[str] = []
@@ -36,26 +36,20 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
     test_size = 0.1 if len(inputs) >= 10 else 1 / len(inputs)
 
     if design == 'new':
-        repos = Counter([data.repo for data in filtered_data])
-        test_repos = list()
-        test_current_count = 0
-        for repo, count in repos.items():
-            test_current_count += count
-            test_repos.append(repo)
-            if test_current_count >= test_size * len(filtered_data):
-                break
+        repos = pd.read_csv('./repos.csv', index_col=0)
+        test_repos = repos[~repos['train']]
         train_inputs, train_labels, train_info = list(), list(), list()
         test_inputs, test_labels, test_info = list(), list(), list()
 
-        for a, b, c in zip(inputs, outputs, filtered_data):
-            if not (c.repo in test_repos):
-                train_inputs.append(a)
-                train_labels.append(b)
-                train_info.append(c)
+        for input_instance, output_instance, filtered_data_instance in zip(inputs, outputs, filtered_data):
+            if not (test_repos['repo'] == filtered_data_instance.repo).any():
+                train_inputs.append(input_instance)
+                train_labels.append(output_instance)
+                train_info.append(filtered_data_instance)
             else:
-                test_inputs.append(a)
-                test_labels.append(b)
-                test_info.append(c)
+                test_inputs.append(input_instance)
+                test_labels.append(output_instance)
+                test_info.append(filtered_data_instance)
     elif design == 'old':
         train_inputs, test_inputs, train_labels, test_labels = train_test_split(
             inputs, outputs, shuffle=True, random_state=seed, test_size=test_size

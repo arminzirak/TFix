@@ -89,7 +89,7 @@ print(all_warning_types)
     train_info,
     val_info,
     test_info,
-) = create_data(data, all_warning_types, include_warning=True, model_name=model_name, design=args.design)
+) = create_data(data, all_warning_types, include_warning=True, design=args.design)
 
 # Create the tokenizer and the model
 tokenizer = T5Tokenizer.from_pretrained(
