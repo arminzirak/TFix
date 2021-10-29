@@ -59,7 +59,7 @@ model_name = args.model_name
 if local:
     storage_directory = '.'
 else:
-    storage_directory = '/project/def-hemmati-ab/arminz/'
+    storage_directory = '/scratch/arminz/'
 
 
 # Create job's directory

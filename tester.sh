@@ -9,4 +9,4 @@
 # in the previous two lines %A" is replaced by job
 
 source env/bin/activate
-python hf_transformers/tfix_testing.py --load-model /project/def-hemmati-ab/arminz/t5-small_global_new_27-10-2021_20-32-32/checkpoint-21200 -bs 64 --model-name t5-small -d new
+python hf_transformers/tfix_testing.py --load-model /scratch/arminz/t5-small_global_new_27-10-2021_20-32-32/checkpoint-21200 -bs 64 --model-name t5-small -d new

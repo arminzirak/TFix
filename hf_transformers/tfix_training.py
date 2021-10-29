@@ -53,7 +53,7 @@ if local:
     storage_directory = '.'
     pretrained_model = model_name
 else:
-    storage_directory = '/project/def-hemmati-ab/arminz/'
+    storage_directory = '/scratch/arminz/'
     pretrained_model = f'{storage_directory}/pretrained/{model_name}'
 
 

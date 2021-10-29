@@ -27,7 +27,7 @@ def filter_rule(data: List[DataPoint], rule_type: str) -> List[DataPoint]:
     return filtered_data
 
 
-def split_filtered(filtered_data: List[DataPoint], include_warning: bool, model_name: str, design: str, seed=13):
+def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design: str, seed=13):
     filtered_data_temp = filtered_data
 
     inputs = [data_point.GetT5Representation(include_warning)[0] for data_point in filtered_data]
@@ -87,7 +87,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, model_
     )
 
 
-def create_data(data: List[DataPoint], linter_warnings: List[str], include_warning: bool, model_name: str, design: str):
+def create_data(data: List[DataPoint], linter_warnings: List[str], include_warning: bool, design: str):
     train: List[str] = []
     train_labels: List[str] = []
     val: List[str] = []
@@ -105,7 +105,7 @@ def create_data(data: List[DataPoint], linter_warnings: List[str], include_warni
         print(f'warning: {warning}')
         filtered_data = filter_rule(data, warning)
         (train_w, train_w_labels, val_w, val_w_labels, test_w, test_w_labels, train_w_info, val_w_info, test_w_info,) \
-            = split_filtered(filtered_data, include_warning, model_name, design)
+            = split_filtered(filtered_data, include_warning, design)
 
         train += train_w
         train_labels += train_w_labels
