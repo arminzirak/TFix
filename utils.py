@@ -24,8 +24,9 @@ def compute_dict_average(dict: Dict) -> float:
     total = 0
     N = 0
     for key, value in dict.items():
-        total += value
-        N += 1
+        if value != 'NA':
+            total += value
+            N += 1
     return total / N
 
 

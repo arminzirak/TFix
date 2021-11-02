@@ -49,26 +49,28 @@ parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
 parser.add_argument("-md", "--result-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
 parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new'])
-
+parser.add_argument("-r", "--repo", type=str, required=False)
 args = parser.parse_args()
 
-local = False
+local = True
 
 model_name = args.model_name
 
 if local:
-    storage_directory = '.'
+    storage_directory = './storage'
 else:
     storage_directory = '/scratch/arminz/'
 
-
+now = datetime.now()
+dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
 # Create job's directory
 if args.result_dir != "":
     test_result_directory = args.result_dir
 else:
-    now = datetime.now()
-    dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
-    test_result_directory = f'{storage_directory}/{model_name}_test_{args.design}_{dt_string}'
+    if not args.repo:
+        test_result_directory = f'{storage_directory}/{model_name}_test_{args.design}_{dt_string}'
+    else:
+        test_result_directory = f'{storage_directory}/per-repo/{model_name}_test_{args.repo[-20:].rsplit("/", 1)[1]}_{dt_string}'
 
 os.makedirs(test_result_directory, exist_ok=True)
 with open(os.path.join(test_result_directory, "commandline_args.txt"), "w") as f:
@@ -77,13 +79,14 @@ with open(os.path.join(test_result_directory, "commandline_args.txt"), "w") as f
 # Read data
 data = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_repo_specific_final.json")
 data_eslint = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_eslint_final.json")
+
 data += data_eslint
 all_warning_types = extract_warning_types(data)
 if args.error_type != "":
     all_warning_types = [args.error_type]
 print(all_warning_types)
 (train_inputs, train_labels, val_inputs, val_labels, test_inputs, test_labels, train_info, val_info, test_info, ) =\
-    create_data(data, all_warning_types, include_warning=True, design=args.design)
+    create_data(data, all_warning_types, include_warning=True, design=args.design, test_repo=args.repo)
 
 # Load the tokenizer and the model that will be tested.
 tokenizer = T5Tokenizer.from_pretrained(args.load_model)
@@ -189,7 +192,10 @@ for i, warning in enumerate(all_warning_types):
     test_warning_labels = test_labels[warning]
     test_warning_info = test_info[warning]
     target_max_length = 256  # Set this to 256 if enough memory
-
+    if not test_warning:
+        print(f'skipping warning {warning} due to lack of data')
+        scores[warning] = 'NA'
+        continue
     print(f"rule {i}: {warning}, # {len(test_warning)}")
     correct_counter, total_counter = 0, 0
     test_warning_dataset = create_dataset(
@@ -229,8 +235,13 @@ for i, warning in enumerate(all_warning_types):
     scores[warning] = correct_counter / total_counter
     test_info[warning] = test_warning_info
     print(f"rule {i} acc: {correct_counter / total_counter}")
-scores["average"] = compute_dict_average(scores)
 
+scores["average"] = compute_dict_average(scores)
+scores['number_of_warnings'] = len([scores[k] for k in scores if scores[k] != 'NA' and k != 'average'])
+
+if args.repo:
+    with open(f'{storage_directory}/results_per_repo.csv', 'a') as f:
+        f.write(f'{args.repo},{scores["average"]:.2f},{scores["number_of_warnings"]},{dt_string},{model_name},{args.load_model}\n')
 # create the whole test list
 test_list: List[DataPoint] = []
 for key in test_info:
