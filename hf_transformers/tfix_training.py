@@ -42,15 +42,15 @@ parser.add_argument("-md", "--model-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
 parser.add_argument("-stl", "--save-total-limit", type=int, default=-1)
 parser.add_argument("-pt", "--pre-trained", type=boolean_string, default=True)
-parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new'])
+parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based-included'])
 args = parser.parse_args()
 
-local = False
+local = True
 
 model_name = args.model_name
 
 if local:
-    storage_directory = '.'
+    storage_directory = './storage/'
     pretrained_model = model_name
 else:
     storage_directory = '/scratch/arminz/'
@@ -108,6 +108,7 @@ model.resize_token_embeddings(len(tokenizer))
 print("Models parameters: ", model.num_parameters())
 
 # Create dataset required by pytorch
+print(len(train_inputs), len(train_labels))
 train_dataset = create_dataset(
     train_inputs, train_labels, tokenizer, pad_truncate=True, max_length=128
 )

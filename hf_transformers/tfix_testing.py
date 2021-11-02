@@ -48,11 +48,11 @@ parser.add_argument(
 parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
 parser.add_argument("-md", "--result-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
-parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new'])
+parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based'])
 parser.add_argument("-r", "--repo", type=str, required=False)
 args = parser.parse_args()
 
-local = True
+local = False
 
 model_name = args.model_name
 
@@ -86,7 +86,7 @@ if args.error_type != "":
     all_warning_types = [args.error_type]
 print(all_warning_types)
 (train_inputs, train_labels, val_inputs, val_labels, test_inputs, test_labels, train_info, val_info, test_info, ) =\
-    create_data(data, all_warning_types, include_warning=True, design=args.design, test_repo=args.repo)
+    create_data(data, all_warning_types, include_warning=True, design=args.design, select_repo=args.repo)
 
 # Load the tokenizer and the model that will be tested.
 tokenizer = T5Tokenizer.from_pretrained(args.load_model)

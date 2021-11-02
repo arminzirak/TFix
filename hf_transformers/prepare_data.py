@@ -11,6 +11,7 @@ from data_reader import DataPoint
 from collections import Counter
 import pandas as pd
 
+
 def extract_warning_types(data: List[DataPoint]) -> List[str]:
     all_warnings: List[str] = []
     for sample in data:
@@ -27,7 +28,7 @@ def filter_rule(data: List[DataPoint], rule_type: str) -> List[DataPoint]:
     return filtered_data
 
 
-def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design: str, test_repo=None, seed=13):
+def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design: str, select_repo=None, seed=13):
     filtered_data_temp = filtered_data
 
     inputs = [data_point.GetT5Representation(include_warning)[0] for data_point in filtered_data]
@@ -46,20 +47,55 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
                 train_inputs.append(input_instance)
                 train_labels.append(output_instance)
                 train_info.append(filtered_data_instance)
-            elif (not test_repo) or (test_repo == filtered_data_instance.repo):
+            elif (not select_repo) or (select_repo == filtered_data_instance.repo):
                 test_inputs.append(input_instance)
                 test_labels.append(output_instance)
                 test_info.append(filtered_data_instance)
+
     elif design == 'old':
         train_inputs, test_inputs, train_labels, test_labels = train_test_split(
             inputs, outputs, shuffle=True, random_state=seed, test_size=test_size
         )
         train_info, test_info = train_test_split(filtered_data, shuffle=True, random_state=seed, test_size=test_size)
+    elif design.startswith('repo-based'):
+        repos = pd.read_csv('./repos.csv', index_col=0)
+        test_repos = repos[~repos['train']]
+        train_inputs, train_labels, train_info = list(), list(), list()
+        test_inputs, test_labels, test_info = list(), list(), list()
+        input_repo = defaultdict(list)
+        output_repo = defaultdict(list)
+        filtered_instance_repo = defaultdict(list)
+        for input_instance, output_instance, filtered_data_instance in zip(inputs, outputs, filtered_data):
+            this_repo = filtered_data_instance.repo
+            if select_repo and this_repo != select_repo:
+                continue
+            input_repo[this_repo].append(input_instance)
+            output_repo[this_repo].append(output_instance)
+            filtered_instance_repo[this_repo].append(filtered_data_instance)
+        for repo in input_repo:
+            if len(input_repo[repo]) < 10:
+                train_inputs += input_repo[repo]
+                train_labels += output_repo[repo]
+                train_info += filtered_instance_repo[repo]
+                continue
+            this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
+                train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
+                                 shuffle=True, random_state=seed, test_size=test_size)
+
+            if select_repo or (test_repos['repo'] == repo).any():
+                test_inputs += this_test_input
+                test_labels += this_test_output
+                test_info += this_test_fi
+            if design.endswith('included') or not (test_repos['repo'] == repo).any():
+                train_inputs += this_train_input
+                train_labels += this_train_output
+                train_info += this_train_fi
     else:
         print(f'wrong design argument {design}')
         return
 
-    print(f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
+    print(
+        f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
 
     val_size = 0.1 if len(train_inputs) >= 10 else 1 / len(train_inputs)
     train_inputs, val_inputs, train_labels, val_labels = train_test_split(
@@ -81,7 +117,8 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
     )
 
 
-def create_data(data: List[DataPoint], linter_warnings: List[str], include_warning: bool, design: str, test_repo: None):
+def create_data(data: List[DataPoint], linter_warnings: List[str], include_warning: bool, design: str,
+                select_repo=None):
     train: List[str] = []
     train_labels: List[str] = []
     val: List[str] = []
@@ -99,7 +136,7 @@ def create_data(data: List[DataPoint], linter_warnings: List[str], include_warni
         print(f'warning: {warning}')
         filtered_data = filter_rule(data, warning)
         (train_w, train_w_labels, val_w, val_w_labels, test_w, test_w_labels, train_w_info, val_w_info, test_w_info,) \
-            = split_filtered(filtered_data, include_warning, design, test_repo=test_repo)
+            = split_filtered(filtered_data, include_warning, design, select_repo=select_repo)
 
         train += train_w
         train_labels += train_w_labels
