@@ -9,6 +9,6 @@ result_per_repo[~(result_per_repo['model'] == './storage/checkpoint-40140')]['ac
 old_model = result_per_repo[~(result_per_repo['model'] == './storage/checkpoint-40140')]
 new_model = result_per_repo[result_per_repo['model'] == './storage/checkpoint-40140']
 compare = pd.merge(old_model, new_model, on='repo')[['repo', 'accuracy_x', 'accuracy_y']]
-compare['diff'] = compare['accuracy_x'] - compare['accuracy_y']
-compare.sort_values(by='diff', ascending=False)
-
+compare['diff'] = (compare['accuracy_x'] - compare['accuracy_y']).apply(lambda x: round(x,2))
+compare = compare.sort_values(by='diff', ascending=False)
+compare.to_csv('./diffs.csv', index=False)
