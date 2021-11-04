@@ -14,8 +14,6 @@ do
   if [[ $train == 'False' ]]
   then
     echo $repo
-#    python hf_transformers/tfix_testing.py --load-model ./storage/checkpoint-40140 -bs 32 --model-name t5-small -d new -r $repo
-    python hf_transformers/tfix_testing.py --load-model ./storage/data_and_models/models/t5small -bs 32 --model-name t5-small -d new -r $repo
+    python hf_transformers/tfix_testing.py --load-model ./storage/checkpoint-37375/ -bs 32 --model-name t5-small -d repo-based-included -r $repo
   fi
-done < <(tail -n +2 ./repos.csv)
-# python hf_transformers/tfix_testing.py --load-model data_and_models/models/t5small -bs 32 --model-name t5-small -d new -r /data/all/data/appium/appium
+done < <(tail -n +2 ./repos_2.csv)

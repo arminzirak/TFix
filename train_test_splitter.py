@@ -2,20 +2,20 @@ import pandas as pd
 from collections import Counter
 from data_reader import GetDataAsPython
 
-storage_directory = '.'
+storage_directory = './storage/'
 data = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_repo_specific_final.json")
 # data_eslint = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_eslint_final.json") # TODO: should I use this?
 repos = Counter([item.repo for item in data])
 sorted_repos = sorted(repos.items(), key=lambda d: d[1], reverse=True)
-split_point = 300
-test_repos = sorted_repos[:split_point:2]
-train_repos = sorted_repos[1:split_point:2] + sorted_repos[split_point:] #TODO: improve it so that we have enough test for each warning
+split_point = 30
+test_repos = sorted_repos[:split_point]
+train_repos = sorted_repos[split_point:] #TODO: improve it so that we  have enough test for each warning
 train_df = pd.DataFrame(train_repos, columns=['repo', 'samples'])
 train_df['train'] = True
 test_df = pd.DataFrame(test_repos, columns=['repo', 'samples'])
 test_df['train'] = False
 repos_df = pd.concat([train_df, test_df], ignore_index=True)
-repos_df.to_csv('./repos.csv')
+repos_df.to_csv('./repos_2.csv')
 
 train_samples = repos_df[repos_df['train']]['samples'].sum()
 test_samples = repos_df[~repos_df['train']]['samples'].sum()

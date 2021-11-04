@@ -48,7 +48,7 @@ parser.add_argument(
 parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
 parser.add_argument("-md", "--result-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
-parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based'])
+parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based-included'])
 parser.add_argument("-r", "--repo", type=str, required=False)
 args = parser.parse_args()
 
@@ -236,12 +236,16 @@ for i, warning in enumerate(all_warning_types):
     test_info[warning] = test_warning_info
     print(f"rule {i} acc: {correct_counter / total_counter}")
 
-scores["average"] = compute_dict_average(scores)
-scores['number_of_warnings'] = len([scores[k] for k in scores if scores[k] != 'NA' and k != 'average'])
+average = compute_dict_average(scores)
+number_of_warnings = len([scores[k] for k in scores if scores[k] != 'NA'])
+
+scores["average"] = average
+scores['number_of_warnings'] = number_of_warnings
+scores['samples_count'] = counter
 
 if args.repo:
     with open(f'{storage_directory}/results_per_repo.csv', 'a') as f:
-        f.write(f'{args.repo},{scores["average"]:.2f},{scores["number_of_warnings"]},{dt_string},{model_name},{args.load_model}\n')
+        f.write(f'{args.repo},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model}\n')
 # create the whole test list
 test_list: List[DataPoint] = []
 for key in test_info:

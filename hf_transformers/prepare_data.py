@@ -34,7 +34,6 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
     inputs = [data_point.GetT5Representation(include_warning)[0] for data_point in filtered_data]
     outputs = [data_point.GetT5Representation(include_warning)[1] for data_point in filtered_data_temp]
 
-    test_size = 0.1 if len(inputs) >= 10 else 1 / len(inputs)
 
     if design == 'new':
         repos = pd.read_csv('./repos.csv', index_col=0)
@@ -53,12 +52,14 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
                 test_info.append(filtered_data_instance)
 
     elif design == 'old':
+        test_size = 0.1 if len(inputs) >= 10 else 1 / len(inputs)
+
         train_inputs, test_inputs, train_labels, test_labels = train_test_split(
             inputs, outputs, shuffle=True, random_state=seed, test_size=test_size
         )
         train_info, test_info = train_test_split(filtered_data, shuffle=True, random_state=seed, test_size=test_size)
     elif design.startswith('repo-based'):
-        repos = pd.read_csv('./repos.csv', index_col=0)
+        repos = pd.read_csv('./repos_2.csv', index_col=0)
         test_repos = repos[~repos['train']]
         train_inputs, train_labels, train_info = list(), list(), list()
         test_inputs, test_labels, test_info = list(), list(), list()
@@ -73,37 +74,42 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
             output_repo[this_repo].append(output_instance)
             filtered_instance_repo[this_repo].append(filtered_data_instance)
         for repo in input_repo:
-            if len(input_repo[repo]) < 10:
+            if len(input_repo[repo]) < 10: # TODO: remove this if
                 train_inputs += input_repo[repo]
                 train_labels += output_repo[repo]
                 train_info += filtered_instance_repo[repo]
                 continue
-            this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
-                train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
-                                 shuffle=True, random_state=seed, test_size=test_size)
 
-            if select_repo or (test_repos['repo'] == repo).any():
+            if not (test_repos['repo'] == repo).any():
+                train_inputs += input_repo[repo]
+                train_labels += output_repo[repo]
+                train_info += filtered_instance_repo[repo]
+            else:
+                this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
+                    train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
+                                     shuffle=True, random_state=seed, test_size=0.25)
                 test_inputs += this_test_input
                 test_labels += this_test_output
                 test_info += this_test_fi
-            if design.endswith('included') or not (test_repos['repo'] == repo).any():
-                train_inputs += this_train_input
-                train_labels += this_train_output
-                train_info += this_train_fi
+                if design.endswith('included'):
+                    train_inputs += this_train_input
+                    train_labels += this_train_output
+                    train_info += this_train_fi
     else:
         print(f'wrong design argument {design}')
         return
 
-    print(
-        f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
-
-    val_size = 0.1 if len(train_inputs) >= 10 else 1 / len(train_inputs)
-    train_inputs, val_inputs, train_labels, val_labels = train_test_split(
-        train_inputs, train_labels, shuffle=True, random_state=seed, test_size=val_size
-    )
-
-    train_info, val_info = train_test_split(train_info, shuffle=True, random_state=seed, test_size=val_size)
-
+    if len(train_inputs) > 1:
+        print(
+            f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
+        val_size = 0.05  # if len(train_inputs) >= 10 else 1 / len(train_inputs)
+        train_inputs, val_inputs, train_labels, val_labels = train_test_split(
+            train_inputs, train_labels, shuffle=True, random_state=seed, test_size=val_size
+        )
+        train_info, val_info = train_test_split(train_info, shuffle=True, random_state=seed, test_size=val_size)
+    else:
+        val_inputs, val_labels, val_info = [], [], []
+        print(f'lacking training data')
     return (
         train_inputs,
         train_labels,
