@@ -42,10 +42,10 @@ parser.add_argument("-md", "--model-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
 parser.add_argument("-stl", "--save-total-limit", type=int, default=-1)
 parser.add_argument("-pt", "--pre-trained", type=boolean_string, default=True)
-parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based-included'])
+parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based', 'repo-based-included'])
 args = parser.parse_args()
 
-local = True
+local = False
 
 model_name = args.model_name
 
