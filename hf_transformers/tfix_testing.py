@@ -22,7 +22,7 @@ from prepare_data import create_dataset
 from prepare_data import extract_warning_types
 from prepare_data import filter_rule
 from utils import boolean_string
-from utils import compute_dict_average
+from utils import get_scores_weighted_average
 from utils import get_current_time
 
 # transformers.logging.set_verbosity_info()
@@ -68,9 +68,9 @@ if args.result_dir != "":
     test_result_directory = args.result_dir
 else:
     if not args.repo:
-        test_result_directory = f'{storage_directory}/{model_name}_test_{args.design}_{dt_string}'
+        test_result_directory = f'{storage_directory}/{now.day}/{model_name}_test_{args.design}_{dt_string}'
     else:
-        test_result_directory = f'{storage_directory}/per-repo/{model_name}_test_{args.repo[-20:].rsplit("/", 1)[1]}_{dt_string}'
+        test_result_directory = f'{storage_directory}/{now.day}/per-repo/{model_name}_test_{args.repo.rsplit("/", 1)[1][-20:]}_{dt_string}'
 
 os.makedirs(test_result_directory, exist_ok=True)
 with open(os.path.join(test_result_directory, "commandline_args.txt"), "w") as f:
@@ -187,17 +187,17 @@ for warning in test_inputs:
 
 # Generate predictions
 scores: DefaultDict[str, float] = defaultdict(float)
+counts: DefaultDict[str, float] = defaultdict(int)
 for i, warning in enumerate(all_warning_types):
     test_warning = test_inputs[warning]
     test_warning_labels = test_labels[warning]
     test_warning_info = test_info[warning]
     target_max_length = 256  # Set this to 256 if enough memory
     if not test_warning:
-        print(f'skipping warning {warning} due to lack of data')
         scores[warning] = 'NA'
+        counts[warning] = 0
         continue
     print(f"rule {i}: {warning}, # {len(test_warning)}")
-    correct_counter, total_counter = 0, 0
     test_warning_dataset = create_dataset(
         test_warning,
         test_warning_labels,
@@ -224,8 +224,8 @@ for i, warning in enumerate(all_warning_types):
     output_ids = np.delete(output_ids, 0, axis=1)
     output_ids = np.insert(output_ids, target_max_length - 1, 0, axis=1)
 
-    correct_counter += np.sum(np.all(np.equal(target_ids, output_ids), axis=1))
-    total_counter += len(output_ids)
+    correct_counter = np.sum(np.all(np.equal(target_ids, output_ids), axis=1))
+    total_counter = len(output_ids)
     for k, output_id in enumerate(output_ids):
         pred = tokenizer.decode(output_id, skip_special_tokens=True)
         predictions = []
@@ -233,11 +233,14 @@ for i, warning in enumerate(all_warning_types):
         test_warning_info[k].predictions = predictions
 
     scores[warning] = correct_counter / total_counter
+    counts[warning] = total_counter
     test_info[warning] = test_warning_info
     print(f"rule {i} acc: {correct_counter / total_counter}")
 
-average = compute_dict_average(scores)
+average, count = get_scores_weighted_average(scores, counts)
 number_of_warnings = len([scores[k] for k in scores if scores[k] != 'NA'])
+
+assert count == counter, 'counts must be equal'
 
 scores["average"] = average
 scores['number_of_warnings'] = number_of_warnings

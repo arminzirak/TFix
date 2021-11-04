@@ -16,18 +16,20 @@ def get_current_time() -> str:
     return current_time
 
 
-def compute_dict_average(dict: Dict) -> float:
-    # empty dictionary, return 0
-    if not dict:
+def get_scores_weighted_average(scores: Dict, counts: Dict) -> (float, int):
+    # empty scoresionary, return 0
+    if not scores:
         return 0
 
-    total = 0
-    N = 0
-    for key, value in dict.items():
-        if value != 'NA':
-            total += value
-            N += 1
-    return total / N
+    total_score = 0
+    total_count = 0
+    # N = 0
+    for warning, score in scores.items():
+        if counts[warning]:
+            total_score += score * counts[warning]
+            total_count += counts[warning]
+            # N += 1
+    return total_score / total_count, total_count
 
 
 def check_test_alignment(

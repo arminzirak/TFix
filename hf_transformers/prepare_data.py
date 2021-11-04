@@ -61,8 +61,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
     elif design.startswith('repo-based'):
         repos = pd.read_csv('./repos_2.csv', index_col=0)
         test_repos = repos[~repos['train']]
-        train_inputs, train_labels, train_info = list(), list(), list()
-        test_inputs, test_labels, test_info = list(), list(), list()
+
         input_repo = defaultdict(list)
         output_repo = defaultdict(list)
         filtered_instance_repo = defaultdict(list)
@@ -73,18 +72,20 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
             input_repo[this_repo].append(input_instance)
             output_repo[this_repo].append(output_instance)
             filtered_instance_repo[this_repo].append(filtered_data_instance)
-        for repo in input_repo:
-            if len(input_repo[repo]) < 10: # TODO: remove this if
-                train_inputs += input_repo[repo]
-                train_labels += output_repo[repo]
-                train_info += filtered_instance_repo[repo]
-                continue
 
+        train_inputs, train_labels, train_info = list(), list(), list()
+        test_inputs, test_labels, test_info = list(), list(), list()
+        for repo in input_repo:
             if not (test_repos['repo'] == repo).any():
                 train_inputs += input_repo[repo]
                 train_labels += output_repo[repo]
                 train_info += filtered_instance_repo[repo]
             else:
+                if len(input_repo[repo]) < 2:
+                    train_inputs += input_repo[repo]
+                    train_labels += output_repo[repo]
+                    train_info += filtered_instance_repo[repo]
+                    continue
                 this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
                     train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
                                      shuffle=True, random_state=seed, test_size=0.25)
@@ -109,7 +110,6 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
         train_info, val_info = train_test_split(train_info, shuffle=True, random_state=seed, test_size=val_size)
     else:
         val_inputs, val_labels, val_info = [], [], []
-        print(f'lacking training data')
     return (
         train_inputs,
         train_labels,
