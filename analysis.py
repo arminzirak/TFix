@@ -2,12 +2,13 @@ import pandas as pd
 
 result_per_repo = pd.read_csv('./storage/results_per_repo.csv',
                               names=['repo', 'accuracy', 'warnings', 'samples', 'time', 'model-name', 'model'])
-result_per_repo = result_per_repo[(result_per_repo['samples'] >= 1)]
+result_per_repo = result_per_repo[(result_per_repo['samples'] >= 20)] #27 is a good split
 models = result_per_repo['model'].unique()
 for model in models:
     this_model = result_per_repo[result_per_repo['model'] == model]
-    accuracy = sum((this_model['accuracy'] * this_model['samples']))/sum(this_model['samples'])
-    print(model, f'{accuracy:.2f}')
+    accuracy = sum(this_model['accuracy']/ len(this_model))
+    weighted_accuracy = sum((this_model['accuracy'] * this_model['samples']))/sum(this_model['samples'])
+    print(model, f'A: {accuracy:.2f}, WA: {weighted_accuracy:.2f}')
 
 models = ['./storage/checkpoint-38500/', './storage/checkpoint-37375/']
 old_model = result_per_repo[result_per_repo['model'] == models[0]]
