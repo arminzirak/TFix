@@ -57,7 +57,7 @@ local = False
 model_name = args.model_name
 
 if local:
-    storage_directory = './storage'
+    storage_directory = './storage/'
 else:
     storage_directory = '/scratch/arminz/'
 
@@ -246,6 +246,8 @@ scores["average"] = average
 scores['number_of_warnings'] = number_of_warnings
 scores['samples_count'] = counter
 
+print(f'score average {average}')
+
 if args.repo:
     with open(f'{storage_directory}/results_per_repo.csv', 'a') as f:
         f.write(f'{args.repo},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model}\n')
@@ -253,7 +255,7 @@ if args.repo:
 test_list: List[DataPoint] = []
 for key in test_info:
     test_list += test_info[key]
-
+print(f'result : {test_result_directory}')
 with open(os.path.join(test_result_directory, "test_data.json"), "w") as outfile:
     json.dump(
         [datapoint.__dict__ for datapoint in test_list], outfile, default=lambda o: o.__dict__
