@@ -101,8 +101,8 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
         return
 
     if len(train_inputs) > 1:
-        print(
-            f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
+        # print(
+        #     f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
         val_size = 0.05  # if len(train_inputs) >= 10 else 1 / len(train_inputs)
         train_inputs, val_inputs, train_labels, val_labels = train_test_split(
             train_inputs, train_labels, shuffle=True, random_state=seed, test_size=val_size
@@ -139,7 +139,6 @@ def create_data(data: List[DataPoint], linter_warnings: List[str], include_warni
     test_info: DefaultDict[str, List[DataPoint]] = defaultdict(list)
     print(f'splitting by : {design}')
     for warning in linter_warnings:
-        print(f'warning: {warning}')
         filtered_data = filter_rule(data, warning)
         (train_w, train_w_labels, val_w, val_w_labels, test_w, test_w_labels, train_w_info, val_w_info, test_w_info,) \
             = split_filtered(filtered_data, include_warning, design, select_repo=select_repo)

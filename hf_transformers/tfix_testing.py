@@ -32,19 +32,9 @@ print("start time: ", get_current_time())
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-bs", "--batch-size", type=int, default=32)
-parser.add_argument(
-    "-mn",
-    "--model-name",
-    type=str,
-    choices=["t5-small", "t5-base", "t5-large", "t5-3b", "t5-11b"],
-    required=True,
-)
-parser.add_argument(
-    "-lm", "--load-model", type=str, default=""
-)  # Checkpoint dir to load the model. Example: t5-small_global_14-12-2020_16-29-22/checkpoint-10
-parser.add_argument(
-    "-ea", "--eval-all", type=boolean_string, default=False
-)  # to evaluate on all data or not
+parser.add_argument("-mn", "--model-name", type=str, choices=["t5-small", "t5-base", "t5-large", "t5-3b", "t5-11b"], required=True,)
+parser.add_argument("-lm", "--load-model", type=str, default="")  # Checkpoint dir to load the model. Example: t5-small_global_14-12-2020_16-29-22/checkpoint-10
+parser.add_argument("-ea", "--eval-all", type=boolean_string, default=False)  # to evaluate on all data or not
 parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
 parser.add_argument("-md", "--result-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
@@ -197,7 +187,7 @@ for i, warning in enumerate(all_warning_types):
         scores[warning] = 'NA'
         counts[warning] = 0
         continue
-    print(f"rule {i}: {warning}, # {len(test_warning)}")
+    # print(f"rule {i}: {warning}, # {len(test_warning)}")
     test_warning_dataset = create_dataset(
         test_warning,
         test_warning_labels,

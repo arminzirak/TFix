@@ -30,13 +30,7 @@ parser.add_argument("-bs", "--batch-size", type=int, default=32)
 parser.add_argument("-lr", "--learning-rate", type=float, default=1e-4)
 parser.add_argument("-gcv", "--gradient-clip-val", type=float, default=0.0)
 parser.add_argument("-wd", "--weight-decay", type=float, default=0)
-parser.add_argument(
-    "-mn",
-    "--model-name",
-    type=str,
-    choices=["t5-small", "t5-base", "t5-large", "t5-3b", "t5-11b"],
-    required=True,
-)
+parser.add_argument("-mn", "--model-name", type=str, choices=["t5-small", "t5-base", "t5-large", "t5-3b", "t5-11b"], required=True)
 parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
 parser.add_argument("-md", "--model-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
