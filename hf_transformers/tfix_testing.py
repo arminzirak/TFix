@@ -225,7 +225,7 @@ for i, warning in enumerate(all_warning_types):
     scores[warning] = correct_counter / total_counter
     counts[warning] = total_counter
     test_info[warning] = test_warning_info
-    print(f"rule {i} acc: {correct_counter / total_counter}")
+    # print(f"rule {i} acc: {correct_counter / total_counter}")
 
 average, count = get_scores_weighted_average(scores, counts)
 number_of_warnings = len([scores[k] for k in scores if scores[k] != 'NA'])
