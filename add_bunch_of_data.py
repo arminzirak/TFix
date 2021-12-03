@@ -53,14 +53,16 @@ import numpy as np
 
 # In[7]:
 
-local = True
+local = False
 
 if local:
     storage_directory = './storage/'
+    base_model = f'./{storage_directory}/checkpoint-37375'
     batch_size = 16
 else:
     storage_directory = '/scratch/arminz/'
     batch_size = 64
+    base_model = f'/{storage_directory}/t5-small_global_repo-based_03-11-2021_15-28-40/checkpoint-37375/'
 
 # In[8]:
 
@@ -334,8 +336,7 @@ len(added_inputs)
 # In[47]:
 
 
-load_model = f'./{storage_directory}/checkpoint-37375'
-tokenizer = T5Tokenizer.from_pretrained(load_model)
+tokenizer = T5Tokenizer.from_pretrained(base_model)
 
 
 # In[48]:
@@ -368,8 +369,8 @@ lr, wd, ws
 # In[51]:
 
 
-tokenizer = T5Tokenizer.from_pretrained(load_model)
-model = T5ForConditionalGeneration.from_pretrained(load_model)
+tokenizer = T5Tokenizer.from_pretrained(base_model)
+model = T5ForConditionalGeneration.from_pretrained(base_model)
 model.resize_token_embeddings(len(tokenizer))
 # model.eval()
 
