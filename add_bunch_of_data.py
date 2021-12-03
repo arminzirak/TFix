@@ -11,7 +11,6 @@
 # In[3]:
 
 
-from IPython.display import clear_output
 
 
 # In[4]:
@@ -53,7 +52,7 @@ import numpy as np
 
 # In[7]:
 
-local = False
+local = True
 
 if local:
     storage_directory = './storage/'
