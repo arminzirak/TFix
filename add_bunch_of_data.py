@@ -11,8 +11,6 @@
 # In[3]:
 
 
-
-
 # In[4]:
 
 
@@ -23,7 +21,6 @@ from transformers import T5ForConditionalGeneration
 from transformers import T5Tokenizer
 from transformers import set_seed
 
-
 # In[5]:
 
 
@@ -33,7 +30,6 @@ import os
 import sys
 
 sys.path.append("./hf_transformers/")
-
 
 # In[6]:
 
@@ -49,32 +45,31 @@ from utils import get_current_time
 import csv
 import numpy as np
 
-
 # In[7]:
 
-local = True
+local = False
 
 if local:
     storage_directory = './storage/'
     base_model = f'./{storage_directory}/checkpoint-37375'
     batch_size = 16
+    codebert_address = "microsoft/codebert-base"
 else:
     storage_directory = '/scratch/arminz/'
     batch_size = 64
     base_model = f'/{storage_directory}/t5-small_global_repo-based_03-11-2021_15-28-40/checkpoint-37375/'
+    codebert_address = "/home/arminz/codebert-base"
 
 # In[8]:
 
 
 import random
 
-
 # In[9]:
 
 
 exec_number = random.randint(0, 1000)
 exec_number
-
 
 # In[10]:
 
@@ -88,7 +83,6 @@ append = args.append
 repo = args.repo
 repo_percent = args.repo_percent
 
-
 # repo = '/data/all/data/appium/appium'
 # repo
 
@@ -99,13 +93,11 @@ repo_percent = args.repo_percent
 # repo_percent = 0.0
 print('repo percent:', repo_percent)
 
-
 # In[12]:
 
 
-name='added'
+name = 'added'
 name
-
 
 # In[13]:
 
@@ -115,54 +107,56 @@ data = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_t
 data_eslint = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_eslint_final.json")
 data += data_eslint
 
-
 # In[14]:
 
 
 len(data)
-
 
 # In[15]:
 
 
 all_warning_types = extract_warning_types(data)
 
-
 # In[16]:
 
 
-(repo_train_inputs, repo_train_labels, repo_val_inputs, repo_val_labels, repo_test_inputs, repo_test_labels, repo_train_info, repo_val_info, repo_test_info, ) =    create_data(data, all_warning_types, include_warning=True, design='repo-based-included', select_repo=repo)
-
+(repo_train_inputs, repo_train_labels, repo_val_inputs, repo_val_labels, repo_test_inputs, repo_test_labels,
+ repo_train_info, repo_val_info, repo_test_info,) = create_data(data, all_warning_types, include_warning=True,
+                                                                design='repo-based-included', select_repo=repo)
 
 # In[17]:
 
 
-(general_train_inputs, general_train_labels, general_val_inputs, general_val_labels, general_test_inputs, general_test_labels, general_train_info, general_val_info, general_test_info, ) =    create_data(data, all_warning_types, include_warning=True, design='repo-based')
-
+(general_train_inputs, general_train_labels, general_val_inputs, general_val_labels, general_test_inputs,
+ general_test_labels, general_train_info, general_val_info, general_test_info,) = create_data(data, all_warning_types,
+                                                                                              include_warning=True,
+                                                                                              design='repo-based')
 
 # In[18]:
 
 
 from transformers import AutoTokenizer, AutoModel
 
-code_bert_model = AutoModel.from_pretrained("microsoft/codebert-base")
+code_bert_model = AutoModel.from_pretrained(codebert_address)
 code_bert_model.to('cuda')
 
-code_bert_tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
+code_bert_tokenizer = AutoTokenizer.from_pretrained(codebert_address)
 
 
 # In[19]:
 
 
-def code_to_vec(code): # probably need a normalization
-    code_tokens=code_bert_tokenizer.tokenize(code)
-    tokens=[code_bert_tokenizer.cls_token]+code_tokens+[code_bert_tokenizer.sep_token]
-    tokens_ids=code_bert_tokenizer.convert_tokens_to_ids(tokens)
-    context_embeddings=code_bert_model(torch.tensor(tokens_ids).to('cuda')[None,:])[0]
+def code_to_vec(code):  # probably need a normalization
+    code_tokens = code_bert_tokenizer.tokenize(code)
+    tokens = [code_bert_tokenizer.cls_token] + code_tokens + [code_bert_tokenizer.sep_token]
+    tokens_ids = code_bert_tokenizer.convert_tokens_to_ids(tokens)
+    context_embeddings = code_bert_model(torch.tensor(tokens_ids).to('cuda')[None, :])[0]
     return context_embeddings[0][0].cpu().detach().numpy()
+
+
 def vec_distance(code1, code2):
-    n_code1 = code1/np.linalg.norm(code1)
-    n_code2 = code1/np.linalg.norm(code2)
+    n_code1 = code1 / np.linalg.norm(code1)
+    n_code2 = code1 / np.linalg.norm(code2)
     return np.linalg.norm(n_code1 - n_code2)
 
 
@@ -171,18 +165,15 @@ def vec_distance(code1, code2):
 
 repo_vecs = np.array([code_to_vec(item) for item in repo_train_inputs])
 
-
 # In[21]:
 
 
 repo_vecs.shape
 
-
 # In[22]:
 
 
 from sklearn.neighbors import NearestNeighbors
-
 
 # In[23]:
 
@@ -215,18 +206,15 @@ from sklearn.neighbors import NearestNeighbors
 general_vecs = np.load('general_arr_all.npy')
 general_vecs.shape
 
-
 # In[28]:
 
 
 nbrs = NearestNeighbors(n_neighbors=1, algorithm='ball_tree').fit(repo_vecs)
 
-
 # In[29]:
 
 
 distances, indices = nbrs.kneighbors(general_vecs)
-
 
 # In[30]:
 
@@ -237,13 +225,6 @@ distances, indices = nbrs.kneighbors(general_vecs)
 # In[31]:
 
 
-import matplotlib.pyplot as plt
-plt.subplot(2, 1, 1)
-plt.boxplot(distances)
-plt.subplot(2, 1, 2)
-plt.hist(distances)
-
-
 # In[32]:
 
 
@@ -251,11 +232,7 @@ repo_nbrs = NearestNeighbors(n_neighbors=2, algorithm='ball_tree').fit(repo_vecs
 repo_distances, index = repo_nbrs.kneighbors(repo_vecs)
 repo_distances.shape
 
-
 # In[33]:
-
-
-plt.hist(repo_distances[:,1])
 
 
 # In[34]:
@@ -297,7 +274,6 @@ for ind in range(len(general_train_inputs)):
         added_labels.append(general_train_labels[ind])
         added_info.append(general_train_info[ind])
 
-
 # In[42]:
 
 
@@ -305,12 +281,10 @@ for ind in range(len(general_train_inputs)):
 samples = int(repo_percent * len(repo_train_inputs))
 print(f'{len(repo_train_inputs)} {samples} {repo_percent}')
 
-
 # In[43]:
 
 
 len(repo_train_inputs), len(added_inputs)
-
 
 # In[44]:
 
@@ -319,32 +293,29 @@ added_inputs += repo_train_inputs[:samples]
 added_labels += repo_train_labels[:samples]
 added_info += repo_train_info[:samples]
 
-
 # In[45]:
 
 
 validation_point = int((len(added_inputs) * 4) / 5)
-
 
 # In[46]:
 
 
 len(added_inputs)
 
-
 # In[47]:
 
 
 tokenizer = T5Tokenizer.from_pretrained(base_model)
 
-
 # In[48]:
 
 
-train_dataset = create_dataset(added_inputs[:validation_point], added_labels[:validation_point], tokenizer, pad_truncate=True, max_length=128)
-val_dataset = create_dataset(added_inputs[validation_point:], added_labels[validation_point:], tokenizer, pad_truncate=True)
+train_dataset = create_dataset(added_inputs[:validation_point], added_labels[:validation_point], tokenizer,
+                               pad_truncate=True, max_length=128)
+val_dataset = create_dataset(added_inputs[validation_point:], added_labels[validation_point:], tokenizer,
+                             pad_truncate=True)
 test_dataset = create_dataset(repo_val_inputs, repo_val_labels, tokenizer, pad_truncate=True)
-
 
 # In[49]:
 
@@ -355,7 +326,6 @@ full_name = f'{name}_{exec_number}_{repo.rsplit("/", 1)[1][-20:]}_{repo_percent}
 model_directory = f'{storage_directory}/tmp/{full_name}'
 model_directory
 
-
 # In[50]:
 
 
@@ -363,7 +333,6 @@ lr = 4e-3
 ws = 300
 wd = 0.4
 lr, wd, ws
-
 
 # In[51]:
 
@@ -401,7 +370,6 @@ training_args = Seq2SeqTrainingArguments(
     seed=42,  # default value
 )
 
-
 # In[53]:
 
 
@@ -410,7 +378,7 @@ training_args = Seq2SeqTrainingArguments(
 # def compute_metrics(p):
 #     target_max_length = 256
 #     predictions, labels = p.predictions, p.label_ids
-    
+
 #     predictions = np.pad(predictions, ((0, 0), (0, target_max_length - predictions.shape[1])), mode="constant")
 #     predictions = np.delete(predictions, 0, axis=1)
 #     predictions = np.insert(predictions, target_max_length - 1, 0, axis=1)
@@ -434,28 +402,24 @@ trainer = Seq2SeqTrainer(
     eval_dataset=val_dataset,
     optimizers=[torch.optim.Adam(params=model.parameters(), lr=lr), None],
     tokenizer=tokenizer,
-    callbacks = [EarlyStoppingCallback(early_stopping_patience=5)]
-#     compute_metrics=compute_metrics
+    callbacks=[EarlyStoppingCallback(early_stopping_patience=5)]
+    #     compute_metrics=compute_metrics
 )
-
 
 # In[55]:
 
 
 trainer.train()
 
-
 # In[56]:
 
 
 trainer.evaluate()['eval_loss']
 
-
 # In[57]:
 
 
 trainer.predict(test_dataset).metrics
-
 
 # In[58]:
 
@@ -463,7 +427,6 @@ trainer.predict(test_dataset).metrics
 best_model_dir = f'{model_directory}/best'
 trainer.save_model(best_model_dir)
 print('best model dir', best_model_dir)
-
 
 # In[59]:
 
@@ -477,17 +440,13 @@ print('best model dir', best_model_dir)
 # In[60]:
 
 
-from numba import cuda 
-device = cuda.get_current_device()
-device.reset()
-
-
 # In[61]:
 
 
-os.system(f'python hf_transformers/tfix_testing.py --load-model {best_model_dir} -bs {batch_size} --model-name t5-small -d repo-based-included -r {repo}')
+os.system(
+    f'python hf_transformers/tfix_testing.py --load-model {best_model_dir} -bs {batch_size} --model-name t5-small -d repo-based-included -r {repo}')
 
 import shutil
-shutil.rmtree(best_model_dir)
 
+shutil.rmtree(best_model_dir)
 
