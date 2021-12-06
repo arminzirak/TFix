@@ -284,7 +284,7 @@ print(f'{len(repo_train_inputs)} {samples} {repo_percent}')
 # In[43]:
 
 
-len(repo_train_inputs), len(added_inputs)
+print(len(repo_train_inputs), len(added_inputs))
 
 # In[44]:
 
@@ -295,7 +295,7 @@ added_info += repo_train_info[:samples]
 
 # In[45]:
 
-
+print('added inputs finally', len(added_inputs))
 validation_point = int((len(added_inputs) * 4) / 5)
 
 # In[46]:
