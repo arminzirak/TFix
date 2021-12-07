@@ -57,7 +57,8 @@ if local:
 else:
     storage_directory = '/scratch/arminz/'
     batch_size = 64
-    base_model = f'/{storage_directory}/t5-small_global_repo-based_03-11-2021_15-28-40/checkpoint-37375/'
+    # base_model = f'/{storage_directory}/t5-small_global_repo-based_03-11-2021_15-28-40/checkpoint-37375/'
+    base_model = f'{storage_directory}/checkpoint-37375'
     codebert_address = "/home/arminz/codebert-base"
 
 # In[8]:
@@ -134,7 +135,6 @@ all_warning_types = extract_warning_types(data)
 
 # In[18]:
 
-
 from transformers import AutoTokenizer, AutoModel
 
 code_bert_model = AutoModel.from_pretrained(codebert_address)
@@ -204,7 +204,6 @@ from sklearn.neighbors import NearestNeighbors
 
 
 general_vecs = np.load('general_arr_all.npy')
-general_vecs.shape
 
 # In[28]:
 
@@ -414,7 +413,7 @@ trainer.train()
 # In[56]:
 
 
-trainer.evaluate()['eval_loss']
+print('eval', trainer.evaluate()['eval_loss'])
 
 # In[57]:
 
@@ -424,7 +423,7 @@ trainer.predict(test_dataset).metrics
 # In[58]:
 
 
-best_model_dir = f'{model_directory}/best'
+best_model_dir = f'{model_directory}/best/'
 trainer.save_model(best_model_dir)
 print('best model dir', best_model_dir)
 
@@ -448,5 +447,5 @@ os.system(
 
 import shutil
 
-shutil.rmtree(best_model_dir)
+shutil.rmtree(model_directory)
 
