@@ -8,10 +8,11 @@
 #SBATCH --error=good.err # standard error
 # in the previous two lines %A" is replaced by job
 
+#/data/all/data/appium/appium /data/all/data/girder/girder /data/all/data/oroinc/platform
 source env/bin/activate
-for repo in /data/all/data/girder/girder /data/all/data/oroinc/platform /data/all/data/svgdotjs/svg.js /data/all/data/wsick/Fayde /data/all/data/appium/appium /data/all/data/zloirock/core-js /data/all/data/Vincit/objection.js /data/all/data/request/request /data/all/data/qooxdoo/qooxdoo
+for repo in /data/all/data/svgdotjs/svg.js /data/all/data/wsick/Fayde /data/all/data/zloirock/core-js /data/all/data/Vincit/objection.js /data/all/data/request/request /data/all/data/qooxdoo/qooxdoo
 do
-  for percent in 0.1 0.2 0.3
+  for percent in 0.1 0.3 0.7 1.0
   do
     echo $repo $percent
     python good_params.py --percent $percent --repo $repo

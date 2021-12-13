@@ -88,7 +88,7 @@ exec_number
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-tuning_results.csv", "--repo", type=str, default='/data/all/data/oroinc/platform')
-parser.add_argument("-p", "--percent", type=float, default=0.2)
+parser.add_argument("-p", "--percent", type=float, default=0.5)
 
 args = parser.parse_args()
 repo = args.repo
@@ -155,10 +155,12 @@ len(train_inputs)
 
 # Create dataset required by pytorch
 samples = int(sample_percent * len(train_inputs))
-print(f'{len(train_inputs)} {samples} {sample_percent}')
 train_dataset = create_dataset(train_inputs[:samples], train_labels[:samples], tokenizer, pad_truncate=True, max_length=128)
-val_dataset = create_dataset(val_inputs[:samples], val_labels[:samples], tokenizer, pad_truncate=True)
+val_dataset = create_dataset(val_inputs, val_labels, tokenizer, pad_truncate=True)
 
+print(f'amount of data that is being used for fine-tuning (train) : {len(train_dataset)} == {samples} ({sample_percent})')
+print(f'amount of data that is being used for fine-tuning (validation): {len(val_dataset)} (full)')
+print(f'amount of data that will be probably being used for testing: {sum([len(x) for x in test_inputs.values()])} (full)')
 
 # In[61]:
 
@@ -234,6 +236,7 @@ def compute_metrics(p):
 
 
 # In[68]:
+from transformers import EarlyStoppingCallback
 
 
 trainer = Seq2SeqTrainer(
@@ -243,7 +246,8 @@ trainer = Seq2SeqTrainer(
     eval_dataset=val_dataset,
     optimizers=[torch.optim.Adam(params=model.parameters(), lr=lr), None],
     tokenizer=tokenizer,
-    compute_metrics=compute_metrics
+    compute_metrics=compute_metrics,
+    callbacks=[EarlyStoppingCallback(early_stopping_patience=4)]
 )
 
 
@@ -256,7 +260,7 @@ trainer.train()
 # In[73]:
 
 
-trainer.evaluate()['eval_loss']
+print(f'final eval loss : {trainer.evaluate()["eval_loss"]}')
 
 
 # In[77]:
@@ -269,11 +273,12 @@ trainer.save_model(best_model_dir)
 # In[78]:
 
 
-result = os.system(f'python hf_transformers/tfix_testing.py --load-model {best_model_dir} -bs 16 --model-name t5-small -d repo-based-included -tuning_results.csv {repo}')
+result = os.system(f'python hf_transformers/tfix_testing.py --load-model {best_model_dir} -bs 16 --model-name t5-small -d repo-based-included -r {repo}')
 print(result)
 
-# In[ ]:
+import shutil
 
+shutil.rmtree(best_model_dir)
 
 
 

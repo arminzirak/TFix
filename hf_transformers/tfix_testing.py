@@ -236,7 +236,7 @@ scores["average"] = average
 scores['number_of_warnings'] = number_of_warnings
 scores['samples_count'] = counter
 
-print(f'score average {average}')
+print(f'score average: {average} samples_count: {scores["samples_count"]}')
 
 if args.repo:
     with open(f'{storage_directory}/results_per_repo.csv', 'a') as f:
@@ -257,3 +257,5 @@ output_file.write(serialized_scores)
 output_file.close()
 
 print("end time: ", get_current_time())
+
+sys.exit(0)

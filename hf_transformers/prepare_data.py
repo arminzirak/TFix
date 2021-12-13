@@ -88,7 +88,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
                     continue
                 this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
                     train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
-                                     shuffle=True, random_state=seed, test_size=0.25)
+                                     shuffle=True, random_state=seed, test_size=0.50)
                 test_inputs += this_test_input
                 test_labels += this_test_output
                 test_info += this_test_fi
@@ -103,7 +103,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
     if len(train_inputs) > 1:
         # print(
         #     f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
-        val_size = 0.05  # if len(train_inputs) >= 10 else 1 / len(train_inputs)
+        val_size = 0.25  # if len(train_inputs) >= 10 else 1 / len(train_inputs)
         train_inputs, val_inputs, train_labels, val_labels = train_test_split(
             train_inputs, train_labels, shuffle=True, random_state=seed, test_size=val_size
         )
@@ -158,9 +158,8 @@ def create_data(data: List[DataPoint], linter_warnings: List[str], include_warni
         test_info[warning] = test_w_info
 
         n_test_samples += len(test_w)
-    print(
-        "train size: {}\nval size: {}\ntest size: {}".format(len(train), len(val), n_test_samples)
-    )
+    print("train size: {}\nval size: {}\ntest size: {}"
+          .format(len(train), len(val), n_test_samples))
     return train, train_labels, val, val_labels, test, test_labels, train_info, val_info, test_info
 
 
