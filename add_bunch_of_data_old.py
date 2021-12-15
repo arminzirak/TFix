@@ -47,7 +47,7 @@ import numpy as np
 
 # In[7]:
 
-local = False
+local = True
 
 if local:
     storage_directory = './storage/'
