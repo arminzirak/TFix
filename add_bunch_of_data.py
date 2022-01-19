@@ -42,7 +42,7 @@ import random
 # In[6]:
 
 
-local = True
+local = False
 
 if local:
     storage_directory = './storage/'
@@ -115,7 +115,7 @@ all_warning_types = extract_warning_types(data)
                                                                                               design='repo-based')
 
 
-# In[12]:
+# In[13]:
 
 
 repo_vecs = np.array([codebert_utils.code_to_vec(item) for item in repo_train_inputs])
@@ -138,52 +138,52 @@ general_vecs = np.load('general_arr_all.npy')
 nbrs = NearestNeighbors(n_neighbors=1, algorithm='ball_tree').fit(repo_vecs)
 
 
-# In[15]:
+# In[24]:
 
 
 distances, indices = nbrs.kneighbors(general_vecs)
 
 
-# In[16]:
+# In[25]:
 
 
 repo_nbrs = NearestNeighbors(n_neighbors=2, algorithm='ball_tree').fit(repo_vecs)
 repo_distances, index = repo_nbrs.kneighbors(repo_vecs)
 
 
-# In[17]:
+# In[26]:
 
 
 threshold = sorted(distances)[int(append * 5 / 4)]
 print('threshold:', threshold, 'append:', append, int(append * 5 / 4))
 
 
-# In[18]:
+# In[27]:
 
 
 selected = (distances < threshold)
 
 
-# In[19]:
+# In[28]:
 
 
 assert selected.sum() == int(append * 5 / 4)
 
 
-# In[20]:
+# In[29]:
 
 
 samples = int(repo_percent * len(repo_train_inputs))
 print(f'all repo samples: {len(repo_train_inputs)}\ntrain samples of repo: {samples} ({repo_percent})')
 
 
-# In[21]:
+# In[30]:
 
 
 assert len(distances) == len(general_train_inputs)
 
 
-# In[22]:
+# In[31]:
 
 
 filtered_general_inputs = list()
@@ -196,41 +196,43 @@ for ind in range(len(general_train_inputs)):
         filtered_general_info.append(general_train_info[ind])
 
 
-# In[23]:
+# In[32]:
 
 
 selected.shape
 
 
-# In[24]:
+# In[34]:
 
 
-filtered_general_distances, _ = nbrs.kneighbors(general_vecs[selected[:, 0]])
-filtered_general_distances.shape
+if selected.any():
+    filtered_general_distances, _ = nbrs.kneighbors(general_vecs[selected[:, 0]])
+    filtered_general_distances.shape
 
 
-# In[25]:
+# In[35]:
 
 
 # from matplotlib import pyplot as plt
 # plt.boxplot([distances.squeeze(), repo_distances[:, 1], filtered_general_distances.squeeze()])
 
 
-# In[26]:
+
+# In[36]:
 
 
 print(len(filtered_general_inputs))
 assert len(filtered_general_inputs) == int(append * 5 / 4)
 
 
-# In[27]:
+# In[37]:
 
 
 validation_point = append
 print(validation_point)
 
 
-# In[28]:
+# In[38]:
 
 
 added_inputs_train = filtered_general_inputs[:validation_point]
@@ -238,7 +240,7 @@ added_labels_train = filtered_general_labels[:validation_point]
 added_info_train = filtered_general_info[:validation_point]
 
 
-# In[29]:
+# In[39]:
 
 
 added_inputs_val = filtered_general_inputs[validation_point:]
@@ -246,19 +248,19 @@ added_labels_val = filtered_general_labels[validation_point:]
 added_info_val = filtered_general_info[validation_point:]
 
 
-# In[30]:
+# In[40]:
 
 
 print(len(repo_train_inputs), len(added_inputs_train))
 
 
-# In[31]:
+# In[41]:
 
 
 assert len(added_inputs_train) == append
 
 
-# In[32]:
+# In[42]:
 
 
 added_inputs_train += repo_train_inputs[:samples]
@@ -266,7 +268,7 @@ added_labels_train += repo_train_labels[:samples]
 added_info_train += repo_train_info[:samples]
 
 
-# In[33]:
+# In[43]:
 
 
 added_inputs_val += repo_val_inputs
@@ -274,26 +276,26 @@ added_labels_val += repo_val_labels
 added_info_val += repo_val_info
 
 
-# In[34]:
+# In[44]:
 
 
 print('added inputs train', len(added_inputs_train))
 print('added inputs val', len(added_inputs_val))
 
 
-# In[35]:
+# In[45]:
 
 
 print('repo val inputs', len(repo_val_inputs))
 
 
-# In[36]:
+# In[46]:
 
 
 assert len(added_inputs_train) == append + samples
 
 
-# In[37]:
+# In[47]:
 
 
 tokenizer = T5Tokenizer.from_pretrained(base_model)
@@ -315,13 +317,13 @@ model_directory = f'{storage_directory}/tmp/{full_name}'
 model_directory
 
 
-# In[38]:
+# In[48]:
 
 
 len(repo_test_inputs)
 
 
-# In[39]:
+# In[49]:
 
 
 lr = 4e-3
@@ -329,7 +331,7 @@ ws = 300
 wd = 0.4
 
 
-# In[40]:
+# In[50]:
 
 
 tokenizer = T5Tokenizer.from_pretrained(base_model)
@@ -337,8 +339,7 @@ model = T5ForConditionalGeneration.from_pretrained(base_model)
 model.resize_token_embeddings(len(tokenizer))
 
 
-# In[41]:
-
+# In[51]:
 
 
 from transformers import EarlyStoppingCallback
@@ -366,7 +367,7 @@ training_args = Seq2SeqTrainingArguments(
 )
 
 
-# In[42]:
+# In[52]:
 
 
 trainer = Seq2SeqTrainer(
@@ -381,19 +382,19 @@ trainer = Seq2SeqTrainer(
 )
 
 
-# In[ ]:
+# In[53]:
 
 
 trainer.train()
 
 
-# In[ ]:
+# In[55]:
 
 
 print('eval', trainer.evaluate()['eval_loss'])
 
 
-# In[ ]:
+# In[56]:
 
 
 best_model_dir = f'{model_directory}/best/'
@@ -401,7 +402,7 @@ trainer.save_model(best_model_dir)
 print('best model dir', best_model_dir)
 
 
-# In[42]:
+# In[57]:
 
 
 from numba import cuda 
@@ -409,7 +410,7 @@ device = cuda.get_current_device()
 device.reset()
 
 
-# In[43]:
+# In[58]:
 
 
 
@@ -417,13 +418,13 @@ os.system(
     f'python hf_transformers/tfix_testing.py --load-model {best_model_dir} -bs {batch_size} --model-name t5-small -d repo-based-included -r {repo}')
 
 
-# In[44]:
+# In[59]:
 
 
 import shutil
 
 
-# In[45]:
+# In[60]:
 
 
 shutil.rmtree(model_directory)
