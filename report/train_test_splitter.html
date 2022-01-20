@@ -14515,7 +14515,7 @@ a.anchor-link {
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -14525,6 +14525,7 @@ a.anchor-link {
 <span class="n">storage_directory</span> <span class="o">=</span> <span class="s1">&#39;./storage/&#39;</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">GetDataAsPython</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">storage_directory</span><span class="si">}</span><span class="s2">/data_and_models/data/data_autofix_tracking_repo_specific_final.json&quot;</span><span class="p">)</span>
 <span class="n">data_eslint</span> <span class="o">=</span> <span class="n">GetDataAsPython</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">storage_directory</span><span class="si">}</span><span class="s2">/data_and_models/data/data_autofix_tracking_eslint_final.json&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">+=</span><span class="n">data_eslint</span>
 </pre></div>
 
      </div>
@@ -14535,7 +14536,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">repos</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">repo</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
@@ -14550,10 +14551,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sorted_repos</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sorted_repos</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14569,24 +14570,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[(&#39;/data/all/data/oroinc/platform&#39;, 196),
- (&#39;/data/all/data/Encapsule-Annex/onm&#39;, 191),
- (&#39;/data/all/data/cscheid/lux&#39;, 185),
- (&#39;/data/all/data/emberjs/ember.js&#39;, 168),
- (&#39;/data/all/data/zloirock/core-js&#39;, 168),
- (&#39;/data/all/data/dcos/dcos-ui&#39;, 145),
- (&#39;/data/all/data/appium/appium&#39;, 141),
- (&#39;/data/all/data/sequelize/sequelize&#39;, 137),
- (&#39;/data/all/data/svgdotjs/svg.js&#39;, 134),
- (&#39;/data/all/data/openlayers/openlayers&#39;, 126)]</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[(&#39;/data/all/data/qooxdoo/qooxdoo&#39;, 547), (&#39;/data/all/data/ElevenGiants/eleven-gsjs&#39;, 254), (&#39;/data/all/data/openlayers/openlayers&#39;, 236), (&#39;/data/all/data/elastic/kibana&#39;, 231), (&#39;/data/all/data/SAP/openui5&#39;, 227), (&#39;/data/all/data/graalvm/graaljs&#39;, 220), (&#39;/data/all/data/emberjs/ember.js&#39;, 218), (&#39;/data/all/data/oroinc/platform&#39;, 216), (&#39;/data/all/data/oskariorg/oskari-frontend&#39;, 201), (&#39;/data/all/data/zloirock/core-js&#39;, 201)]
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14596,10 +14586,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_repos</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">sorted_repos</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_repos</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">sorted_repos</span><span class="p">]))</span>
 </pre></div>
 
      </div>
@@ -14615,15 +14605,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>(10884, 42171)</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>23285 104804
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14633,7 +14621,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -14647,66 +14635,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">sorted_repos</span><span class="p">][:</span><span class="mi">30</span><span class="p">])</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>(array([8., 6., 3., 3., 2., 3., 0., 2., 0., 3.]),
- array([ 74. ,  86.2,  98.4, 110.6, 122.8, 135. , 147.2, 159.4, 171.6,
-        183.8, 196. ]),
- &lt;BarContainer object of 10 artists&gt;)</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedImage jp-OutputArea-output ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sorted_repos</span><span class="p">[:</span><span class="mi">26</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">sorted_repos</span><span class="p">][:</span><span class="mi">30</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14728,32 +14660,26 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[(&#39;/data/all/data/oroinc/platform&#39;, 196),
- (&#39;/data/all/data/Encapsule-Annex/onm&#39;, 191),
- (&#39;/data/all/data/cscheid/lux&#39;, 185),
- (&#39;/data/all/data/emberjs/ember.js&#39;, 168),
- (&#39;/data/all/data/zloirock/core-js&#39;, 168),
- (&#39;/data/all/data/dcos/dcos-ui&#39;, 145),
- (&#39;/data/all/data/appium/appium&#39;, 141),
- (&#39;/data/all/data/sequelize/sequelize&#39;, 137),
- (&#39;/data/all/data/svgdotjs/svg.js&#39;, 134),
- (&#39;/data/all/data/openlayers/openlayers&#39;, 126),
- (&#39;/data/all/data/graalvm/graaljs&#39;, 118),
- (&#39;/data/all/data/qooxdoo/qooxdoo&#39;, 117),
- (&#39;/data/all/data/saitoha/tanasinn&#39;, 112),
- (&#39;/data/all/data/SnakeskinTpl/Snakeskin&#39;, 109),
- (&#39;/data/all/data/byteball/ocore&#39;, 103),
- (&#39;/data/all/data/medikoo/es5-ext&#39;, 102),
- (&#39;/data/all/data/jquense/react-widgets&#39;, 97),
- (&#39;/data/all/data/mongodb/node-mongodb-native&#39;, 96),
- (&#39;/data/all/data/eclipse/scout.rt&#39;, 90),
- (&#39;/data/all/data/handshake-org/hsd&#39;, 89),
- (&#39;/data/all/data/girder/girder&#39;, 88),
- (&#39;/data/all/data/wsick/Fayde&#39;, 88),
- (&#39;/data/all/data/winderica/KanColleSource&#39;, 86),
- (&#39;/data/all/data/eclipse/orion.client&#39;, 84),
- (&#39;/data/all/data/kuzzleio/kuzzle&#39;, 80),
- (&#39;/data/all/data/request/request&#39;, 80)]</pre>
+<pre>(array([14.,  9.,  6.,  0.,  0.,  0.,  0.,  0.,  0.,  1.]),
+ array([134. , 175.3, 216.6, 257.9, 299.2, 340.5, 381.8, 423.1, 464.4,
+        505.7, 547. ]),
+ &lt;BarContainer object of 10 artists&gt;)</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
 </div>
@@ -14768,8 +14694,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_big</span> <span class="o">=</span> <span class="n">sorted_repos</span><span class="p">[:</span><span class="mi">26</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">target_big</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_big</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">target_big</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sorted_repos</span><span class="p">[:</span><span class="mi">30</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14785,25 +14710,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>([(&#39;/data/all/data/oroinc/platform&#39;, 196),
-  (&#39;/data/all/data/emberjs/ember.js&#39;, 168),
-  (&#39;/data/all/data/appium/appium&#39;, 141),
-  (&#39;/data/all/data/openlayers/openlayers&#39;, 126),
-  (&#39;/data/all/data/saitoha/tanasinn&#39;, 112),
-  (&#39;/data/all/data/medikoo/es5-ext&#39;, 102),
-  (&#39;/data/all/data/eclipse/scout.rt&#39;, 90),
-  (&#39;/data/all/data/wsick/Fayde&#39;, 88),
-  (&#39;/data/all/data/kuzzleio/kuzzle&#39;, 80)],
- 9,
- 1103)</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[(&#39;/data/all/data/qooxdoo/qooxdoo&#39;, 547), (&#39;/data/all/data/ElevenGiants/eleven-gsjs&#39;, 254), (&#39;/data/all/data/openlayers/openlayers&#39;, 236), (&#39;/data/all/data/elastic/kibana&#39;, 231), (&#39;/data/all/data/SAP/openui5&#39;, 227), (&#39;/data/all/data/graalvm/graaljs&#39;, 220), (&#39;/data/all/data/emberjs/ember.js&#39;, 218), (&#39;/data/all/data/oroinc/platform&#39;, 216), (&#39;/data/all/data/oskariorg/oskari-frontend&#39;, 201), (&#39;/data/all/data/zloirock/core-js&#39;, 201), (&#39;/data/all/data/cscheid/lux&#39;, 198), (&#39;/data/all/data/handshake-org/hsd&#39;, 196), (&#39;/data/all/data/Encapsule-Annex/onm&#39;, 194), (&#39;/data/all/data/NPellet/visualizer&#39;, 192), (&#39;/data/all/data/quailjs/quail&#39;, 182), (&#39;/data/all/data/sequelize/sequelize&#39;, 180), (&#39;/data/all/data/mrdoob/three.js&#39;, 173), (&#39;/data/all/data/eclipse/orion.client&#39;, 170), (&#39;/data/all/data/dcos/dcos-ui&#39;, 166), (&#39;/data/all/data/binaryage/dirac&#39;, 165), (&#39;/data/all/data/eclipse/scout.rt&#39;, 162), (&#39;/data/all/data/LivelyKernel/LivelyKernel&#39;, 159), (&#39;/data/all/data/appium/appium&#39;, 155), (&#39;/data/all/data/tc39/test262&#39;, 154), (&#39;/data/all/data/svgdotjs/svg.js&#39;, 149), (&#39;/data/all/data/mongodb/node-mongodb-native&#39;, 145), (&#39;/data/all/data/angular/angular.js&#39;, 138), (&#39;/data/all/data/foam-framework/foam&#39;, 135), (&#39;/data/all/data/rancher/ui&#39;, 135), (&#39;/data/all/data/SnakeskinTpl/Snakeskin&#39;, 134)]
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14816,8 +14729,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source_big</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sorted_repos</span><span class="p">[:</span><span class="mi">26</span><span class="p">]</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_big</span><span class="p">]</span>
-<span class="n">source_big</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_big</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">source_big</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_big</span> <span class="o">=</span> <span class="n">sorted_repos</span><span class="p">[:</span><span class="mi">30</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">target_big</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_big</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">target_big</span><span class="p">]))</span>
 </pre></div>
 
      </div>
@@ -14833,19 +14746,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>([(&#39;/data/all/data/Encapsule-Annex/onm&#39;, 191),
-  (&#39;/data/all/data/cscheid/lux&#39;, 185),
-  (&#39;/data/all/data/zloirock/core-js&#39;, 168)],
- 17,
- 2027)</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[(&#39;/data/all/data/qooxdoo/qooxdoo&#39;, 547), (&#39;/data/all/data/elastic/kibana&#39;, 231), (&#39;/data/all/data/emberjs/ember.js&#39;, 218), (&#39;/data/all/data/zloirock/core-js&#39;, 201), (&#39;/data/all/data/Encapsule-Annex/onm&#39;, 194), (&#39;/data/all/data/sequelize/sequelize&#39;, 180), (&#39;/data/all/data/dcos/dcos-ui&#39;, 166), (&#39;/data/all/data/LivelyKernel/LivelyKernel&#39;, 159), (&#39;/data/all/data/svgdotjs/svg.js&#39;, 149), (&#39;/data/all/data/foam-framework/foam&#39;, 135)] 10 2180
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14858,8 +14765,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_small</span> <span class="o">=</span> <span class="n">sorted_repos</span><span class="p">[</span><span class="mi">26</span><span class="p">::</span><span class="mi">7</span><span class="p">]</span>
-<span class="n">target_small</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_small</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">target_small</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source_big</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sorted_repos</span><span class="p">[:</span><span class="mi">30</span><span class="p">]</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_big</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">source_big</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_big</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">source_big</span><span class="p">]))</span>
 </pre></div>
 
      </div>
@@ -14875,17 +14782,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>([(&#39;/data/all/data/rancher/ui&#39;, 77), (&#39;/data/all/data/milojs/milo&#39;, 71)],
- 1552,
- 5607)</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[(&#39;/data/all/data/ElevenGiants/eleven-gsjs&#39;, 254), (&#39;/data/all/data/openlayers/openlayers&#39;, 236), (&#39;/data/all/data/SAP/openui5&#39;, 227)] 20 3653
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14898,8 +14801,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source_small</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sorted_repos</span><span class="p">[</span><span class="mi">26</span><span class="p">:]</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_small</span><span class="p">]</span>
-<span class="n">source_small</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_small</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">source_small</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_small</span> <span class="o">=</span> <span class="n">sorted_repos</span><span class="p">[</span><span class="mi">30</span><span class="p">::</span><span class="mi">7</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">target_small</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_small</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">target_small</span><span class="p">]))</span>
 </pre></div>
 
      </div>
@@ -14915,19 +14818,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>([(&#39;/data/all/data/openstf/stf&#39;, 76),
-  (&#39;/data/all/data/Vincit/objection.js&#39;, 75),
-  (&#39;/data/all/data/wikimedia/mediawiki-extensions-VisualEditor&#39;, 74)],
- 9306,
- 33434)</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[(&#39;/data/all/data/dojo/dojox-oldmirror&#39;, 125), (&#39;/data/all/data/infernojs/inferno&#39;, 116)] 3323 14197
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -14938,6 +14835,42 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">source_small</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sorted_repos</span><span class="p">[</span><span class="mi">30</span><span class="p">:]</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_small</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">source_small</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_small</span><span class="p">),</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">source_small</span><span class="p">]))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[(&#39;/data/all/data/basisjs/basisjs&#39;, 124), (&#39;/data/all/data/meteor/meteor&#39;, 123), (&#39;/data/all/data/mozilla-b2g/gaia&#39;, 120)] 19932 84774
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">source_small_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">source_small</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">])</span>
@@ -14970,7 +14903,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 
 
 
@@ -15002,8 +14935,8 @@ a.anchor-link {
   <tbody>
     <tr>
       <th>0</th>
-      <td>/data/all/data/openstf/stf</td>
-      <td>76</td>
+      <td>/data/all/data/basisjs/basisjs</td>
+      <td>124</td>
       <td>source</td>
       <td>small</td>
     </tr>
@@ -15021,10 +14954,38 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">repos_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;./repos_3.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
