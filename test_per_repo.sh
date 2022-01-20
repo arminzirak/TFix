@@ -16,4 +16,4 @@ do
     echo $repo
     python hf_transformers/tfix_testing.py --load-model ./storage/checkpoint-37375/ -bs 32 --model-name t5-small -d repo-based-included -r $repo
   fi
-done < <(tail -n +2 ./repos_2.csv)
+done < <(tail -n +2 ./repos_3.csv)
