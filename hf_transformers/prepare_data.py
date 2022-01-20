@@ -36,31 +36,33 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
 
 
     if design == 'new':
-        repos = pd.read_csv('./repos.csv', index_col=0)
-        test_repos = repos[~repos['train']]
-        train_inputs, train_labels, train_info = list(), list(), list()
-        test_inputs, test_labels, test_info = list(), list(), list()
-
-        for input_instance, output_instance, filtered_data_instance in zip(inputs, outputs, filtered_data):
-            if not (test_repos['repo'] == filtered_data_instance.repo).any():
-                train_inputs.append(input_instance)
-                train_labels.append(output_instance)
-                train_info.append(filtered_data_instance)
-            elif (not select_repo) or (select_repo == filtered_data_instance.repo):
-                test_inputs.append(input_instance)
-                test_labels.append(output_instance)
-                test_info.append(filtered_data_instance)
+        raise Exception('deprecated design')
+        # repos = pd.read_csv('./repos.csv', index_col=0)
+        # target_repos = repos[repos['category'] == 'target']
+        # train_inputs, train_labels, train_info = list(), list(), list()
+        # test_inputs, test_labels, test_info = list(), list(), list()
+        #
+        # for input_instance, output_instance, filtered_data_instance in zip(inputs, outputs, filtered_data):
+        #     if not (target_repos['repo'] == filtered_data_instance.repo).any():
+        #         train_inputs.append(input_instance)
+        #         train_labels.append(output_instance)
+        #         train_info.append(filtered_data_instance)
+        #     elif (not select_repo) or (select_repo == filtered_data_instance.repo):
+        #         test_inputs.append(input_instance)
+        #         test_labels.append(output_instance)
+        #         test_info.append(filtered_data_instance)
 
     elif design == 'old':
-        test_size = 0.1 if len(inputs) >= 10 else 1 / len(inputs)
-
-        train_inputs, test_inputs, train_labels, test_labels = train_test_split(
-            inputs, outputs, shuffle=True, random_state=seed, test_size=test_size
-        )
-        train_info, test_info = train_test_split(filtered_data, shuffle=True, random_state=seed, test_size=test_size)
+        raise Exception('deprecated design')
+        # test_size = 0.1 if len(inputs) >= 10 else 1 / len(inputs)
+        #
+        # train_inputs, test_inputs, train_labels, test_labels = train_test_split(
+        #     inputs, outputs, shuffle=True, random_state=seed, test_size=test_size
+        # )
+        # train_info, test_info = train_test_split(filtered_data, shuffle=True, random_state=seed, test_size=test_size)
     elif design.startswith('repo-based'):
-        repos = pd.read_csv('./repos_2.csv', index_col=0)
-        test_repos = repos[~repos['train']]
+        repos = pd.read_csv('./repos_3.csv', index_col=0)
+        target_repos = repos[repos['category'] == 'target']
 
         input_repo = defaultdict(list)
         output_repo = defaultdict(list)
@@ -76,7 +78,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
         train_inputs, train_labels, train_info = list(), list(), list()
         test_inputs, test_labels, test_info = list(), list(), list()
         for repo in input_repo:
-            if not (test_repos['repo'] == repo).any():
+            if not (target_repos['repo'] == repo).any():
                 train_inputs += input_repo[repo]
                 train_labels += output_repo[repo]
                 train_info += filtered_instance_repo[repo]
