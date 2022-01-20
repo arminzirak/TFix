@@ -2,7 +2,16 @@ import pandas as pd
 from collections import Counter
 from data_reader import GetDataAsPython
 
-storage_directory = './storage/'
+
+local = False
+
+
+if local:
+    storage_directory = './storage/'
+else:
+    storage_directory = '/scratch/arminz/'
+
+
 data = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_repo_specific_final.json")
 data_eslint = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_eslint_final.json")
 data+=data_eslint
