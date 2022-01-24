@@ -58,9 +58,9 @@ if args.result_dir != "":
     test_result_directory = args.result_dir
 else:
     if not args.repo:
-        test_result_directory = f'{storage_directory}/{now.day}/{model_name}_test_{args.design}_{dt_string}'
+        test_result_directory = f'{storage_directory}/testing/{now.day}/{model_name}_test_{args.design}_{dt_string}'
     else:
-        test_result_directory = f'{storage_directory}/{now.day}/per-repo/{model_name}_test_{args.repo.rsplit("/", 1)[1][-20:]}_{dt_string}'
+        test_result_directory = f'{storage_directory}/testing/{now.day}/per-repo/{model_name}_test_{args.repo.rsplit("/", 1)[1][-20:]}_{dt_string}'
 
 os.makedirs(test_result_directory, exist_ok=True)
 with open(os.path.join(test_result_directory, "commandline_args.txt"), "w") as f:
@@ -69,8 +69,8 @@ with open(os.path.join(test_result_directory, "commandline_args.txt"), "w") as f
 # Read data
 data = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_repo_specific_final.json")
 data_eslint = GetDataAsPython(f"{storage_directory}/data_and_models/data/data_autofix_tracking_eslint_final.json")
-
 data += data_eslint
+
 all_warning_types = extract_warning_types(data)
 if args.error_type != "":
     all_warning_types = [args.error_type]
