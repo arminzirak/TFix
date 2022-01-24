@@ -9,4 +9,4 @@
 # in the previous two lines %A" is replaced by job
 
 source env/bin/activate
-python hf_transformers/tfix_testing.py --load-model ./storage/checkpoint-40140 -bs 32 --model-name t5-small -d new -r /data/all/data/appium/appium
+python hf_transformers/tfix_testing.py --load-model ./storage/checkpoint-37375 -bs 16 --model-name t5-small -d repo-based-included #-r /data/all/data/appium/appium
