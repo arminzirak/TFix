@@ -90,7 +90,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
                     continue
                 this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
                     train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
-                                     shuffle=True, random_state=seed, test_size=0.50)
+                                     shuffle=True, random_state=seed, test_size=0.20)
                 test_inputs += this_test_input
                 test_labels += this_test_output
                 test_info += this_test_fi
