@@ -63,12 +63,12 @@ local = False
 
 if local:
     storage_directory = './storage/'
-    load_model = f'./{storage_directory}/checkpoint-37375'
+    load_model = f'./{storage_directory}/training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
     batch_size = 16
 else:
     storage_directory = '/scratch/arminz/'
     batch_size = 64
-    load_model = f'/{storage_directory}/t5-small_global_repo-based_03-11-2021_15-28-40/checkpoint-37375/'
+    load_model = f'/{storage_directory}/training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
 
 # In[7]:
 
@@ -87,8 +87,8 @@ exec_number
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-tuning_results.csv", "--repo", type=str, default='/data/all/data/oroinc/platform')
-parser.add_argument("-p", "--percent", type=float, default=0.5)
+parser.add_argument("-r", "--repo", type=str, default='/data/all/data/oroinc/platform')
+parser.add_argument("-p", "--percent", type=float, default=1)
 
 args = parser.parse_args()
 repo = args.repo
@@ -135,7 +135,8 @@ all_warning_types = extract_warning_types(data)
 # In[39]:
 
 
-(train_inputs, train_labels, val_inputs, val_labels, test_inputs, test_labels, train_info, val_info, test_info, ) = create_data(data, all_warning_types, include_warning=True, design='repo-based-included', select_repo=repo)
+(train_inputs, train_labels, val_inputs, val_labels, test_inputs, test_labels, train_info, val_info, test_info, ) = \
+    create_data(data, all_warning_types, include_warning=True, design='repo-based-included', select_repo=repo)
 
 
 # In[40]:
@@ -167,7 +168,7 @@ print(f'amount of data that will be probably being used for testing: {sum([len(x
 
 now = datetime.now()
 full_name = f'{name}_{exec_number}_{repo.rsplit("/", 1)[1][-20:]}_{sample_percent}'
-model_directory = f'{storage_directory}/tmp/{full_name}'
+model_directory = f'{storage_directory}/tmp/finetuned/{full_name}'
 model_directory
 
 
@@ -272,9 +273,14 @@ trainer.save_model(best_model_dir)
 
 # In[78]:
 
+from numba import cuda
+device = cuda.get_current_device()
+device.reset()
+
 
 result = os.system(f'python hf_transformers/tfix_testing.py --load-model {best_model_dir} -bs 16 --model-name t5-small -d repo-based-included -r {repo}')
 print(result)
+
 
 import shutil
 
