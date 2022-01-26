@@ -270,9 +270,9 @@ scores['samples_count'] = counter
 
 print(f'score average: {average} samples_count: {scores["samples_count"]}')
 
-if args.repo:
-    with open(f'{storage_directory}/results_per_repo.csv', 'a') as f:
-        f.write(f'{args.repo},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model}\n')
+with open(f'{storage_directory}/results.csv', 'a') as f:
+    f.write(f'withAdapter,{args.repo if args.repo else "all"},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model}\n')
+
 # create the whole test list
 test_list: List[DataPoint] = []
 for key in test_info:
