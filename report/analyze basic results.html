@@ -14515,7 +14515,7 @@ a.anchor-link {
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[101]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -14529,10 +14529,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[102]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./results.csv&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">,</span> <span class="s1">&#39;#w&#39;</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;model_address&#39;</span><span class="p">,</span> <span class="s1">&#39;split&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./results.csv&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;repo&#39;</span><span class="p">,</span> <span class="s1">&#39;acc&#39;</span><span class="p">,</span> <span class="s1">&#39;#w&#39;</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;model_address&#39;</span><span class="p">,</span> <span class="s1">&#39;split&#39;</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14543,7 +14543,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[103]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;model_address&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">&#39;good&#39;</span> <span class="k">if</span> <span class="s1">&#39;good&#39;</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">else</span> <span class="s1">&#39;included&#39;</span> <span class="k">if</span> <span class="s1">&#39;included&#39;</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">else</span> <span class="s1">&#39;excluded&#39;</span><span class="p">)</span>
@@ -14557,10 +14557,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[104]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14576,7 +14576,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[104]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[52]:</div>
 
 
 
@@ -14599,6 +14599,7 @@ a.anchor-link {
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>name</th>
       <th>repo</th>
       <th>acc</th>
       <th>#w</th>
@@ -14612,40 +14613,43 @@ a.anchor-link {
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>/data/all/data/qooxdoo/qooxdoo</td>
-      <td>0.55</td>
-      <td>18</td>
-      <td>274</td>
-      <td>24-01-2022_12-25-47</td>
+      <th>71</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/LivelyKernel/LivelyKernel</td>
+      <td>0.67</td>
+      <td>12</td>
+      <td>36</td>
+      <td>25-01-2022_19-00-44</td>
       <td>t5-small</td>
-      <td>t5-small_repo-based-included_21-01-2022_10-30-...</td>
-      <td>0.5</td>
-      <td>included</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>/data/all/data/elastic/kibana</td>
-      <td>0.45</td>
-      <td>17</td>
-      <td>113</td>
-      <td>24-01-2022_12-27-26</td>
+      <th>72</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/svgdotjs/svg.js</td>
+      <td>0.71</td>
+      <td>5</td>
+      <td>31</td>
+      <td>25-01-2022_19-03-25</td>
       <td>t5-small</td>
-      <td>t5-small_repo-based-included_21-01-2022_10-30-...</td>
-      <td>0.5</td>
-      <td>included</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>/data/all/data/emberjs/ember.js</td>
-      <td>0.58</td>
-      <td>11</td>
-      <td>108</td>
-      <td>24-01-2022_12-28-26</td>
+      <th>73</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/foam-framework/foam</td>
+      <td>0.33</td>
+      <td>13</td>
+      <td>33</td>
+      <td>25-01-2022_19-07-00</td>
       <td>t5-small</td>
-      <td>t5-small_repo-based-included_21-01-2022_10-30-...</td>
-      <td>0.5</td>
-      <td>included</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
     </tr>
   </tbody>
 </table>
@@ -14661,15 +14665,16 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[105]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">good_5</span> <span class="o">=</span> <span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;good&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
-<span class="n">good_2</span> <span class="o">=</span> <span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;good&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
-<span class="n">inc_2</span> <span class="o">=</span> <span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;included&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
-<span class="n">inc_5</span> <span class="o">=</span> <span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;included&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
-<span class="n">exc_5</span> <span class="o">=</span> <span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;excluded&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
-<span class="n">exc_2</span> <span class="o">=</span> <span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;excluded&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">good_5</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;good&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
+<span class="n">good_2</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;good&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
+<span class="n">inc_2</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;included&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
+<span class="n">inc_5</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;included&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
+<span class="n">exc_5</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;excluded&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
+<span class="n">exc_2</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;excluded&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;all&#39;</span><span class="p">)]</span>
+<span class="n">adapter</span> <span class="o">=</span> <span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;withAdapter&#39;</span><span class="p">)]</span>
 </pre></div>
 
      </div>
@@ -14680,10 +14685,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[106]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">good_5</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">good_2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">inc_2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">inc_5</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">exc_2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">exc_5</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">good_5</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">good_2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">inc_2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">inc_5</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">exc_2</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">exc_5</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">adapter</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14703,7 +14708,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>10 10 10 10 10 10
+<pre>10 10 10 10 10 10 10
 </pre>
 </div>
 </div>
@@ -14715,7 +14720,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[107]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">inc_2</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="p">(</span><span class="n">inc_2</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">inc_2</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">inc_2</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -14734,7 +14739,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[107]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[55]:</div>
 
 
 
@@ -14752,7 +14757,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[108]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># inc_5[&#39;acc&#39;].mean(), (inc_5[&#39;acc&#39;] * inc_5[&#39;samples&#39;]).sum() / inc_5[&#39;samples&#39;].sum()</span>
@@ -14766,7 +14771,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[109]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">exc_2</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="p">(</span><span class="n">exc_2</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">exc_2</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">exc_2</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -14785,7 +14790,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[109]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[57]:</div>
 
 
 
@@ -14803,7 +14808,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[110]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># exc_5[&#39;acc&#39;].mean(), (exc_5[&#39;acc&#39;] * exc_5[&#39;samples&#39;]).sum() / exc_5[&#39;samples&#39;].sum()</span>
@@ -14817,7 +14822,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[111]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">good_2</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="p">(</span><span class="n">good_2</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">good_2</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">good_2</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -14836,7 +14841,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[111]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[59]:</div>
 
 
 
@@ -14854,7 +14859,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[112]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[60]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># good_5[&#39;acc&#39;].mean(), (good_5[&#39;acc&#39;] * good_5[&#39;samples&#39;]).sum() / good_5[&#39;samples&#39;].sum()</span>
@@ -14868,7 +14873,44 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[113]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">adapter</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="p">(</span><span class="n">adapter</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">adapter</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">adapter</span><span class="p">[</span><span class="s1">&#39;samples&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[61]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>(0.6020000000000001, 0.5919999999999999)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[62]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">inc_2</span>
@@ -14887,7 +14929,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[113]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[62]:</div>
 
 
 
@@ -14910,6 +14952,7 @@ a.anchor-link {
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>name</th>
       <th>repo</th>
       <th>acc</th>
       <th>#w</th>
@@ -14924,6 +14967,7 @@ a.anchor-link {
   <tbody>
     <tr>
       <th>50</th>
+      <td>NaN</td>
       <td>/data/all/data/qooxdoo/qooxdoo</td>
       <td>0.53</td>
       <td>18</td>
@@ -14936,6 +14980,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>51</th>
+      <td>NaN</td>
       <td>/data/all/data/elastic/kibana</td>
       <td>0.45</td>
       <td>17</td>
@@ -14948,6 +14993,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>52</th>
+      <td>NaN</td>
       <td>/data/all/data/emberjs/ember.js</td>
       <td>0.53</td>
       <td>11</td>
@@ -14960,6 +15006,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>53</th>
+      <td>NaN</td>
       <td>/data/all/data/zloirock/core-js</td>
       <td>0.24</td>
       <td>8</td>
@@ -14972,6 +15019,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>54</th>
+      <td>NaN</td>
       <td>/data/all/data/Encapsule-Annex/onm</td>
       <td>1.00</td>
       <td>1</td>
@@ -14984,6 +15032,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>55</th>
+      <td>NaN</td>
       <td>/data/all/data/sequelize/sequelize</td>
       <td>0.35</td>
       <td>12</td>
@@ -14996,6 +15045,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>56</th>
+      <td>NaN</td>
       <td>/data/all/data/dcos/dcos-ui</td>
       <td>0.92</td>
       <td>9</td>
@@ -15008,6 +15058,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>57</th>
+      <td>NaN</td>
       <td>/data/all/data/LivelyKernel/LivelyKernel</td>
       <td>0.61</td>
       <td>12</td>
@@ -15020,6 +15071,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>58</th>
+      <td>NaN</td>
       <td>/data/all/data/svgdotjs/svg.js</td>
       <td>0.13</td>
       <td>5</td>
@@ -15032,6 +15084,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>59</th>
+      <td>NaN</td>
       <td>/data/all/data/foam-framework/foam</td>
       <td>0.33</td>
       <td>13</td>
@@ -15056,7 +15109,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[114]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[63]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">exc_2</span>
@@ -15075,7 +15128,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[114]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[63]:</div>
 
 
 
@@ -15098,6 +15151,7 @@ a.anchor-link {
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>name</th>
       <th>repo</th>
       <th>acc</th>
       <th>#w</th>
@@ -15112,6 +15166,7 @@ a.anchor-link {
   <tbody>
     <tr>
       <th>20</th>
+      <td>NaN</td>
       <td>/data/all/data/qooxdoo/qooxdoo</td>
       <td>0.48</td>
       <td>18</td>
@@ -15124,6 +15179,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>21</th>
+      <td>NaN</td>
       <td>/data/all/data/elastic/kibana</td>
       <td>0.43</td>
       <td>17</td>
@@ -15136,6 +15192,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>22</th>
+      <td>NaN</td>
       <td>/data/all/data/emberjs/ember.js</td>
       <td>0.51</td>
       <td>11</td>
@@ -15148,6 +15205,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>23</th>
+      <td>NaN</td>
       <td>/data/all/data/zloirock/core-js</td>
       <td>0.20</td>
       <td>8</td>
@@ -15160,6 +15218,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>24</th>
+      <td>NaN</td>
       <td>/data/all/data/Encapsule-Annex/onm</td>
       <td>1.00</td>
       <td>1</td>
@@ -15172,6 +15231,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>25</th>
+      <td>NaN</td>
       <td>/data/all/data/sequelize/sequelize</td>
       <td>0.38</td>
       <td>12</td>
@@ -15184,6 +15244,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>26</th>
+      <td>NaN</td>
       <td>/data/all/data/dcos/dcos-ui</td>
       <td>0.92</td>
       <td>9</td>
@@ -15196,6 +15257,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>27</th>
+      <td>NaN</td>
       <td>/data/all/data/LivelyKernel/LivelyKernel</td>
       <td>0.61</td>
       <td>12</td>
@@ -15208,6 +15270,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>28</th>
+      <td>NaN</td>
       <td>/data/all/data/svgdotjs/svg.js</td>
       <td>0.10</td>
       <td>5</td>
@@ -15220,6 +15283,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>29</th>
+      <td>NaN</td>
       <td>/data/all/data/foam-framework/foam</td>
       <td>0.30</td>
       <td>13</td>
@@ -15244,7 +15308,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[115]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">good_2</span>
@@ -15263,7 +15327,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[115]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[64]:</div>
 
 
 
@@ -15286,6 +15350,7 @@ a.anchor-link {
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>name</th>
       <th>repo</th>
       <th>acc</th>
       <th>#w</th>
@@ -15300,6 +15365,7 @@ a.anchor-link {
   <tbody>
     <tr>
       <th>30</th>
+      <td>NaN</td>
       <td>/data/all/data/qooxdoo/qooxdoo</td>
       <td>0.52</td>
       <td>18</td>
@@ -15312,6 +15378,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>31</th>
+      <td>NaN</td>
       <td>/data/all/data/elastic/kibana</td>
       <td>0.49</td>
       <td>17</td>
@@ -15324,6 +15391,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>32</th>
+      <td>NaN</td>
       <td>/data/all/data/emberjs/ember.js</td>
       <td>0.55</td>
       <td>11</td>
@@ -15336,6 +15404,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>33</th>
+      <td>NaN</td>
       <td>/data/all/data/zloirock/core-js</td>
       <td>0.54</td>
       <td>8</td>
@@ -15348,6 +15417,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>34</th>
+      <td>NaN</td>
       <td>/data/all/data/Encapsule-Annex/onm</td>
       <td>0.97</td>
       <td>1</td>
@@ -15360,6 +15430,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>35</th>
+      <td>NaN</td>
       <td>/data/all/data/sequelize/sequelize</td>
       <td>0.50</td>
       <td>12</td>
@@ -15372,6 +15443,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>36</th>
+      <td>NaN</td>
       <td>/data/all/data/dcos/dcos-ui</td>
       <td>0.86</td>
       <td>9</td>
@@ -15384,6 +15456,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>37</th>
+      <td>NaN</td>
       <td>/data/all/data/LivelyKernel/LivelyKernel</td>
       <td>0.61</td>
       <td>12</td>
@@ -15396,6 +15469,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>38</th>
+      <td>NaN</td>
       <td>/data/all/data/svgdotjs/svg.js</td>
       <td>0.81</td>
       <td>5</td>
@@ -15408,6 +15482,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>39</th>
+      <td>NaN</td>
       <td>/data/all/data/foam-framework/foam</td>
       <td>0.36</td>
       <td>13</td>
@@ -15432,10 +15507,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[116]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[65]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span><span class="p">)]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">adapter</span>
 </pre></div>
 
      </div>
@@ -15451,7 +15526,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[116]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[65]:</div>
 
 
 
@@ -15474,6 +15549,206 @@ a.anchor-link {
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>name</th>
+      <th>repo</th>
+      <th>acc</th>
+      <th>#w</th>
+      <th>samples</th>
+      <th>time</th>
+      <th>model</th>
+      <th>model_address</th>
+      <th>split</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>64</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/qooxdoo/qooxdoo</td>
+      <td>0.57</td>
+      <td>18</td>
+      <td>115</td>
+      <td>25-01-2022_18-37-47</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/elastic/kibana</td>
+      <td>0.47</td>
+      <td>17</td>
+      <td>51</td>
+      <td>25-01-2022_18-41-01</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/emberjs/ember.js</td>
+      <td>0.57</td>
+      <td>11</td>
+      <td>47</td>
+      <td>25-01-2022_19-40-30</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/zloirock/core-js</td>
+      <td>0.49</td>
+      <td>8</td>
+      <td>41</td>
+      <td>25-01-2022_20-09-49</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/Encapsule-Annex/onm</td>
+      <td>1.00</td>
+      <td>1</td>
+      <td>39</td>
+      <td>25-01-2022_18-50-58</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/sequelize/sequelize</td>
+      <td>0.35</td>
+      <td>12</td>
+      <td>40</td>
+      <td>25-01-2022_18-53-57</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/dcos/dcos-ui</td>
+      <td>0.86</td>
+      <td>9</td>
+      <td>37</td>
+      <td>25-01-2022_18-57-25</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/LivelyKernel/LivelyKernel</td>
+      <td>0.67</td>
+      <td>12</td>
+      <td>36</td>
+      <td>25-01-2022_19-00-44</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/svgdotjs/svg.js</td>
+      <td>0.71</td>
+      <td>5</td>
+      <td>31</td>
+      <td>25-01-2022_19-03-25</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>withAdapter</td>
+      <td>/data/all/data/foam-framework/foam</td>
+      <td>0.33</td>
+      <td>13</td>
+      <td>33</td>
+      <td>25-01-2022_19-07-00</td>
+      <td>t5-small</td>
+      <td>/scratch/arminz//tmp/adapted</td>
+      <td>NaN</td>
+      <td>excluded</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[66]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;repo&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;split&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span><span class="p">)]</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[66]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
       <th>repo</th>
       <th>acc</th>
       <th>#w</th>
@@ -15488,6 +15763,7 @@ a.anchor-link {
   <tbody>
     <tr>
       <th>60</th>
+      <td>NaN</td>
       <td>all</td>
       <td>0.40</td>
       <td>48</td>
@@ -15500,6 +15776,7 @@ a.anchor-link {
     </tr>
     <tr>
       <th>61</th>
+      <td>NaN</td>
       <td>all</td>
       <td>0.38</td>
       <td>48</td>
@@ -15524,7 +15801,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[121]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[67]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">((</span><span class="mf">0.02</span> <span class="o">*</span> <span class="mi">3374</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">470</span> <span class="o">*</span> <span class="mf">0.022</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3374</span> <span class="o">-</span> <span class="mi">470</span><span class="p">)</span>
@@ -15543,7 +15820,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[121]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[67]:</div>
 
 
 
