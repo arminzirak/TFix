@@ -249,3 +249,5 @@ cython_debug/
 
 hf_transformers/
 storage/
+
+!report/**
