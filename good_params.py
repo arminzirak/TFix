@@ -32,7 +32,6 @@ sys.path.append("./hf_transformers/")
 
 # In[4]:
 
-
 import torch
 
 from data_reader import GetDataAsPython
@@ -56,19 +55,22 @@ from utils import boolean_string
 from utils import get_current_time
 import csv
 
+start_all = datetime.now()
 
 # In[6]:
 
 local = False
 
+base_model = 'training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
+
 if local:
     storage_directory = './storage/'
-    load_model = f'./{storage_directory}/training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
+    load_model = f'./{storage_directory}/{base_model}'
     batch_size = 16
 else:
     storage_directory = '/scratch/arminz/'
     batch_size = 64
-    load_model = f'/{storage_directory}/training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
+    load_model = f'/{storage_directory}/{base_model}'
 
 # In[7]:
 
@@ -254,8 +256,11 @@ trainer = Seq2SeqTrainer(
 
 # In[69]:
 
+start_training = datetime.now()
 
 trainer.train()
+
+end_training = datetime.now()
 
 
 # In[73]:
@@ -267,24 +272,29 @@ print(f'final eval loss : {trainer.evaluate()["eval_loss"]}')
 # In[77]:
 
 
-best_model_dir = f'{model_directory}/best'
-trainer.save_model(best_model_dir)
+tuned_model_dir = f'{model_directory}/best'
+trainer.save_model(tuned_model_dir)
 
+end_all = datetime.now()
+import csv
+with open('tuner_runtime.csv', 'a') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow([repo, len(train_dataset), len(val_dataset), base_model, start_all, start_training, end_training, end_all])
 
 # In[78]:
 
-from numba import cuda
-device = cuda.get_current_device()
-device.reset()
-
-
-result = os.system(f'python hf_transformers/tfix_testing.py --load-model {best_model_dir} -bs 16 --model-name t5-small -d repo-based-included -r {repo}')
-print(result)
-
-
+# from numba import cuda
+# device = cuda.get_current_device()
+# device.reset()
+#
+#
+# result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-small -d repo-based-included -r {repo}')
+# print(result)
+#
+#
 import shutil
 
-shutil.rmtree(best_model_dir)
-
+shutil.rmtree(tuned_model_dir)
+#
 
 
