@@ -61,7 +61,7 @@ model_name = 't5-small'
 # In[6]:
 
 
-local = True
+local = False
 
 if local:
     storage_directory = './storage/'
