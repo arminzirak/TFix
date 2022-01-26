@@ -9,12 +9,12 @@
 # in the previous two lines %A" is replaced by job
 
 source env/bin/activate
-
-for repo in /data/all/data/appium/appium /data/all/data/girder/girder /data/all/data/oroinc/platform /data/all/data/svgdotjs/svg.js /data/all/data/wsick/Fayde /data/all/data/appium/appium /data/all/data/zloirock/core-js /data/all/data/Vincit/objection.js /data/all/data/request/request /data/all/data/qooxdoo/qooxdoo
+#/data/all/data/appium/appium
+for repo in /data/all/data/girder/girder /data/all/data/oroinc/platform /data/all/data/svgdotjs/svg.js /data/all/data/wsick/Fayde /data/all/data/appium/appium /data/all/data/zloirock/core-js /data/all/data/Vincit/objection.js /data/all/data/request/request /data/all/data/qooxdoo/qooxdoo
 do
-  for repo_percent in 0.0 0.1 0.2 0.3
+  for repo_percent in 0.3 0.6 1.0
   do
-    for append in $(seq 50 100 1000)
+    for append in 50 450 800 #$(seq 850 400 3000)
     do
       echo $repo $repo_percent $append
       python add_bunch_of_data.py -a $append -r $repo -rp $repo_percent
