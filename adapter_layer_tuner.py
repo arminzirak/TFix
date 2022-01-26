@@ -315,11 +315,11 @@ with open('tuner_runtime.csv', 'a') as csvfile:
 
 # In[33]:
 
+if local:
+    from numba import cuda
 
-from numba import cuda
-
-device = cuda.get_current_device()
-device.reset()
+    device = cuda.get_current_device()
+    device.reset()
 
 # In[34]:
 

@@ -283,9 +283,10 @@ with open('tuner_runtime.csv', 'a') as csvfile:
 
 # In[78]:
 
-# from numba import cuda
-# device = cuda.get_current_device()
-# device.reset()
+if local:
+    from numba import cuda
+    device = cuda.get_current_device()
+    device.reset()
 #
 #
 # result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-small -d repo-based-included -r {repo}')
