@@ -55,10 +55,11 @@ else:
 if args.model_dir != "":
     model_directory = args.model_dir
 else:
+    raise('this format is not handled')
     now = datetime.now()
     dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
     # model_directory = "t5global" + "_" + dt_string
-    model_directory = f'{storage_directory}/{model_name}_global_{args.design}_{dt_string}'
+    model_directory = f'{storage_directory}/training/{model_name}_global_{args.design}_{dt_string}'
 print(f'model dir: {model_directory}')
 
 os.makedirs(model_directory)
@@ -139,5 +140,6 @@ trainer = Seq2SeqTrainer(
     tokenizer=tokenizer,
 )
 
+print("training start time: ", get_current_time())
 trainer.train()
 print("end time: ", get_current_time())
