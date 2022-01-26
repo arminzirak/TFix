@@ -70,7 +70,7 @@ if local:
     batch_size = 16
 else:
     storage_directory = '/scratch/arminz/'
-    base_model = f'./{storage_directory}/training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
+    base_model = f'{storage_directory}/training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
     adapted_model_dir = f'{storage_directory}/tmp/adapted'
     batch_size = 128
 
