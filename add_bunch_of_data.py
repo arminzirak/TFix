@@ -42,7 +42,8 @@ import random
 # In[6]:
 
 
-local = False
+import socket
+local = False if 'computecanada' in socket.gethostname() else True
 
 if local:
     storage_directory = './storage/'
@@ -274,6 +275,7 @@ added_info_train += repo_train_info[:samples]
 added_inputs_val += repo_val_inputs
 added_labels_val += repo_val_labels
 added_info_val += repo_val_info
+
 
 
 # In[44]:

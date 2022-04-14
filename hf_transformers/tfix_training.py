@@ -39,7 +39,8 @@ parser.add_argument("-pt", "--pre-trained", type=boolean_string, default=True)
 parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based', 'repo-based-included'])
 args = parser.parse_args()
 
-local = False
+import socket
+local = False if 'computecanada' in socket.gethostname() else True
 
 model_name = args.model_name
 

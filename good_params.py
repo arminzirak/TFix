@@ -59,7 +59,8 @@ start_all = datetime.now()
 
 # In[6]:
 
-local = False
+import socket
+local = False if 'computecanada' in socket.gethostname() else True
 
 base_model = 'training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
 
@@ -272,14 +273,15 @@ print(f'final eval loss : {trainer.evaluate()["eval_loss"]}')
 # In[77]:
 
 
-tuned_model_dir = f'{model_directory}/best'
+# tuned_model_dir = f'{model_directory}/best'
+tuned_model_dir='/scratch/arminz/tmp/finetuned'
 trainer.save_model(tuned_model_dir)
 
 end_all = datetime.now()
 import csv
 with open('tuner_runtime.csv', 'a') as csvfile:
     writer = csv.writer(csvfile)
-    writer.writerow([repo, len(train_dataset), len(val_dataset), base_model, start_all, start_training, end_training, end_all])
+    writer.writerow([name, repo, len(train_dataset), len(val_dataset), base_model, start_all, start_training, end_training, end_all])
 
 # In[78]:
 

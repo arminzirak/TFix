@@ -65,7 +65,8 @@ import random
 # In[7]:
 
 
-local = True
+import socket
+local = False if 'computecanada' in socket.gethostname() else True
 
 if local:
     storage_directory = './storage/'
