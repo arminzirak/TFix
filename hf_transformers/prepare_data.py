@@ -98,6 +98,40 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
                     train_inputs += this_train_input
                     train_labels += this_train_output
                     train_info += this_train_fi
+    elif design.startswith('source-test'):
+        repos = pd.read_csv('./repos_3.csv', index_col=0)
+        target_repos = repos[repos['category'] == 'target']
+        assert select_repo is None
+
+        input_repo = defaultdict(list)
+        output_repo = defaultdict(list)
+        filtered_instance_repo = defaultdict(list)
+        for input_instance, output_instance, filtered_data_instance in zip(inputs, outputs, filtered_data):
+            this_repo = filtered_data_instance.repo
+            input_repo[this_repo].append(input_instance)
+            output_repo[this_repo].append(output_instance)
+            filtered_instance_repo[this_repo].append(filtered_data_instance)
+
+        train_inputs, train_labels, train_info = list(), list(), list()
+        test_inputs, test_labels, test_info = list(), list(), list()
+        for repo in input_repo:
+            if (target_repos['repo'] == repo).any():
+                continue
+            else:
+                if len(input_repo[repo]) < 2:
+                    train_inputs += input_repo[repo]
+                    train_labels += output_repo[repo]
+                    train_info += filtered_instance_repo[repo]
+                    continue
+                this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
+                    train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
+                                     shuffle=True, random_state=seed, test_size=0.20)
+                test_inputs += this_test_input
+                test_labels += this_test_output
+                test_info += this_test_fi
+                train_inputs += this_train_input
+                train_labels += this_train_output
+                train_info += this_train_fi
     else:
         print(f'wrong design argument {design}')
         return
@@ -105,7 +139,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
     if len(train_inputs) > 1:
         # print(
         #     f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
-        val_size = 0.25  # if len(train_inputs) >= 10 else 1 / len(train_inputs)
+        val_size = 0.25  # if len(train_inputs) >= 10 else 1 / len(train_inputs) #TODO: make it 0.20
         train_inputs, val_inputs, train_labels, val_labels = train_test_split(
             train_inputs, train_labels, shuffle=True, random_state=seed, test_size=val_size
         )
@@ -170,7 +204,7 @@ class BugFixDataset(torch.utils.data.Dataset):
         self.encodings = encodings
         self.target_encodings = targets
 
-    def __getitem__(self, index: int) -> Dict[str, Any]:
+    def __getitem__(self, index: int) -> (int, Dict[str, Any]):
         item = {key: torch.tensor(val[index]) for key, val in self.encodings.items()}
         item["labels"] = torch.tensor(self.target_encodings["input_ids"][index], dtype=torch.long)
         return item
