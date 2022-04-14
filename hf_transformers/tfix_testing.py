@@ -38,11 +38,12 @@ parser.add_argument("-ea", "--eval-all", type=boolean_string, default=False)  # 
 parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
 parser.add_argument("-md", "--result-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
-parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based-included'])
+parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based-included', 'source-test'])
 parser.add_argument("-r", "--repo", type=str, required=False)
 args = parser.parse_args()
 
-local = False
+import socket
+local = False if 'computecanada' in socket.gethostname() else True
 
 model_name = args.model_name
 
@@ -58,7 +59,7 @@ if args.result_dir != "":
     test_result_directory = args.result_dir
 else:
     if not args.repo:
-        test_result_directory = f'{storage_directory}/testing/{now.day}/{model_name}_test_{args.design}_{dt_string}'
+        test_result_directory = f'{storage_directory}/testing/{now.day}/general_{model_name}_test_{args.design}_{dt_string}'
     else:
         test_result_directory = f'{storage_directory}/testing/{now.day}/per-repo/{model_name}_test_{args.repo.rsplit("/", 1)[1][-20:]}_{dt_string}'
 
