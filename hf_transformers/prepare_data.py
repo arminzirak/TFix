@@ -10,6 +10,7 @@ from transformers import BatchEncoding
 from data_reader import DataPoint
 from collections import Counter
 import pandas as pd
+import random
 
 
 def extract_warning_types(data: List[DataPoint]) -> List[str]:
@@ -114,6 +115,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
 
         train_inputs, train_labels, train_info = list(), list(), list()
         test_inputs, test_labels, test_info = list(), list(), list()
+        random_remove = 0
         for repo in input_repo:
             if (target_repos['repo'] == repo).any():
                 continue
@@ -123,9 +125,14 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
                     train_labels += output_repo[repo]
                     train_info += filtered_instance_repo[repo]
                     continue
+                if len(input_repo[repo]) < 20:
+                    if random_remove % 3 == 0:
+                        continue
+                    else:
+                        random_remove += 1
                 this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
                     train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
-                                     shuffle=True, random_state=seed, test_size=0.20)
+                                     shuffle=True, random_state=seed, test_size=0.15)
                 test_inputs += this_test_input
                 test_labels += this_test_output
                 test_info += this_test_fi
