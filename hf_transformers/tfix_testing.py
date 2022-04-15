@@ -240,7 +240,7 @@ scores['samples_count'] = counter
 print(f'score average: {average} samples_count: {scores["samples_count"]}')
 
 with open(f'{storage_directory}/results.csv', 'a') as f:
-    f.write(f'normal,{args.repo if args.repo else "all"},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model}\n')
+    f.write(f'normal,{args.repo if args.repo else "all"},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_mode},{args.desing}\n')
 
 
 # create the whole test list
