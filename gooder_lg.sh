@@ -1,13 +1,12 @@
 #!/bin/bash
 #SBATCH --gres=gpu:v100l:1
-#SBATCH --job-name=gooder # single job name for the array
-#SBATCH --time=1:20:00 # maximum walltime per job
+#SBATCH --job-name=gooder_lg # single job name for the array
+#SBATCH --time=3:20:00 # maximum walltime per job
 #SBATCH --mem=20G # maximum 100M per job
 #SBATCH --cpus-per-task=1
 #SBATCH --output=%x.out # standard output
 #SBATCH --error=%x.err # standard error
 # in the previous two lines %A" is replaced by job
-
 
 cd ~/TFix/
 source env/bin/activate
@@ -16,8 +15,8 @@ do
   for percent in 1.0
   do
     echo $repo $percent
-    python good_params.py --percent $percent --repo $repo
-    python hf_transformers/tfix_testing.py --load-model "/scratch/arminz/tmp/finetuned/$repo" -bs 8 --model-name t5-small -d repo-based-included -r $repo
-    python hf_transformers/tfix_testing.py --load-model "/scratch/arminz/tmp/finetuned/$repo" -bs 8 --model-name t5-small -d source-test
+    python good_params_lg.py --percent $percent --repo $repo
+    python hf_transformers/tfix_testing.py --load-model "/scratch/arminz/tmp/finetuned/$repo" -bs 8 --model-name t5-large -d repo-based-included -r $repo
+    python hf_transformers/tfix_testing.py --load-model "/scratch/arminz/tmp/finetuned/$repo" -bs 8 --model-name t5-large -d source-test
   done
 done

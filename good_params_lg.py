@@ -62,7 +62,9 @@ start_all = datetime.now()
 import socket
 local = False if 'computecanada' in socket.gethostname() else True
 
-base_model = 'training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
+assert not local, 'large models can only run on CC'
+
+base_model = 'training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825'
 
 if local:
     storage_directory = './storage/'
@@ -70,7 +72,7 @@ if local:
     batch_size = 16
 else:
     storage_directory = '/scratch/arminz/'
-    batch_size = 64
+    batch_size = 16
     load_model = f'/{storage_directory}/{base_model}'
 
 # In[7]:
@@ -273,15 +275,16 @@ print(f'final eval loss : {trainer.evaluate()["eval_loss"]}')
 # In[77]:
 
 
-# tuned_model_dir = f'{model_directory}/best'
-tuned_model_dir='/scratch/arminz/tmp/finetuned'
+#tuned_model_dir = f'{model_directory}/best'
+tuned_model_dir=f'/scratch/arminz/tmp/finetuned/{repo}'
+
 trainer.save_model(tuned_model_dir)
 
 end_all = datetime.now()
 import csv
 with open('tuner_runtime.csv', 'a') as csvfile:
     writer = csv.writer(csvfile)
-    writer.writerow([name, repo, len(train_dataset), len(val_dataset), base_model, start_all, start_training, end_training, end_all])
+    writer.writerow([repo, len(train_dataset), len(val_dataset), base_model, start_all, start_training, end_training, end_all])
 
 # In[78]:
 
@@ -291,16 +294,13 @@ if local:
     device.reset()
 #
 #
-# result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-small -d repo-based-included -r {repo}')
-# print(result)
-#
-# result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-small -d source-test')
-# print(result)
+#result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 2 --model-name t5-large -d repo-based-included -r {repo}')
+#print(result)
 #
 #
-import shutil
+#import shutil
 
-shutil.rmtree(tuned_model_dir)
+#shutil.rmtree(tuned_model_dir)
 #
 
 
