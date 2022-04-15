@@ -457,10 +457,14 @@ no_imp = 0
 
 curriculum = 0
 for epoch in range(num_train_epochs):
+
 #     if curriculum < 1:
 #         curriculum += 0.2
 #     sampler.curriculum = curriculum
-    sampler.curriculum = curriculum_list[epoch]
+    if epoch >= len(curriculum_list):
+        sampler.curriculum = 1
+    else:
+        sampler.curriculum = curriculum_list[epoch]
 #     sampler.set_mode('all')
 #     if epoch == 0  or True:
 #         model.eval()
