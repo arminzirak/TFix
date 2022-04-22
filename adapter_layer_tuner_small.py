@@ -61,7 +61,8 @@ model_name = 't5-small'
 # In[6]:
 
 
-local = False
+import socket
+local = False if 'computecanada' in socket.gethostname() else True
 
 if local:
     storage_directory = './storage/'
@@ -71,8 +72,8 @@ if local:
 else:
     storage_directory = '/scratch/arminz/'
     base_model = f'{storage_directory}/training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
-    adapted_model_dir = f'{storage_directory}/tmp/adapted'
-    batch_size = 128
+    adapted_model_dir = f'{storage_directory}/tmp/adapted/{args.repo}'
+    batch_size = 32
 
 # In[7]:
 
