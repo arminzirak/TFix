@@ -73,9 +73,8 @@ if local:
 #     codebert_address = "microsoft/codebert-base"
 else:
     storage_directory = '/scratch/arminz/'
-    batch_size = 16
-    # base_model = f'/{storage_directory}/t5-small_global_repo-based_03-11-2021_15-28-40/checkpoint-37375/'
-    base_model = f'{storage_directory}/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825'
+    batch_size = 64
+    base_model = f'/{storage_directory}/training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
 #     codebert_address = "/home/arminz/codebert-base"
 
 
