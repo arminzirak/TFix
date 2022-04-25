@@ -18,7 +18,7 @@ for repo in /data/all/data/qooxdoo/qooxdoo /data/all/data/elastic/kibana /data/a
 do
   echo $repo
   model_address="/scratch/arminz/tmp/ftl2_"$repo'_'$score_threshold'_'$fw_epochs
-  python forward_translation_lg.py -r $repo --fw-epochs 1 --score-threshold 0 -md $model_address
+  python forward_translation_lg.py -r $repo --fw-epochs $fw_epochs --score-threshold $score_threshold -md $model_address
   echo $model_address
   python hf_transformers/tfix_testing.py --load-model $model_address -bs 16 --model-name t5-large -d repo-based-included -r $repo
   python hf_transformers/tfix_testing.py --load-model $model_address -bs 16 --model-name t5-large -d source-test
