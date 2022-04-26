@@ -72,12 +72,13 @@ local = False if 'computecanada' in socket.gethostname() else True
 base_model = 'training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
 
 if local:
+    raise Exception('You cannot run large on local')
     storage_directory = './storage/'
     load_model = f'./{storage_directory}/{base_model}'
     batch_size = 16
 else:
     storage_directory = '/scratch/arminz/'
-    batch_size = 64
+    batch_size = 16
     load_model = f'/{storage_directory}/{base_model}'
 
 # In[7]:
@@ -129,11 +130,10 @@ parser.add_argument("-r", "--repo", type=str, default='/data/all/data/oroinc/pla
 parser.add_argument("-m", "--mode", type=str, required=True, choices=['conf', 'length_label', 'length_input'])
 parser.add_argument("-md", "--model-address", type=str, required=True)
 
-
-
 args = parser.parse_args()
-repo = args.repo
 model_address = args.model_address
+
+repo = args.repo
 
 sample_percent = 1#args.percent
 
@@ -335,7 +335,6 @@ eval_dataloader = DataLoader(val_dataset, batch_size)#, collate_fn=data_collator
 
 now = datetime.now()
 full_name = f'{name}_{exec_number}_{repo.rsplit("/", 1)[1][-20:]}_{sample_percent}'
-full_name = f'{name}_{exec_number}_{repo.rsplit("/", 1)[1][-20:]}_{sample_percent}'
 # model_directory = f'{storage_directory}/tmp/finetuned/{full_name}'
 # model_directory
 
@@ -463,7 +462,6 @@ no_imp = 0
 
 curriculum = 0
 for epoch in range(num_train_epochs):
-
 #     if curriculum < 1:
 #         curriculum += 0.2
 #     sampler.curriculum = curriculum
@@ -477,22 +475,23 @@ for epoch in range(num_train_epochs):
         scores = []
         for batch in train_dataloader:
             batch = {k: v.to('cuda') for k, v in batch.items()}
+
             with torch.no_grad():
                 outputs = model(**batch)
             if args.mode == 'conf':
-                scores += [item.item() for item in
-                           softmax(outputs[1], dim=-1).max(-1).values.prod(-1).to('cpu')]  # conf score
+                scores += [item.item() for item in softmax(outputs[1], dim=-1).max(-1).values.prod(-1).to('cpu')] #conf score
             elif args.mode == 'length_label':
-                scores += list((-1 * outputs[1].argmax(-1).to('cpu') != 0).sum(-1))  # length of generated labels
+                scores += list((-1 * outputs[1].argmax(-1).to('cpu') != 0).sum(-1)) # length of generated labels
             elif args.mode == 'length_input':
-                scores += list((-1 * batch['input_ids'] != 0).sum(1).cpu())  # length of input
+                scores += list((-1 * batch['input_ids'] != 0).sum(1).cpu()) # length of input
             else:
                 raise Exception(f'Invalid argument args.mode: {args.mode}')
+            # scores += [item.item() for item in outputs[1].max(-1).values.mean(1).to('cpu')]
             new_priorities = [value for key, value in sorted(list(zip(list(sampler), scores)))]
             sampler.set_priority(new_priorities)
             sampler.set_mode('active')
-#         print(len(sampler))
-#         print(list(sampler))
+    #         print(len(sampler))
+    #         print(list(sampler))
     
     model.train()
     all_corrects, all_cnt = 0, 0
@@ -736,15 +735,15 @@ if local:
 # In[ ]:
 
 
-# result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-small -d repo-based-included -r {repo}')
+# result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-large -d repo-based-included -r {repo}')
 # print(result)
 #
-# result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-small -d source-test')
+# result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-large -d source-test')
 # print(result)
-
-# In[45]:
-
-
+#
+# # In[45]:
+#
+#
 # import shutil
 #
 # shutil.rmtree(tuned_model_dir)
