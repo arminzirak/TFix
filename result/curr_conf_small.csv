@@ -1,0 +1,14 @@
+normal,/data/all/data/girder/girder,0.77,4,22,25-04-2022_10-53-31,t5-small,/scratch/arminz/tmp/currs_/data/all/data/girder/girder_conf,repo-based-included
+normal,/data/all/data/girder/girder,0.77,4,22,25-04-2022_11-01-36,t5-small,/scratch/arminz/tmp/currs_/data/all/data/girder/girder_conf,repo-based-included
+normal,all,0.40,32,1746,25-04-2022_11-02-13,t5-small,/scratch/arminz/tmp/currs_/data/all/data/girder/girder_conf,source-test
+normal,all,0.44,32,1746,25-04-2022_11-13-31,t5-small,/scratch/arminz/tmp/currs_/data/all/data/oroinc/platform_conf,source-test
+normal,/data/all/data/svgdotjs/svg.js,0.65,5,31,25-04-2022_11-24-02,t5-small,/scratch/arminz/tmp/currs_/data/all/data/svgdotjs/svg.js_conf,repo-based-included
+normal,all,0.41,32,1746,25-04-2022_11-24-36,t5-small,/scratch/arminz/tmp/currs_/data/all/data/svgdotjs/svg.js_conf,source-test
+normal,all,0.44,32,1746,25-04-2022_11-35-24,t5-small,/scratch/arminz/tmp/currs_/data/all/data/appium/appium_conf,source-test
+normal,/data/all/data/zloirock/core-js,0.20,8,41,25-04-2022_11-46-09,t5-small,/scratch/arminz/tmp/currs_/data/all/data/zloirock/core-js_conf,repo-based-included
+normal,all,0.44,32,1746,25-04-2022_11-46-50,t5-small,/scratch/arminz/tmp/currs_/data/all/data/zloirock/core-js_conf,source-test
+normal,all,0.42,32,1746,25-04-2022_11-57-44,t5-small,/scratch/arminz/tmp/currs_/data/all/data/Vincit/objection.js_conf,source-test
+normal,/data/all/data/request/request,0.37,4,19,25-04-2022_12-07-50,t5-small,/scratch/arminz/tmp/currs_/data/all/data/request/request_conf,repo-based-included
+normal,all,0.44,32,1746,25-04-2022_12-08-21,t5-small,/scratch/arminz/tmp/currs_/data/all/data/request/request_conf,source-test
+normal,/data/all/data/qooxdoo/qooxdoo,0.49,18,115,25-04-2022_12-19-35,t5-small,/scratch/arminz/tmp/currs_/data/all/data/qooxdoo/qooxdoo_conf,repo-based-included
+normal,all,0.45,32,1746,25-04-2022_12-20-41,t5-small,/scratch/arminz/tmp/currs_/data/all/data/qooxdoo/qooxdoo_conf,source-test
