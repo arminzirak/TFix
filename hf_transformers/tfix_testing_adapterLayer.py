@@ -41,7 +41,7 @@ parser.add_argument("-ea", "--eval-all", type=boolean_string, default=False)  # 
 parser.add_argument("-eas", "--eval-acc-steps", type=int, default=1)
 parser.add_argument("-md", "--result-dir", type=str, default="")
 parser.add_argument("-et", "--error-type", type=str, default="")
-parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based-included'])
+parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based-included', 'source-test'])
 parser.add_argument("-r", "--repo", type=str, required=False)
 args = parser.parse_args()
 
@@ -271,7 +271,7 @@ scores['samples_count'] = counter
 print(f'score average: {average} samples_count: {scores["samples_count"]}')
 
 with open(f'{storage_directory}/results.csv', 'a') as f:
-    f.write(f'withAdapter,{args.repo if args.repo else "all"},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model}\n')
+    f.write(f'withAdapter,{args.repo if args.repo else "all"},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model},{args.design} \n')
 
 # create the whole test list
 test_list: List[DataPoint] = []
