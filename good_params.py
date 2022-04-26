@@ -274,7 +274,7 @@ print(f'final eval loss : {trainer.evaluate()["eval_loss"]}')
 
 
 # tuned_model_dir = f'{model_directory}/best'
-tuned_model_dir='/scratch/arminz/tmp/finetuned'
+tuned_model_dir=f'{storage_directory}/tmp/finetuned/' + repo
 trainer.save_model(tuned_model_dir)
 
 end_all = datetime.now()
@@ -297,10 +297,10 @@ if local:
 # result = os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-small -d source-test')
 # print(result)
 #
+# #
+# import shutil
 #
-import shutil
-
-shutil.rmtree(tuned_model_dir)
+# shutil.rmtree(tuned_model_dir)
 #
 
 

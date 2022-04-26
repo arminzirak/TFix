@@ -276,7 +276,8 @@ print(f'final eval loss : {trainer.evaluate()["eval_loss"]}')
 
 
 #tuned_model_dir = f'{model_directory}/best'
-tuned_model_dir=f'/scratch/arminz/tmp/finetuned/{repo}'
+tuned_model_dir=f'{storage_directory}/tmp/finetuned/' + repo
+
 
 trainer.save_model(tuned_model_dir)
 
