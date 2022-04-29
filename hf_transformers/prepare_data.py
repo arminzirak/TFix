@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 import torch
 from transformers import BatchEncoding
 
-from data_reader import DataPoint
+from data_reader import DataPoint, MinimalDataPoint
 from collections import Counter
 import pandas as pd
 import random
@@ -24,16 +24,24 @@ def extract_warning_types(data: List[DataPoint]) -> List[str]:
 def filter_rule(data: List[DataPoint], rule_type: str) -> List[DataPoint]:
     filtered_data: List[DataPoint] = []
     for point in data:
-        if point.linter_report.rule_id == rule_type:
-            filtered_data.append(point)
+        if isinstance(point, MinimalDataPoint):
+            if point.t5_representation[len('fix '): len('fix ') + len(rule_type)] == rule_type:
+                filtered_data.append(point)
+        else:
+            if point.linter_report.rule_id == rule_type:
+                filtered_data.append(point)
     return filtered_data
 
 
-def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design: str, select_repo=None, seed=13):
+def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design: str, select_repo=None, back_translation=False,seed=13):
     filtered_data_temp = filtered_data
 
-    inputs = [data_point.GetT5Representation(include_warning)[0] for data_point in filtered_data]
-    outputs = [data_point.GetT5Representation(include_warning)[1] for data_point in filtered_data_temp]
+    if not back_translation:
+        inputs = [data_point.GetT5Representation(include_warning)[0] for data_point in filtered_data]
+        outputs = [data_point.GetT5Representation(include_warning)[1] for data_point in filtered_data_temp]
+    else:
+        inputs = [data_point.GetTBugRepresentation(include_warning)[0] for data_point in filtered_data]
+        outputs = [data_point.GetTBugRepresentation(include_warning)[1] for data_point in filtered_data_temp]
 
 
     if design == 'new':
@@ -167,7 +175,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
 
 
 def create_data(data: List[DataPoint], linter_warnings: List[str], include_warning: bool, design: str,
-                select_repo=None):
+                select_repo=None, back_translation=False):
     train: List[str] = []
     train_labels: List[str] = []
     val: List[str] = []
@@ -184,7 +192,7 @@ def create_data(data: List[DataPoint], linter_warnings: List[str], include_warni
     for warning in linter_warnings:
         filtered_data = filter_rule(data, warning)
         (train_w, train_w_labels, val_w, val_w_labels, test_w, test_w_labels, train_w_info, val_w_info, test_w_info,) \
-            = split_filtered(filtered_data, include_warning, design, select_repo=select_repo)
+            = split_filtered(filtered_data, include_warning, design, select_repo=select_repo, back_translation=back_translation)
 
         train += train_w
         train_labels += train_w_labels

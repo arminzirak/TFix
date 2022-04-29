@@ -118,6 +118,50 @@ class DataPoint:
         outputs = self.target_code + " </s>"
         return inputs, outputs
 
+    def GetTBugRepresentation(self, include_warning: bool) -> Tuple[str, str]:
+        if include_warning:
+            inputs = (
+                    "fix "
+                    + self.linter_report.rule_id
+                    + " "
+                    + self.linter_report.message
+                    + " "
+                    + self.warning_line
+                    + ":\n"
+                    + self.source_code
+                    + " </s>"
+            )
+        else:
+            inputs = "fix " + self.source_code + " </s>"
+        outputs = "bug " + self.linter_report.rule_id + " " + self.target_code + " </s>" # TODO: use better token to split them + add warning line as well
+        return inputs, outputs
+
+
+
+class MinimalDataPoint(DataPoint):
+    def __init__(self, t5_representation, target_code, repo):
+        self.t5_representation = t5_representation
+        self.target_code = target_code
+        self.repo = repo
+
+    def GetT5Representation(self, include_warning=True):
+        if not include_warning:
+            raise Exception('include_warning must be true in minimal data point')
+        return self.t5_representation, self.target_code
+
+    @classmethod
+    def FromJsonToPython(cls, data_json_path: str):
+        with open(data_json_path, "r", errors="ignore") as f:
+            data_list = json.load(f)
+        data_points = []
+        for data_point in data_list:
+            new_data_point = MinimalDataPoint(data_point['t5_representation'][0], data_point['target_code'], data_point['repo'])
+            data_points.append(new_data_point)
+        return data_points
+
+
+
+
 
 def GetDataAsPython(data_json_path: str) -> List[DataPoint]:
     with open(data_json_path, "r", errors="ignore") as f:
