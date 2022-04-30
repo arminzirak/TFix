@@ -133,7 +133,13 @@ class DataPoint:
             )
         else:
             inputs = "fix " + self.source_code + " </s>"
-        outputs = "bug " + self.linter_report.rule_id + " " + self.target_code + " </s>" # TODO: use better token to split them + add warning line as well
+        outputs = "bug "\
+                  + self.linter_report.rule_id \
+                  + " " \
+                  + self.linter_report.message \
+                  + " " \
+                  + self.target_code\
+                  + " </s>" # TODO: use better token to split them
         return inputs, outputs
 
 

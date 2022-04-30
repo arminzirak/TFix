@@ -33,7 +33,7 @@ def filter_rule(data: List[DataPoint], rule_type: str) -> List[DataPoint]:
     return filtered_data
 
 
-def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design: str, select_repo=None, back_translation=False,seed=13):
+def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design: str, select_repo=None, back_translation=False,seed=13, no_split=False, no_valid=False):
     filtered_data_temp = filtered_data
 
     if not back_translation:
@@ -97,16 +97,21 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
                     train_labels += output_repo[repo]
                     train_info += filtered_instance_repo[repo]
                     continue
-                this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
-                    train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
-                                     shuffle=True, random_state=seed, test_size=0.20)
-                test_inputs += this_test_input
-                test_labels += this_test_output
-                test_info += this_test_fi
-                if design.endswith('included'):
-                    train_inputs += this_train_input
-                    train_labels += this_train_output
-                    train_info += this_train_fi
+                if not no_split:
+                    this_train_input, this_test_input, this_train_output, this_test_output, this_train_fi, this_test_fi = \
+                        train_test_split(input_repo[repo], output_repo[repo], filtered_instance_repo[repo],
+                                         shuffle=True, random_state=seed, test_size=0.20)
+                    test_inputs += this_test_input
+                    test_labels += this_test_output
+                    test_info += this_test_fi
+                    if design.endswith('included'):
+                        train_inputs += this_train_input
+                        train_labels += this_train_output
+                        train_info += this_train_fi
+                else:
+                    train_inputs += input_repo[repo]
+                    train_labels += output_repo[repo]
+                    train_info += filtered_instance_repo[repo]
     elif design.startswith('source-test'):
         repos = pd.read_csv('./repos_3.csv', index_col=0)
         target_repos = repos[repos['category'] == 'target']
@@ -150,8 +155,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
     else:
         print(f'wrong design argument {design}')
         return
-
-    if len(train_inputs) > 1:
+    if not no_valid and len(train_inputs) > 1:
         # print(
         #     f'train size: {len(train_inputs)} | test size: {len(test_inputs)} | ratio: {len(test_inputs) / (len(test_inputs) + len(train_inputs)):.2f}')
         val_size = 0.25  # if len(train_inputs) >= 10 else 1 / len(train_inputs) #TODO: make it 0.20
@@ -161,6 +165,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
         train_info, val_info = train_test_split(train_info, shuffle=True, random_state=seed, test_size=val_size)
     else:
         val_inputs, val_labels, val_info = [], [], []
+
     return (
         train_inputs,
         train_labels,
@@ -175,7 +180,7 @@ def split_filtered(filtered_data: List[DataPoint], include_warning: bool, design
 
 
 def create_data(data: List[DataPoint], linter_warnings: List[str], include_warning: bool, design: str,
-                select_repo=None, back_translation=False):
+                select_repo=None, back_translation=False, no_split=False):
     train: List[str] = []
     train_labels: List[str] = []
     val: List[str] = []
@@ -192,7 +197,7 @@ def create_data(data: List[DataPoint], linter_warnings: List[str], include_warni
     for warning in linter_warnings:
         filtered_data = filter_rule(data, warning)
         (train_w, train_w_labels, val_w, val_w_labels, test_w, test_w_labels, train_w_info, val_w_info, test_w_info,) \
-            = split_filtered(filtered_data, include_warning, design, select_repo=select_repo, back_translation=back_translation)
+            = split_filtered(filtered_data, include_warning, design, select_repo=select_repo, back_translation=back_translation, no_split=no_split)
 
         train += train_w
         train_labels += train_w_labels
@@ -212,6 +217,36 @@ def create_data(data: List[DataPoint], linter_warnings: List[str], include_warni
     print("train size: {}\nval size: {}\ntest size: {}"
           .format(len(train), len(val), n_test_samples))
     return train, train_labels, val, val_labels, test, test_labels, train_info, val_info, test_info
+
+def create_data_tbug(data: List[DataPoint], linter_warnings: List[str], include_warning: bool, design: str,
+                select_repo=None, back_translation=False, no_split=False):
+    train: DefaultDict[str, List[str]] = defaultdict(list)
+    train_labels: DefaultDict[str, List[str]] = defaultdict(list)
+
+    test: DefaultDict[str, List[str]] = defaultdict(list)
+    test_labels: DefaultDict[str, List[str]] = defaultdict(list)
+    n_test_samples = 0
+
+    train_info: DefaultDict[str, List[DataPoint]] = defaultdict(list)
+    test_info: DefaultDict[str, List[DataPoint]] = defaultdict(list)
+    print(f'splitting by : {design}')
+    for warning in linter_warnings:
+        filtered_data = filter_rule(data, warning)
+        (train_w, train_w_labels, _, _, test_w, test_w_labels, train_w_info, _, test_w_info,) \
+            = split_filtered(filtered_data, include_warning, design, select_repo=select_repo, back_translation=back_translation, no_split=no_split, no_valid=True)
+
+        train[warning] += train_w
+        train_labels[warning] += train_w_labels
+        train_info[warning] += train_w_info
+
+        test[warning] = test_w
+        test_labels[warning] = test_w_labels
+        test_info[warning] = test_w_info
+
+        n_test_samples += len(test_w)
+    print("train size: {}\ntest size: {}"
+          .format(len(train), n_test_samples))
+    return train, train_labels, test, test_labels, train_info, test_info
 
 
 class BugFixDataset(torch.utils.data.Dataset):
