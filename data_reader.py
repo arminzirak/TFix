@@ -145,10 +145,11 @@ class DataPoint:
 
 
 class MinimalDataPoint(DataPoint):
-    def __init__(self, t5_representation, target_code, repo):
+    def __init__(self, t5_representation, target_code, repo, correct):
         self.t5_representation = t5_representation
         self.target_code = target_code
         self.repo = repo
+        self.correct = correct
 
     def GetT5Representation(self, include_warning=True):
         if not include_warning:
@@ -161,7 +162,7 @@ class MinimalDataPoint(DataPoint):
             data_list = json.load(f)
         data_points = []
         for data_point in data_list:
-            new_data_point = MinimalDataPoint(data_point['t5_representation'][0], data_point['target_code'], data_point['repo'])
+            new_data_point = MinimalDataPoint(data_point['t5_representation'][0], data_point['target_code'], data_point['repo'], data_point['correct'])
             data_points.append(new_data_point)
         return data_points
 
