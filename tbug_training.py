@@ -40,17 +40,20 @@ set_seed(42)
 import socket
 local = False if 'computecanada' in socket.gethostname() else True
 
+large = False
+
 
 # In[4]:
 
 
-model_name = 't5-small'
+model_name = 't5-small' if not large else 't5-large'
 
 
 # In[5]:
 
 
 if local:
+    assert not large, 'large cannot be trained on local'
     storage_directory = './storage/'
     pretrained_model = model_name
 else:
