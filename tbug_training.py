@@ -68,7 +68,11 @@ model_dir = "" # args.model_dir
 design = "repo-based" #args.design
 pre_trained = True #args.pre_trained
 epochs = 30 #args.epochs
-batch_size = 16 if local else 64
+if not large:
+    batch_size = 16 if local else 64
+else:
+    assert not local
+    batch_size = 16
 save_total_limit = 1 # args.save-total-limit
 eval_acc_steps = 1 # eval-acc-steps
 learning_rate = 1e-4 # args.learning-rate
