@@ -2,7 +2,7 @@
 #SBATCH --gres=gpu:v100l:1
 #SBATCH --job-name=test # single job name for the array
 #SBATCH --time=0:40:00 # maximum walltime per job
-#SBATCH --mem=15 # maximum 100M per job
+#SBATCH --mem=15G # maximum 100M per job
 #SBATCH --cpus-per-task=1
 #SBATCH --output=%x.out # standard output
 #SBATCH --error=%x.err # standard error
