@@ -73,9 +73,9 @@ base_model = 'training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
 
 if local:
     raise Exception('You cannot run large on local')
-    storage_directory = './storage/'
-    load_model = f'./{storage_directory}/{base_model}'
-    batch_size = 16
+    # storage_directory = './storage/'
+    # load_model = f'./{storage_directory}/{base_model}'
+    # batch_size = 16
 else:
     storage_directory = '/scratch/arminz/'
     batch_size = 16

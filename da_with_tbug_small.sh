@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --gres=gpu:v100l:1
-#SBATCH --job-name=tb-train # single job name for the array
+#SBATCH --job-name=dats # single job name for the array
 #SBATCH --time=1:00:00 # maximum walltime per job
 #SBATCH --mem=40G # maximum 100M per job
 #SBATCH --cpus-per-task=2
@@ -15,4 +15,5 @@ for repo in /data/all/data/qooxdoo/qooxdoo /data/all/data/elastic/kibana /data/a
 do
   echo $repo
   python da_with_tbug.py -r $repo
+  python hf_transformers/tfix_testing.py --load-model /scratch/arminz/tmp/bt_t5-small/$repo -bs 16 --model-name t5-small -d repo-based-included -r $repo
 done

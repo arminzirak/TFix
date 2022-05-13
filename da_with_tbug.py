@@ -1,16 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[15]:
-
-
-# get_ipython().run_line_magic('load_ext', 'autoreload')
-# get_ipython().run_line_magic('autoreload', '2')
-
-
-# In[16]:
-
-
 # In[ ]:
 
 
@@ -69,7 +59,28 @@ start_all = datetime.now()
 import socket
 local = False if 'computecanada' in socket.gethostname() else True
 
-base_model = 'training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
+parser = argparse.ArgumentParser()
+parser.add_argument("-r", "--repo", type=str, default='/data/all/data/oroinc/platform')
+parser.add_argument("-l", "--large", action="store_true")
+# parser.add_argument("-p", "--percent", type=float, default=1)
+
+args = parser.parse_args()
+repo = args.repo
+large = args.large
+#sample_percent = args.percent
+
+print('start:', repo)
+
+lr = 4e-3
+ws = 300
+wd = 0.4
+print('best arguments', lr, wd, ws)
+
+
+if not large:
+    base_model = 'training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
+else:
+    base_model = 'training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825'
 
 if local:
     storage_directory = './storage/'
@@ -83,7 +94,12 @@ else:
 # In[7]:
 
 
-# In[17]:
+# In[3]:
+
+
+
+
+# In[4]:
 
 
 
@@ -100,20 +116,7 @@ exec_number
 # In[31]:
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-r", "--repo", type=str, default='/data/all/data/oroinc/platform')
-# parser.add_argument("-p", "--percent", type=float, default=1)
 
-args = parser.parse_args()
-repo = args.repo
-#sample_percent = args.percent
-
-print('start:', repo)
-
-lr = 4e-3
-ws = 300
-wd = 0.4
-print('best arguments', lr, wd, ws)
 
 
 
@@ -125,13 +128,13 @@ name='good'
 name
 
 
-# In[ ]:
+# In[5]:
 
 
+model_name = 't5-small' if not large else 't5-large'
 
 
-
-# In[18]:
+# In[6]:
 
 
 # Read and prepare data
@@ -140,11 +143,11 @@ test_data_eslint = GetDataAsPython(f"{storage_directory}/data_and_models/data/da
 test_data += test_data_eslint
 
 
-# In[19]:
+# In[7]:
 
 
 import json
-with open(f'{storage_directory}/bt_data/scores.json', 'r') as f:
+with open(f'{storage_directory}/bt_data_{model_name}/scores.json', 'r') as f:
     scores = json.load(f)
 scores
 
@@ -174,7 +177,6 @@ len(test_data)
 # In[38]:
 
 
-# all_warning_types = extract_warning_types(test_data)
 
 
 # In[39]:
@@ -183,10 +185,10 @@ len(test_data)
 (_train_inputs, _train_labels, _val_inputs, _val_labels, test_inputs, test_labels, train_info, val_info, test_info, ) =     create_data(test_data, good_warnings, include_warning=True, design='repo-based-included', select_repo=repo)
 
 
-# In[22]:
+# In[11]:
 
 
-train_data = MinimalDataPoint.FromJsonToPython(f'{storage_directory}/bt_data/{repo}.json')
+train_data = MinimalDataPoint.FromJsonToPython(f'{storage_directory}/bt_data_{model_name}/{repo}.json')
 
 
 # In[23]:
@@ -231,7 +233,7 @@ print(f'amount of data that will be probably being used for testing: {sum([len(x
 
 now = datetime.now()
 full_name = f'{name}_{exec_number}_{repo.rsplit("/", 1)[1][-20:]}'
-model_directory = f'{storage_directory}/tmp/bt/{full_name}'
+model_directory = f'{storage_directory}/tmp/bt_{model_name}/{full_name}'
 model_directory
 
 
@@ -244,7 +246,7 @@ model.resize_token_embeddings(len(tokenizer))
 model.to('cuda')
 
 
-# In[29]:
+# In[24]:
 
 
 
@@ -271,7 +273,7 @@ training_args = Seq2SeqTrainingArguments(
 )
 
 
-# In[30]:
+# In[25]:
 
 
 
@@ -290,44 +292,42 @@ trainer = Seq2SeqTrainer(
 )
 
 
-# In[31]:
+# In[26]:
 
 
 trainer.train()
 
 
-# In[32]:
+# In[27]:
 
 
 trainer.evaluate()
 
 
-# In[33]:
+# In[28]:
 
 
 model_directory
 
 
-# In[34]:
+# In[29]:
 
 
-tuned_model_dir=f'{storage_directory}/tmp/bt/' + repo
+tuned_model_dir=f'{storage_directory}/tmp/bt_{model_name}/' + repo
 trainer.save_model(tuned_model_dir)
 
 
-# In[35]:
+# In[30]:
 
 
-os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 16 --model-name t5-small -d repo-based-included -r {repo}')
+# os.system(f'python hf_transformers/tfix_testing.py --load-model {tuned_model_dir} -bs 8 --model-name {model_name} -d repo-based-included -r {repo}')
 
 
 # In[ ]:
 
 
-import shutil
 
-shutil.rmtree(tuned_model_dir)
-shutil.rmtree(model_directory)
+
 
 # In[ ]:
 

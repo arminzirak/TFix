@@ -127,7 +127,8 @@ if error_type != "":
 # In[10]:
 
 
-(train_inputs, train_labels, test_inputs, test_labels, train_info, test_info, ) =    create_data_tbug(data, all_warning_types, include_warning=True, design=design, select_repo=repo, back_translation=True)
+(train_inputs, train_labels, test_inputs, test_labels, train_info, test_info, ) =   \
+    create_data_tbug(data, all_warning_types, include_warning=True, design=design, select_repo=repo, back_translation=True)
 
 
 # In[11]:
@@ -318,7 +319,7 @@ for i, warning in enumerate(all_warning_types):
 # In[48]:
 
 
-with open(f'{storage_directory}/bt_data/scores_{model_name}.json', 'w') as f:
+with open(f'{storage_directory}/bt_data_{model_name}/scores.json', 'w') as f:
     json.dump(scores, f)
 
 

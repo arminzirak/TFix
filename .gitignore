@@ -251,3 +251,5 @@ hf_transformers/
 storage/
 
 !report/**
+# stryker temp files
+.stryker-tmp

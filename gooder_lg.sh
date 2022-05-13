@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --gres=gpu:v100l:1
 #SBATCH --job-name=gooder_lg # single job name for the array
-#SBATCH --time=9:20:00 # maximum walltime per job
+#SBATCH --time=12:00:00 # maximum walltime per job
 #SBATCH --mem=30G # maximum 100M per job
 #SBATCH --cpus-per-task=1
 #SBATCH --output=%x.out # standard output
