@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --gres=gpu:v100l:1
-#SBATCH --job-name=test # single job name for the array
+#SBATCH --job-name=testSA # single job name for the array
 #SBATCH --time=0:40:00 # maximum walltime per job
 #SBATCH --mem=25G # maximum 100M per job
 #SBATCH --cpus-per-task=1
