@@ -10,10 +10,10 @@
 
 cd ~/TFix
 source env/bin/activate
-python hf_transformers/tfix_testing.py --load-model ~/scratch/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825/-bs 16 --model-name t5-large -d repo-based-included #-r /data/all/data/appium/appium
+python hf_transformers/tfix_testing.py --load-model ~/scratch/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825/ -bs 16 --model-name t5-large -d repo-based-included #-r /data/all/data/appium/appium
 
 echo "finished general testing"
 for repo in /data/all/data/qooxdoo/qooxdoo /data/all/data/zloirock/core-js /data/all/data/emberjs/ember.js /data/all/data/foam-framework/foam /data/all/data/elastic/kibana  /data/all/data/Encapsule-Annex/onm /data/all/data/sequelize/sequelize /data/all/data/dcos/dcos-ui /data/all/data/LivelyKernel/LivelyKernel /data/all/data/svgdotjs/svg.js
 do
-  python hf_transformers/tfix_testing.py --load-model ~/scratch/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825/-bs 16 --model-name t5-large -d repo-based-included -r $repo
+  python hf_transformers/tfix_testing.py --load-model ~/scratch/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825/ -bs 16 --model-name t5-large -d repo-based-included -r $repo
 done
