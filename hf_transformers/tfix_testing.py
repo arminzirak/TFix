@@ -25,6 +25,7 @@ from utils import boolean_string
 from utils import get_scores_weighted_average
 from utils import get_current_time
 
+start_all = datetime.now()
 # transformers.logging.set_verbosity_info()
 set_seed(42)
 print("start time: ", get_current_time())
@@ -179,6 +180,8 @@ for warning in test_inputs:
 # Generate predictions
 scores: DefaultDict[str, float] = defaultdict(float)
 counts: DefaultDict[str, float] = defaultdict(int)
+start_testing = datetime.now()
+
 for i, warning in enumerate(all_warning_types):
     test_warning = test_inputs[warning]
     test_warning_labels = test_labels[warning]
@@ -228,6 +231,8 @@ for i, warning in enumerate(all_warning_types):
     test_info[warning] = test_warning_info
     # print(f"rule {i} acc: {correct_counter / total_counter}")
 
+end_testing = datetime.now()
+
 average, count = get_scores_weighted_average(scores, counts)
 number_of_warnings = len([scores[k] for k in scores if scores[k] != 'NA'])
 
@@ -239,8 +244,10 @@ scores['samples_count'] = counter
 
 print(f'score average: {average:.2f} samples_count: {scores["samples_count"]}')
 
+end_all = datetime.now()
+
 with open(f'{storage_directory}/results.csv', 'a') as f:
-    f.write(f'normal,{args.repo if args.repo else "all"},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model},{args.design}\n')
+    f.write(f'normal,{args.repo if args.repo else "all"},{scores["average"]:.2f},{scores["number_of_warnings"]},{scores["samples_count"]},{dt_string},{model_name},{args.load_model},{args.design},{start_all}, {start_testing}, {end_testing}, {end_all}\n')
 
 
 # create the whole test list
