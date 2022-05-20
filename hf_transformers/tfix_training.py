@@ -19,6 +19,7 @@ from prepare_data import create_dataset
 from prepare_data import extract_warning_types
 from utils import boolean_string
 from utils import get_current_time
+from datetime import datetime
 
 # transformers.logging.set_verbosity_info()
 set_seed(42)
@@ -39,11 +40,13 @@ parser.add_argument("-pt", "--pre-trained", type=boolean_string, default=True)
 parser.add_argument("-d", "--design", type=str, required=True, choices=['old', 'new', 'repo-based', 'repo-based-included'])
 args = parser.parse_args()
 
+start_all = datetime.now()
+
 import socket
 local = False if 'computecanada' in socket.gethostname() else True
 
 model_name = args.model_name
-
+name = 'train'
 if local:
     storage_directory = './storage/'
     pretrained_model = model_name
@@ -63,7 +66,7 @@ else:
     model_directory = f'{storage_directory}/training/{model_name}_global_{args.design}_{dt_string}'
 print(f'model dir: {model_directory}')
 
-os.makedirs(model_directory)
+os.makedirs(model_directory, exist_ok=True)
 with open(os.path.join(model_directory, "commandline_args.txt"), "w") as f:
     f.write("\n".join(sys.argv[1:]))
 
@@ -140,7 +143,15 @@ trainer = Seq2SeqTrainer(
     optimizers=[torch.optim.Adam(params=model.parameters(), lr=args.learning_rate), None],
     tokenizer=tokenizer,
 )
+start_training = datetime.now()
 
 print("training start time: ", get_current_time())
 trainer.train()
 print("end time: ", get_current_time())
+
+end_training = datetime.now()
+end_all = datetime.now()
+import csv
+with open('tuner_runtime.csv', 'a') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow([name, repo, args.design, args.epochs, model_directory, len(train_dataset), len(val_dataset), start_all, start_training, end_training, end_all])

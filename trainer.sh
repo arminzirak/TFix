@@ -13,4 +13,4 @@
 
 cd ~/TFix
 source env/bin/activate
-python hf_transformers/tfix_training.py -mn t5-small -e 25 -bs 16 -d repo-based
+python hf_transformers/tfix_training.py -mn t5-small -e 25 -bs 16 -d repo-based --model-dir ~/scratch/tfix/training/t5-small/repo-based/
