@@ -289,13 +289,13 @@ tokenizer.save_pretrained(adapted_model_dir)
 
 
 for i, block in enumerate(model.encoder.block):
-    torch.save(block.adapter.state_dict(), f'{adapted_model_dir}/adapter-encoder-{i}')
+    torch.save(block.adapter.state_dict(), f'{model_directory}/adapter-encoder-{i}')
 
 # In[30]:
 
 
 for i, block in enumerate(model.decoder.block):
-    torch.save(block.adapter.state_dict(), f'{adapted_model_dir}/adapter-decoder-{i}')
+    torch.save(block.adapter.state_dict(), f'{model_directory}/adapter-decoder-{i}')
 
 # In[31]:
 

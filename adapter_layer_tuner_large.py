@@ -73,7 +73,7 @@ if local:
 else:
     storage_directory = '/scratch/arminz/'
     base_model = f'{storage_directory}/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825'
-    adapted_model_dir = f'{storage_directory}/tmp/adapted_large/'
+    # adapted_model_dir = f'{storage_directory}/tmp/adapted_large/'
     batch_size = 16
 
 # In[7]:
@@ -284,20 +284,20 @@ print('eval', trainer.evaluate()['eval_loss'])
 # In[27]:
 
 
-model.save_pretrained(adapted_model_dir)
-tokenizer.save_pretrained(adapted_model_dir)
+model.save_pretrained(model_directory)
+tokenizer.save_pretrained(model_directory)
 
 # In[29]:
 
 
 for i, block in enumerate(model.encoder.block):
-    torch.save(block.adapter.state_dict(), f'{adapted_model_dir}/adapter-encoder-{i}')
+    torch.save(block.adapter.state_dict(), f'{model_directory}/adapter-encoder-{i}')
 
 # In[30]:
 
 
 for i, block in enumerate(model.decoder.block):
-    torch.save(block.adapter.state_dict(), f'{adapted_model_dir}/adapter-decoder-{i}')
+    torch.save(block.adapter.state_dict(), f'{model_directory}/adapter-decoder-{i}')
 
 # In[31]:
 
@@ -327,19 +327,19 @@ if local:
 
 
 result = os.system(
-    f'python hf_transformers/tfix_testing_adapterLayer.py --load-model {adapted_model_dir} -bs {batch_size} --model-name {model_name} -d repo-based-included -r {repo}')
+    f'python hf_transformers/tfix_testing_adapterLayer.py --load-model {model_directory} -bs {batch_size} --model-name {model_name} -d repo-based-included -r {repo}')
 print(result)
 
 result = os.system(
-    f'python hf_transformers/tfix_testing_adapterLayer.py --load-model {adapted_model_dir} -bs {batch_size} --model-name {model_name} -d source-test')
+    f'python hf_transformers/tfix_testing_adapterLayer.py --load-model {model_directory} -bs {batch_size} --model-name {model_name} -d source-test')
 print(result)
 
 # In[36]:
 
-
-import shutil
-
-shutil.rmtree(adapted_model_dir)
+#
+# import shutil
+#
+# shutil.rmtree(model_directory)
 #
 
 
