@@ -10,7 +10,7 @@
 
 cd ~/TFix/
 source env/bin/activate
-for mode in conf length_label length_input
+for mode in distance_based #conf length_label length_input
 do
   for repo in /data/all/data/qooxdoo/qooxdoo /data/all/data/zloirock/core-js /data/all/data/emberjs/ember.js /data/all/data/foam-framework/foam /data/all/data/elastic/kibana  /data/all/data/Encapsule-Annex/onm /data/all/data/sequelize/sequelize /data/all/data/dcos/dcos-ui /data/all/data/LivelyKernel/LivelyKernel /data/all/data/svgdotjs/svg.js
   do

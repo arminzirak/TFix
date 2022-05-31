@@ -126,7 +126,7 @@ nbrs = NearestNeighbors(n_neighbors=1, algorithm='kd_tree').fit(general_vecs)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--repo", type=str, default='/data/all/data/oroinc/platform')
-parser.add_argument("-m", "--mode", type=str, required=True, choices=['conf', 'length_label', 'length_input'])
+parser.add_argument("-m", "--mode", type=str, required=True, choices=['conf', 'length_label', 'length_input', 'distance_based'])
 parser.add_argument("-md", "--model-address", type=str, required=True)
 
 
@@ -150,7 +150,7 @@ print('best arguments', lr, wd, ws)
 # In[35]:
 
 
-name='curr'
+name='curr_{}'.format(args.mode)
 name
 
 
@@ -277,17 +277,6 @@ sampler = MySampler(train_dataset, shuffle=False)
 
 # In[ ]:
 
-
-repo_vecs = np.array([codebert_utils.code_to_vec(item) for item in train_inputs])
-distances, matched_indices = nbrs.kneighbors(repo_vecs)
-distance_priorities = 1 - (distances / distances.max()).squeeze()
-
-
-# In[ ]:
-
-
-sampler.set_priority(distance_priorities)
-sampler.set_mode('active')
 
 
 # In[ ]:
@@ -462,6 +451,16 @@ best_model = copy.deepcopy(model)
 no_imp = 0
 
 curriculum = 0
+start_training = datetime.now()
+
+if args.mode == 'distance_based':
+    repo_vecs = np.array([codebert_utils.code_to_vec(item) for item in train_inputs])
+    distances, matched_indices = nbrs.kneighbors(repo_vecs)
+    distance_priorities = 1 - (distances / distances.max()).squeeze()
+    sampler.set_priority(distance_priorities)
+    sampler.set_mode('active')
+
+
 for epoch in range(num_train_epochs):
 
 #     if curriculum < 1:
@@ -471,23 +470,27 @@ for epoch in range(num_train_epochs):
         sampler.curriculum = 1
     else:
         sampler.curriculum = curriculum_list[epoch]
-    sampler.set_mode('all')
-    if epoch == 0  or True:
-        model.eval()
-        scores = []
-        for batch in train_dataloader:
-            batch = {k: v.to('cuda') for k, v in batch.items()}
-            with torch.no_grad():
-                outputs = model(**batch)
-            if args.mode == 'conf':
-                scores += [item.item() for item in
-                           softmax(outputs[1], dim=-1).max(-1).values.prod(-1).to('cpu')]  # conf score
-            elif args.mode == 'length_label':
-                scores += list((-1 * outputs[1].argmax(-1).to('cpu') != 0).sum(-1))  # length of generated labels
-            elif args.mode == 'length_input':
-                scores += list((-1 * batch['input_ids'] != 0).sum(1).cpu())  # length of input
-            else:
-                raise Exception(f'Invalid argument args.mode: {args.mode}')
+
+    if args.mode != 'distance_based':
+        sampler.set_mode('all')
+        if epoch == 0 or True:
+            model.eval()
+            scores = []
+            for batch in train_dataloader:
+                batch = {k: v.to('cuda') for k, v in batch.items()}
+                with torch.no_grad():
+                    outputs = model(**batch)
+                if args.mode == 'conf':
+                    scores += [item.item() for item in
+                               softmax(outputs[1], dim=-1).max(-1).values.prod(-1).to('cpu')]  # conf score
+                elif args.mode == 'length_label':
+                    scores += list((-1 * outputs[1].argmax(-1).to('cpu') != 0).sum(-1))  # length of generated labels
+                elif args.mode == 'length_input':
+                    scores += list((-1 * batch['input_ids'] != 0).sum(1).cpu())  # length of input
+                elif args.mode == 'distance_based':
+                    pass
+                else:
+                    raise Exception(f'Invalid argument args.mode: {args.mode}')
             new_priorities = [value for key, value in sorted(list(zip(list(sampler), scores)))]
             sampler.set_priority(new_priorities)
             sampler.set_mode('active')
@@ -543,10 +546,7 @@ for epoch in range(num_train_epochs):
     if no_imp >= patience:
         print(f'terminating... using {best_epoch}')
         break
-    
-    
-    
-
+end_training = datetime.now()
 
 # In[ ]:
 
@@ -716,9 +716,9 @@ trainer.save_model(model_address)
 
 end_all = datetime.now()
 # import csv
-# with open('tuner_runtime.csv', 'a') as csvfile:
-#     writer = csv.writer(csvfile)
-#     writer.writerow([name, repo, len(train_dataset), len(val_dataset), base_model, start_all, start_training, end_training, end_all])
+with open('tuner_runtime.csv', 'a') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow([name, repo, len(train_dataset), len(val_dataset), base_model, start_all, start_training, end_training, end_all])
 
 # In[78]:
 
