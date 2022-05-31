@@ -69,7 +69,7 @@ start_all = datetime.now()
 import socket
 local = False if 'computecanada' in socket.gethostname() else True
 
-base_model = 'training/t5-small_repo-based_21-01-2022_10-29-42/checkpoint-16440'
+base_model = 'training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825'
 
 if local:
     raise Exception('You cannot run large on local')
@@ -150,7 +150,7 @@ print('best arguments', lr, wd, ws)
 # In[35]:
 
 
-name='curr'
+name='curr_{}'.format(args.mode)
 name
 
 
