@@ -154,4 +154,4 @@ end_all = datetime.now()
 import csv
 with open('tuner_runtime.csv', 'a') as csvfile:
     writer = csv.writer(csvfile)
-    writer.writerow([name, repo, args.design, args.epochs, model_directory, len(train_dataset), len(val_dataset), start_all, start_training, end_training, end_all])
+    writer.writerow([name, 'all', args.design, args.epochs, model_directory, len(train_dataset), len(val_dataset), start_all, start_training, end_training, end_all])
