@@ -1,0 +1,182 @@
+normal,/data/all/data/qooxdoo/qooxdoo,0.46,18,115,27-01-2022_18-44-08,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/elastic/kibana,0.45,17,51,27-01-2022_18-47-06,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/emberjs/ember.js,0.51,11,47,27-01-2022_18-49-21,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/zloirock/core-js,0.37,8,41,27-01-2022_18-51-33,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/Encapsule-Annex/onm,1.00,1,39,27-01-2022_18-53-43,t5-large,/scratch/arminz/training/t5-lar/data/all/data/qooxdoo/qooxdooge_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/sequelize/sequelize,0.38,12,40,27-01-2022_18-55-58,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/dcos/dcos-ui,0.65,9,37,27-01-2022_18-58-04,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.64,12,36,27-01-2022_18-59-43,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/svgdotjs/svg.js,0.10,5,31,27-01-2022_19-01-55,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/foam-framework/foam,0.36,13,33,27-01-2022_19-03-50,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,all,0.40,48,3374,27-01-2022_18-31-58,t5-large,/scratch/arminz/training/t5-large_global_repo-based_25-01-2022_10-31-49/checkpoint-218825
+normal,/data/all/data/qooxdoo/qooxdoo,0.58,18,115,28-01-2022_10-08-59,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/elastic/kibana,0.59,17,51,28-01-2022_10-11-47,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/emberjs/ember.js,0.64,11,47,28-01-2022_10-14-45,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/zloirock/core-js,0.49,8,41,28-01-2022_10-16-48,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/Encapsule-Annex/onm,1.00,1,39,28-01-2022_10-18-50,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/sequelize/sequelize,0.53,12,40,28-01-2022_10-21-05,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/dcos/dcos-ui,0.86,9,37,28-01-2022_10-23-24,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.69,12,36,28-01-2022_10-25-17,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/svgdotjs/svg.js,0.71,5,31,28-01-2022_10-27-23,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/foam-framework/foam,0.42,13,33,28-01-2022_10-29-15,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,all,0.55,48,3374,28-01-2022_10-07-08,t5-large,/scratch/arminz/training/t5-large_global_repo-based-included_25-01-2022_13-37-25/checkpoint-266196/
+normal,/data/all/data/qooxdoo/qooxdoo,0.52,18,115,12-04-2022_14-32-16,t5-large,/scratch/arminz//tmp/ft1_986_qooxdoo_0_1/best/
+normal,/data/all/data/elastic/kibana,0.41,17,51,12-04-2022_14-42-40,t5-large,/scratch/arminz//tmp/ft1_825_kibana_0_1/best/
+normal,/data/all/data/emberjs/ember.js,0.45,11,47,12-04-2022_14-53-14,t5-large,/scratch/arminz//tmp/ft1_177_ember.js_0_1/best/
+normal,/data/all/data/zloirock/core-js,0.29,8,41,12-04-2022_15-03-03,t5-large,/scratch/arminz//tmp/ft1_228_core-js_0_1/best/
+normal,/data/all/data/Encapsule-Annex/onm,0.49,1,39,12-04-2022_15-15-23,t5-large,/scratch/arminz//tmp/ft1_829_onm_0_1/best/
+normal,/data/all/data/sequelize/sequelize,0.33,12,40,12-04-2022_15-23-52,t5-large,/scratch/arminz//tmp/ft1_717_sequelize_0_1/best/
+normal,/data/all/data/dcos/dcos-ui,0.59,9,37,12-04-2022_15-33-41,t5-large,/scratch/arminz//tmp/ft1_975_dcos-ui_0_1/best/
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.56,12,36,12-04-2022_15-48-06,t5-large,/scratch/arminz//tmp/ft1_807_LivelyKernel_0_1/best/
+normal,/data/all/data/svgdotjs/svg.js,0.10,5,31,12-04-2022_15-55-32,t5-large,/scratch/arminz//tmp/ft1_75_svg.js_0_1/best/
+normal,/data/all/data/foam-framework/foam,0.30,13,33,12-04-2022_16-04-38,t5-large,/scratch/arminz//tmp/ft1_540_foam_0_1/best/
+normal,/data/all/data/qooxdoo/qooxdoo,0.58,18,115,03-05-2022_18-27-15,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/qooxdoo/qooxdoo,repo-based-included
+normal,all,0.45,52,3529,03-05-2022_18-30-06,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/qooxdoo/qooxdoo,source-test
+normal,/data/all/data/zloirock/core-js,0.46,8,41,03-05-2022_19-27-24,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/zloirock/core-js,repo-based-included
+normal,all,0.47,52,3529,03-05-2022_19-29-18,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/zloirock/core-js,source-test
+normal,/data/all/data/emberjs/ember.js,0.60,11,47,03-05-2022_20-28-50,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/emberjs/ember.js,repo-based-included
+normal,all,0.46,52,3529,03-05-2022_20-30-42,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/emberjs/ember.js,source-test
+normal,/data/all/data/foam-framework/foam,0.42,13,33,03-05-2022_21-31-22,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/foam-framework/foam,repo-based-included
+normal,all,0.46,52,3529,03-05-2022_21-33-27,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/foam-framework/foam,source-test
+normal,/data/all/data/elastic/kibana,0.65,17,51,03-05-2022_22-33-02,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/elastic/kibana,repo-based-included
+normal,all,0.47,52,3529,03-05-2022_22-35-20,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/elastic/kibana,source-test
+normal,/data/all/data/Encapsule-Annex/onm,1.00,1,39,03-05-2022_23-36-33,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/Encapsule-Annex/onm,repo-based-included
+normal,all,0.46,52,3529,03-05-2022_23-39-06,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/Encapsule-Annex/onm,source-test
+normal,/data/all/data/sequelize/sequelize,0.62,12,40,04-05-2022_00-45-12,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/sequelize/sequelize,repo-based-included
+normal,all,0.46,52,3529,04-05-2022_00-47-27,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/sequelize/sequelize,source-test
+normal,/data/all/data/dcos/dcos-ui,0.92,9,37,04-05-2022_01-45-53,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/dcos/dcos-ui,repo-based-included
+normal,all,0.48,52,3529,04-05-2022_01-47-49,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/dcos/dcos-ui,source-test
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.67,12,36,04-05-2022_02-49-27,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/LivelyKernel/LivelyKernel,repo-based-included
+normal,all,0.46,52,3529,04-05-2022_08-41-59,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/LivelyKernel/LivelyKernel,source-test
+normal,/data/all/data/svgdotjs/svg.js,0.71,5,31,04-05-2022_09-39-57,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/svgdotjs/svg.js,repo-based-included
+normal,all,0.48,52,3529,04-05-2022_09-41-33,t5-large,/scratch/arminz/tmp/finetuned//data/all/data/svgdotjs/svg.js,source-test
+withAdapter,/data/all/data/qooxdoo/qooxdoo,0.63,18,115,06-05-2022_14-06-47,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.43,52,3529,06-05-2022_14-10-59,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/elastic/kibana,0.57,17,51,06-05-2022_15-13-21,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.44,52,3529,06-05-2022_15-16-57,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/emberjs/ember.js,0.60,11,47,06-05-2022_16-21-56,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.44,52,3529,06-05-2022_16-25-30,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/zloirock/core-js,0.51,8,41,06-05-2022_17-29-38,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.45,52,3529,06-05-2022_17-32-28,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/Encapsule-Annex/onm,1.00,1,39,06-05-2022_18-38-27,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.47,52,3529,06-05-2022_18-41-41,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/sequelize/sequelize,0.60,12,40,06-05-2022_19-51-29,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.44,52,3529,06-05-2022_19-55-14,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/dcos/dcos-ui,0.89,9,37,06-05-2022_21-01-23,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.45,52,3529,06-05-2022_21-04-32,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/LivelyKernel/LivelyKernel,0.67,12,36,06-05-2022_22-10-38,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.43,52,3529,06-05-2022_22-13-52,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/svgdotjs/svg.js,0.84,5,31,06-05-2022_23-21-00,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.40,52,3529,06-05-2022_23-24-03,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+withAdapter,/data/all/data/foam-framework/foam,0.39,13,33,07-05-2022_00-34-43,t5-large,/scratch/arminz//tmp/adapted_large/,repo-based-included
+withAdapter,all,0.44,52,3529,07-05-2022_00-37-51,t5-large,/scratch/arminz//tmp/adapted_large/,source-test
+normal,/data/all/data/qooxdoo/qooxdoo,0.52,18,115,22-04-2022_15-23-38,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/qooxdoo/qooxdoo_0_1,repo-based-included
+normal,all,0.77,32,1746,22-04-2022_15-26-36,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/qooxdoo/qooxdoo_0_1,source-test
+normal,/data/all/data/elastic/kibana,0.45,17,51,22-04-2022_15-52-08,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/elastic/kibana_0_1,repo-based-included
+normal,all,0.85,32,1746,22-04-2022_15-54-18,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/elastic/kibana_0_1,source-test
+normal,/data/all/data/emberjs/ember.js,0.49,11,47,22-04-2022_16-19-36,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/emberjs/ember.js_0_1,repo-based-included
+normal,all,0.84,32,1746,22-04-2022_16-21-19,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/emberjs/ember.js_0_1,source-test
+normal,/data/all/data/zloirock/core-js,0.29,8,41,22-04-2022_16-46-39,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/zloirock/core-js_0_1,repo-based-included
+normal,all,0.80,32,1746,22-04-2022_16-48-27,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/zloirock/core-js_0_1,source-test
+normal,/data/all/data/Encapsule-Annex/onm,0.79,1,39,22-04-2022_17-11-50,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/Encapsule-Annex/onm_0_1,repo-based-included
+normal,all,0.89,32,1746,22-04-2022_17-13-16,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/Encapsule-Annex/onm_0_1,source-test
+normal,/data/all/data/sequelize/sequelize,0.30,12,40,22-04-2022_17-38-58,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/sequelize/sequelize_0_1,repo-based-included
+normal,all,0.85,32,1746,22-04-2022_17-40-56,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/sequelize/sequelize_0_1,source-test
+normal,/data/all/data/dcos/dcos-ui,0.73,9,37,22-04-2022_18-05-40,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/dcos/dcos-ui_0_1,repo-based-included
+normal,all,0.88,32,1746,22-04-2022_18-07-11,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/dcos/dcos-ui_0_1,source-test
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.56,12,36,22-04-2022_18-32-37,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/LivelyKernel/LivelyKernel_0_1,repo-based-included
+normal,all,0.83,32,1746,22-04-2022_18-34-26,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/LivelyKernel/LivelyKernel_0_1,source-test
+normal,/data/all/data/svgdotjs/svg.js,0.10,5,31,22-04-2022_18-58-59,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/svgdotjs/svg.js_0_1,repo-based-included
+normal,all,0.88,32,1746,22-04-2022_19-00-27,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/svgdotjs/svg.js_0_1,source-test
+normal,/data/all/data/foam-framework/foam,0.30,13,33,22-04-2022_19-27-15,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/foam-framework/foam_0_1,repo-based-included
+normal,all,0.82,32,1746,25-04-2022_11-22-00,t5-large,/scratch/arminz/tmp/ftl2_/data/all/data/foam-framework/foam_0_1,source-test
+normal,/data/all/data/qooxdoo/qooxdoo,0.47,18,115,31-05-2022_05-06-52,t5-large,/scratch/arminz/tmp/currl_/data/all/data/qooxdoo/qooxdoo_conf,repo-based-included,2022-05-31 05:06:52.754846, 2022-05-31 05:07:41.954338, 2022-05-31 05:09:14.858397, 2022-05-31 05:09:14.860938
+normal,all,0.48,52,3529,31-05-2022_05-09-40,t5-large,/scratch/arminz/tmp/currl_/data/all/data/qooxdoo/qooxdoo_conf,source-test,2022-05-31 05:09:40.772989, 2022-05-31 05:14:04.615348, 2022-05-31 05:48:45.798281, 2022-05-31 05:48:45.800263
+normal,/data/all/data/zloirock/core-js,0.37,8,41,31-05-2022_05-53-11,t5-large,/scratch/arminz/tmp/currl_/data/all/data/zloirock/core-js_conf,repo-based-included,2022-05-31 05:53:11.797748, 2022-05-31 05:54:00.197635, 2022-05-31 05:54:38.275982, 2022-05-31 05:54:38.280757
+normal,all,0.47,52,3529,31-05-2022_05-55-08,t5-large,/scratch/arminz/tmp/currl_/data/all/data/zloirock/core-js_conf,source-test,2022-05-31 05:55:08.790944, 2022-05-31 05:59:06.690278, 2022-05-31 06:33:57.398699, 2022-05-31 06:33:57.401387
+normal,/data/all/data/emberjs/ember.js,0.53,11,47,31-05-2022_06-37-45,t5-large,/scratch/arminz/tmp/currl_/data/all/data/emberjs/ember.js_conf,repo-based-included,2022-05-31 06:37:45.523219, 2022-05-31 06:38:32.965291, 2022-05-31 06:39:21.888235, 2022-05-31 06:39:21.890202
+normal,all,0.48,52,3529,31-05-2022_06-39-48,t5-large,/scratch/arminz/tmp/currl_/data/all/data/emberjs/ember.js_conf,source-test,2022-05-31 06:39:48.391311, 2022-05-31 06:43:53.499411, 2022-05-31 07:18:41.763554, 2022-05-31 07:18:41.765808
+normal,/data/all/data/foam-framework/foam,0.39,13,33,31-05-2022_07-22-43,t5-large,/scratch/arminz/tmp/currl_/data/all/data/foam-framework/foam_conf,repo-based-included,2022-05-31 07:22:43.224391, 2022-05-31 07:23:58.234560, 2022-05-31 07:24:44.779488, 2022-05-31 07:24:44.781574
+normal,all,0.48,52,3529,31-05-2022_07-25-21,t5-large,/scratch/arminz/tmp/currl_/data/all/data/foam-framework/foam_conf,source-test,2022-05-31 07:25:21.475609, 2022-05-31 07:29:21.237666, 2022-05-31 08:04:46.143442, 2022-05-31 08:04:46.147994
+normal,/data/all/data/elastic/kibana,0.49,17,51,31-05-2022_08-09-11,t5-large,/scratch/arminz/tmp/currl_/data/all/data/elastic/kibana_conf,repo-based-included,2022-05-31 08:09:11.542046, 2022-05-31 08:10:00.361717, 2022-05-31 08:10:57.890219, 2022-05-31 08:10:57.893063
+normal,all,0.47,52,3529,31-05-2022_08-11-31,t5-large,/scratch/arminz/tmp/currl_/data/all/data/elastic/kibana_conf,source-test,2022-05-31 08:11:31.368092, 2022-05-31 08:15:44.879641, 2022-05-31 08:50:42.128078, 2022-05-31 08:50:42.143069
+normal,/data/all/data/Encapsule-Annex/onm,1.00,1,39,31-05-2022_08-55-09,t5-large,/scratch/arminz/tmp/currl_/data/all/data/Encapsule-Annex/onm_conf,repo-based-included,2022-05-31 08:55:09.125504, 2022-05-31 08:55:58.293819, 2022-05-31 08:56:22.571735, 2022-05-31 08:56:22.574102
+normal,all,0.48,52,3529,31-05-2022_08-56-57,t5-large,/scratch/arminz/tmp/currl_/data/all/data/Encapsule-Annex/onm_conf,source-test,2022-05-31 08:56:57.426678, 2022-05-31 09:01:22.919475, 2022-05-31 09:36:27.951088, 2022-05-31 09:36:27.953664
+normal,/data/all/data/sequelize/sequelize,0.53,12,40,31-05-2022_09-41-40,t5-large,/scratch/arminz/tmp/currl_/data/all/data/sequelize/sequelize_conf,repo-based-included,2022-05-31 09:41:40.743510, 2022-05-31 09:42:29.000756, 2022-05-31 09:43:20.582864, 2022-05-31 09:43:20.585058
+normal,all,0.47,52,3529,31-05-2022_09-43-50,t5-large,/scratch/arminz/tmp/currl_/data/all/data/sequelize/sequelize_conf,source-test,2022-05-31 09:43:50.461309, 2022-05-31 09:48:27.512814, 2022-05-31 10:24:36.285437, 2022-05-31 10:24:36.287914
+normal,/data/all/data/dcos/dcos-ui,0.95,9,37,31-05-2022_10-29-04,t5-large,/scratch/arminz/tmp/currl_/data/all/data/dcos/dcos-ui_conf,repo-based-included,2022-05-31 10:29:03.995029, 2022-05-31 10:29:59.024193, 2022-05-31 10:30:37.499620, 2022-05-31 10:30:37.535633
+normal,all,0.48,52,3529,31-05-2022_10-31-13,t5-large,/scratch/arminz/tmp/currl_/data/all/data/dcos/dcos-ui_conf,source-test,2022-05-31 10:31:13.679681, 2022-05-31 10:36:03.289580, 2022-05-31 11:11:11.245746, 2022-05-31 11:11:11.248051
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.64,12,36,31-05-2022_11-15-23,t5-large,/scratch/arminz/tmp/currl_/data/all/data/LivelyKernel/LivelyKernel_conf,repo-based-included,2022-05-31 11:15:23.162576, 2022-05-31 11:17:12.105230, 2022-05-31 11:17:56.990855, 2022-05-31 11:17:56.993008
+normal,all,0.48,52,3529,31-05-2022_11-18-30,t5-large,/scratch/arminz/tmp/currl_/data/all/data/LivelyKernel/LivelyKernel_conf,source-test,2022-05-31 11:18:30.355908, 2022-05-31 11:22:40.258558, 2022-05-31 11:57:43.056623, 2022-05-31 11:57:43.059443
+normal,/data/all/data/svgdotjs/svg.js,0.74,5,31,31-05-2022_12-03-07,t5-large,/scratch/arminz/tmp/currl_/data/all/data/svgdotjs/svg.js_conf,repo-based-included,2022-05-31 12:03:07.431062, 2022-05-31 12:03:55.582122, 2022-05-31 12:04:20.749747, 2022-05-31 12:04:20.752236
+normal,all,0.38,52,3529,31-05-2022_12-04-53,t5-large,/scratch/arminz/tmp/currl_/data/all/data/svgdotjs/svg.js_conf,source-test,2022-05-31 12:04:53.382294, 2022-05-31 12:09:06.077077, 2022-05-31 12:43:00.902393, 2022-05-31 12:43:00.905055
+normal,/data/all/data/qooxdoo/qooxdoo,0.48,18,115,31-05-2022_12-49-41,t5-large,/scratch/arminz/tmp/currl_/data/all/data/qooxdoo/qooxdoo_length_label,repo-based-included,2022-05-31 12:49:41.125255, 2022-05-31 12:50:55.204021, 2022-05-31 12:52:32.521578, 2022-05-31 12:52:32.525204
+normal,all,0.47,52,3529,31-05-2022_12-53-07,t5-large,/scratch/arminz/tmp/currl_/data/all/data/qooxdoo/qooxdoo_length_label,source-test,2022-05-31 12:53:07.576964, 2022-05-31 12:56:55.655588, 2022-05-31 13:30:52.660777, 2022-05-31 13:30:52.663309
+normal,/data/all/data/zloirock/core-js,0.37,8,41,31-05-2022_13-35-02,t5-large,/scratch/arminz/tmp/currl_/data/all/data/zloirock/core-js_length_label,repo-based-included,2022-05-31 13:35:02.901753, 2022-05-31 13:36:16.858313, 2022-05-31 13:36:53.798205, 2022-05-31 13:36:53.802752
+normal,all,0.48,52,3529,31-05-2022_13-37-26,t5-large,/scratch/arminz/tmp/currl_/data/all/data/zloirock/core-js_length_label,source-test,2022-05-31 13:37:26.261545, 2022-05-31 13:41:21.355375, 2022-05-31 14:16:00.291877, 2022-05-31 14:16:00.294468
+normal,/data/all/data/emberjs/ember.js,0.53,11,47,31-05-2022_14-20-31,t5-large,/scratch/arminz/tmp/currl_/data/all/data/emberjs/ember.js_length_label,repo-based-included,2022-05-31 14:20:31.328480, 2022-05-31 14:21:21.633399, 2022-05-31 14:22:09.143056, 2022-05-31 14:22:09.145267
+normal,all,0.48,52,3529,31-05-2022_14-22-52,t5-large,/scratch/arminz/tmp/currl_/data/all/data/emberjs/ember.js_length_label,source-test,2022-05-31 14:22:52.246431, 2022-05-31 14:27:06.044982, 2022-05-31 15:01:58.466686, 2022-05-31 15:01:58.468826
+normal,/data/all/data/foam-framework/foam,0.36,13,33,31-05-2022_15-07-05,t5-large,/scratch/arminz/tmp/currl_/data/all/data/foam-framework/foam_length_label,repo-based-included,2022-05-31 15:07:04.746841, 2022-05-31 15:08:16.857028, 2022-05-31 15:09:05.184051, 2022-05-31 15:09:05.185967
+normal,all,0.48,52,3529,31-05-2022_15-10-07,t5-large,/scratch/arminz/tmp/currl_/data/all/data/foam-framework/foam_length_label,source-test,2022-05-31 15:10:05.573883, 2022-05-31 15:14:31.812668, 2022-05-31 15:50:14.424786, 2022-05-31 15:50:14.436727
+normal,/data/all/data/elastic/kibana,0.47,17,51,31-05-2022_15-54-58,t5-large,/scratch/arminz/tmp/currl_/data/all/data/elastic/kibana_length_label,repo-based-included,2022-05-31 15:54:58.434533, 2022-05-31 15:56:21.404433, 2022-05-31 15:57:19.499381, 2022-05-31 15:57:19.503796
+normal,all,0.48,52,3529,31-05-2022_15-57-54,t5-large,/scratch/arminz/tmp/currl_/data/all/data/elastic/kibana_length_label,source-test,2022-05-31 15:57:54.619718, 2022-05-31 16:02:05.675265, 2022-05-31 16:37:28.981750, 2022-05-31 16:37:28.984026
+normal,/data/all/data/Encapsule-Annex/onm,1.00,1,39,31-05-2022_16-41-55,t5-large,/scratch/arminz/tmp/currl_/data/all/data/Encapsule-Annex/onm_length_label,repo-based-included,2022-05-31 16:41:55.903408, 2022-05-31 16:42:45.581077, 2022-05-31 16:43:08.896076, 2022-05-31 16:43:08.897949
+normal,all,0.48,52,3529,31-05-2022_16-43-43,t5-large,/scratch/arminz/tmp/currl_/data/all/data/Encapsule-Annex/onm_length_label,source-test,2022-05-31 16:43:43.912786, 2022-05-31 16:48:15.215289, 2022-05-31 17:23:24.942330, 2022-05-31 17:23:24.944562
+normal,/data/all/data/sequelize/sequelize,0.38,12,40,31-05-2022_17-28-19,t5-large,/scratch/arminz/tmp/currl_/data/all/data/sequelize/sequelize_length_label,repo-based-included,2022-05-31 17:28:19.378678, 2022-05-31 17:30:09.213274, 2022-05-31 17:31:07.105707, 2022-05-31 17:31:07.109111
+normal,all,0.48,52,3529,31-05-2022_17-31-50,t5-large,/scratch/arminz/tmp/currl_/data/all/data/sequelize/sequelize_length_label,source-test,2022-05-31 17:31:50.072125, 2022-05-31 17:36:17.448601, 2022-05-31 18:11:56.070472, 2022-05-31 18:11:56.073586
+normal,/data/all/data/dcos/dcos-ui,0.92,9,37,31-05-2022_18-16-10,t5-large,/scratch/arminz/tmp/currl_/data/all/data/dcos/dcos-ui_length_label,repo-based-included,2022-05-31 18:16:10.736128, 2022-05-31 18:19:42.190581, 2022-05-31 18:20:17.034907, 2022-05-31 18:20:17.038186
+normal,all,0.48,52,3529,31-05-2022_18-20-49,t5-large,/scratch/arminz/tmp/currl_/data/all/data/dcos/dcos-ui_length_label,source-test,2022-05-31 18:20:49.455277, 2022-05-31 18:26:57.298728, 2022-05-31 19:02:20.934177, 2022-05-31 19:02:20.937181
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.64,12,36,31-05-2022_19-06-36,t5-large,/scratch/arminz/tmp/currl_/data/all/data/LivelyKernel/LivelyKernel_length_label,repo-based-included,2022-05-31 19:06:36.004451, 2022-05-31 19:07:56.042115, 2022-05-31 19:08:42.161362, 2022-05-31 19:08:42.164246
+normal,all,0.48,52,3529,31-05-2022_19-09-24,t5-large,/scratch/arminz/tmp/currl_/data/all/data/LivelyKernel/LivelyKernel_length_label,source-test,2022-05-31 19:09:24.564290, 2022-05-31 19:13:23.816384, 2022-05-31 19:48:55.782562, 2022-05-31 19:48:55.784730
+normal,/data/all/data/svgdotjs/svg.js,0.68,5,31,31-05-2022_19-53-01,t5-large,/scratch/arminz/tmp/currl_/data/all/data/svgdotjs/svg.js_length_label,repo-based-included,2022-05-31 19:53:01.021044, 2022-05-31 19:53:49.589316, 2022-05-31 19:54:20.188838, 2022-05-31 19:54:20.192477
+normal,all,0.47,52,3529,31-05-2022_19-54-50,t5-large,/scratch/arminz/tmp/currl_/data/all/data/svgdotjs/svg.js_length_label,source-test,2022-05-31 19:54:50.638686, 2022-05-31 19:59:06.669178, 2022-05-31 20:34:44.987713, 2022-05-31 20:34:44.989886
+normal,/data/all/data/qooxdoo/qooxdoo,0.49,18,115,04-05-2022_18-56-22,t5-large,/scratch/arminz/tmp/currl_/data/all/data/qooxdoo/qooxdoo_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_18-57-30,t5-large,/scratch/arminz/tmp/currl_/data/all/data/qooxdoo/qooxdoo_length_input,source-test
+normal,/data/all/data/zloirock/core-js,0.20,8,41,04-05-2022_19-17-18,t5-large,/scratch/arminz/tmp/currl_/data/all/data/zloirock/core-js_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_19-18-06,t5-large,/scratch/arminz/tmp/currl_/data/all/data/zloirock/core-js_length_input,source-test
+normal,/data/all/data/emberjs/ember.js,0.51,11,47,04-05-2022_19-38-32,t5-large,/scratch/arminz/tmp/currl_/data/all/data/emberjs/ember.js_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_19-39-13,t5-large,/scratch/arminz/tmp/currl_/data/all/data/emberjs/ember.js_length_input,source-test
+normal,/data/all/data/foam-framework/foam,0.30,13,33,04-05-2022_19-59-41,t5-large,/scratch/arminz/tmp/currl_/data/all/data/foam-framework/foam_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_20-00-23,t5-large,/scratch/arminz/tmp/currl_/data/all/data/foam-framework/foam_length_input,source-test
+normal,/data/all/data/elastic/kibana,0.43,17,51,04-05-2022_20-20-51,t5-large,/scratch/arminz/tmp/currl_/data/all/data/elastic/kibana_length_input,repo-based-included
+normal,all,0.36,52,3529,04-05-2022_20-21-39,t5-large,/scratch/arminz/tmp/currl_/data/all/data/elastic/kibana_length_input,source-test
+normal,/data/all/data/Encapsule-Annex/onm,1.00,1,39,04-05-2022_20-42-06,t5-large,/scratch/arminz/tmp/currl_/data/all/data/Encapsule-Annex/onm_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_20-42-41,t5-large,/scratch/arminz/tmp/currl_/data/all/data/Encapsule-Annex/onm_length_input,source-test
+normal,/data/all/data/sequelize/sequelize,0.38,12,40,04-05-2022_21-02-40,t5-large,/scratch/arminz/tmp/currl_/data/all/data/sequelize/sequelize_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_21-03-24,t5-large,/scratch/arminz/tmp/currl_/data/all/data/sequelize/sequelize_length_input,source-test
+normal,/data/all/data/dcos/dcos-ui,0.92,9,37,04-05-2022_21-23-34,t5-large,/scratch/arminz/tmp/currl_/data/all/data/dcos/dcos-ui_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_21-24-12,t5-large,/scratch/arminz/tmp/currl_/data/all/data/dcos/dcos-ui_length_input,source-test
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.61,12,36,04-05-2022_21-44-24,t5-large,/scratch/arminz/tmp/currl_/data/all/data/LivelyKernel/LivelyKernel_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_21-45-17,t5-large,/scratch/arminz/tmp/currl_/data/all/data/LivelyKernel/LivelyKernel_length_input,source-test
+normal,/data/all/data/svgdotjs/svg.js,0.10,5,31,04-05-2022_22-05-33,t5-large,/scratch/arminz/tmp/currl_/data/all/data/svgdotjs/svg.js_length_input,repo-based-included
+normal,all,0.35,52,3529,04-05-2022_22-06-18,t5-large,/scratch/arminz/tmp/currl_/data/all/data/svgdotjs/svg.js_length_input,source-test
+normal,/data/all/data/qooxdoo/qooxdoo,0.48,18,115,11-05-2022_17-50-12,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/qooxdoo/qooxdoo,repo-based-included
+normal,/data/all/data/elastic/kibana,0.47,17,51,11-05-2022_18-02-45,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/elastic/kibana,repo-based-included
+normal,/data/all/data/emberjs/ember.js,0.62,11,47,10-05-2022_20-45-26,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/emberjs/ember.js,repo-based-included
+normal,/data/all/data/zloirock/core-js,0.44,8,41,10-05-2022_20-57-47,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/zloirock/core-js,repo-based-included
+normal,/data/all/data/Encapsule-Annex/onm,1.00,1,39,10-05-2022_21-06-24,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/Encapsule-Annex/onm,repo-based-included
+normal,/data/all/data/sequelize/sequelize,0.38,12,40,10-05-2022_21-25-17,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/sequelize/sequelize,repo-based-included
+normal,/data/all/data/dcos/dcos-ui,0.92,9,37,10-05-2022_21-39-04,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/dcos/dcos-ui,repo-based-included
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.64,12,36,10-05-2022_21-57-49,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/LivelyKernel/LivelyKernel,repo-based-included
+normal,/data/all/data/svgdotjs/svg.js,0.10,5,31,10-05-2022_22-13-51,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/svgdotjs/svg.js,repo-based-included
+normal,/data/all/data/foam-framework/foam,0.36,13,33,10-05-2022_22-27-39,t5-large,/scratch/arminz/tmp/bt_t5-large//data/all/data/foam-framework/foam,repo-based-included
+normal,/data/all/data/qooxdoo/qooxdoo,0.59,18,115,30-05-2022_21-38-53,t5-large,/scratch/arminz/tmp/currl_/data/all/data/qooxdoo/qooxdoo_distance_based,repo-based-included,2022-05-30 21:38:53.538366, 2022-05-30 21:39:41.190950, 2022-05-30 21:41:05.148001, 2022-05-30 21:41:05.151488
+normal,all,0.41,52,3529,30-05-2022_21-41-39,t5-large,/scratch/arminz/tmp/currl_/data/all/data/qooxdoo/qooxdoo_distance_based,source-test,2022-05-30 21:41:39.644629, 2022-05-30 21:45:39.765209, 2022-05-30 22:18:15.367419, 2022-05-30 22:18:15.369699
+normal,/data/all/data/zloirock/core-js,0.46,8,41,30-05-2022_22-23-07,t5-large,/scratch/arminz/tmp/currl_/data/all/data/zloirock/core-js_distance_based,repo-based-included,2022-05-30 22:23:07.660692, 2022-05-30 22:23:54.148838, 2022-05-30 22:24:32.606877, 2022-05-30 22:24:32.608783
+normal,all,0.47,52,3529,30-05-2022_22-25-21,t5-large,/scratch/arminz/tmp/currl_/data/all/data/zloirock/core-js_distance_based,source-test,2022-05-30 22:25:21.636619, 2022-05-30 22:29:23.351287, 2022-05-30 23:04:06.045138, 2022-05-30 23:04:06.048885
+normal,/data/all/data/emberjs/ember.js,0.64,11,47,30-05-2022_23-08-56,t5-large,/scratch/arminz/tmp/currl_/data/all/data/emberjs/ember.js_distance_based,repo-based-included,2022-05-30 23:08:56.082145, 2022-05-30 23:09:42.817923, 2022-05-30 23:10:20.855883, 2022-05-30 23:10:20.858820
+normal,all,0.44,52,3529,30-05-2022_23-10-47,t5-large,/scratch/arminz/tmp/currl_/data/all/data/emberjs/ember.js_distance_based,source-test,2022-05-30 23:10:47.027660, 2022-05-30 23:14:42.521301, 2022-05-30 23:47:15.339056, 2022-05-30 23:47:15.343652
+normal,/data/all/data/foam-framework/foam,0.42,13,33,30-05-2022_23-52-04,t5-large,/scratch/arminz/tmp/currl_/data/all/data/foam-framework/foam_distance_based,repo-based-included,2022-05-30 23:52:04.517709, 2022-05-30 23:52:51.398213, 2022-05-30 23:53:37.149615, 2022-05-30 23:53:37.151896
+normal,all,0.44,52,3529,30-05-2022_23-53-55,t5-large,/scratch/arminz/tmp/currl_/data/all/data/foam-framework/foam_distance_based,source-test,2022-05-30 23:53:55.250100, 2022-05-30 23:58:18.946379, 2022-05-31 00:32:32.155869, 2022-05-31 00:32:32.159278
+normal,/data/all/data/elastic/kibana,0.45,17,51,31-05-2022_00-36-51,t5-large,/scratch/arminz/tmp/currl_/data/all/data/elastic/kibana_distance_based,repo-based-included,2022-05-31 00:36:51.313778, 2022-05-31 00:37:38.585495, 2022-05-31 00:38:36.529280, 2022-05-31 00:38:36.533941
+normal,all,0.48,52,3529,31-05-2022_00-38-52,t5-large,/scratch/arminz/tmp/currl_/data/all/data/elastic/kibana_distance_based,source-test,2022-05-31 00:38:52.925322, 2022-05-31 00:42:49.656300, 2022-05-31 01:17:47.235002, 2022-05-31 01:17:47.237959
+normal,/data/all/data/Encapsule-Annex/onm,1.00,1,39,31-05-2022_01-21-52,t5-large,/scratch/arminz/tmp/currl_/data/all/data/Encapsule-Annex/onm_distance_based,repo-based-included,2022-05-31 01:21:52.961197, 2022-05-31 01:22:39.932901, 2022-05-31 01:23:03.429493, 2022-05-31 01:23:03.431955
+normal,all,0.48,52,3529,31-05-2022_01-23-12,t5-large,/scratch/arminz/tmp/currl_/data/all/data/Encapsule-Annex/onm_distance_based,source-test,2022-05-31 01:23:12.692374, 2022-05-31 01:27:03.144305, 2022-05-31 02:01:22.323009, 2022-05-31 02:01:22.325411
+normal,/data/all/data/sequelize/sequelize,0.53,12,40,31-05-2022_02-05-36,t5-large,/scratch/arminz/tmp/currl_/data/all/data/sequelize/sequelize_distance_based,repo-based-included,2022-05-31 02:05:36.136749, 2022-05-31 02:06:23.542139, 2022-05-31 02:07:15.060697, 2022-05-31 02:07:15.064617
+normal,all,0.47,52,3529,31-05-2022_02-07-27,t5-large,/scratch/arminz/tmp/currl_/data/all/data/sequelize/sequelize_distance_based,source-test,2022-05-31 02:07:27.093150, 2022-05-31 02:11:43.586190, 2022-05-31 02:46:13.370224, 2022-05-31 02:46:13.372685
+normal,/data/all/data/dcos/dcos-ui,0.92,9,37,31-05-2022_02-50-07,t5-large,/scratch/arminz/tmp/currl_/data/all/data/dcos/dcos-ui_distance_based,repo-based-included,2022-05-31 02:50:07.311927, 2022-05-31 02:50:54.169440, 2022-05-31 02:51:32.905410, 2022-05-31 02:51:32.924860
+normal,all,0.48,52,3529,31-05-2022_02-51-48,t5-large,/scratch/arminz/tmp/currl_/data/all/data/dcos/dcos-ui_distance_based,source-test,2022-05-31 02:51:48.270028, 2022-05-31 02:56:23.538634, 2022-05-31 03:31:40.538367, 2022-05-31 03:31:40.543205
+normal,/data/all/data/LivelyKernel/LivelyKernel,0.64,12,36,31-05-2022_03-35-26,t5-large,/scratch/arminz/tmp/currl_/data/all/data/LivelyKernel/LivelyKernel_distance_based,repo-based-included,2022-05-31 03:35:26.337567, 2022-05-31 03:36:14.331382, 2022-05-31 03:36:59.512985, 2022-05-31 03:36:59.515508
+normal,all,0.48,52,3529,31-05-2022_03-37-26,t5-large,/scratch/arminz/tmp/currl_/data/all/data/LivelyKernel/LivelyKernel_distance_based,source-test,2022-05-31 03:37:26.305291, 2022-05-31 03:41:35.616735, 2022-05-31 04:16:35.403897, 2022-05-31 04:16:35.406383
+normal,/data/all/data/svgdotjs/svg.js,0.81,5,31,31-05-2022_04-20-53,t5-large,/scratch/arminz/tmp/currl_/data/all/data/svgdotjs/svg.js_distance_based,repo-based-included,2022-05-31 04:20:53.871949, 2022-05-31 04:21:42.691729, 2022-05-31 04:22:08.884257, 2022-05-31 04:22:08.889035
+normal,all,0.41,52,3529,31-05-2022_04-22-41,t5-large,/scratch/arminz/tmp/currl_/data/all/data/svgdotjs/svg.js_distance_based,source-test,2022-05-31 04:22:41.131084, 2022-05-31 04:26:51.867771, 2022-05-31 05:01:18.269215, 2022-05-31 05:01:18.271819
