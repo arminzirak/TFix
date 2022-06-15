@@ -348,7 +348,7 @@ scores["average"] = average
 scores['number_of_warnings'] = number_of_warnings
 scores['samples_count'] = count
 
-print(f'score average: {average:.2f} samples_count: {scores["samples_count"]}')
+print(f'score average: {average:.4f} samples_count: {scores["samples_count"]}')
 
 
 # In[51]:
