@@ -1,0 +1,1 @@
+USE_BUG_TYPE=False

@@ -26,6 +26,7 @@ from prepare_data import create_dataset
 from prepare_data import extract_warning_types
 from utils import boolean_string
 from utils import get_current_time
+import settings
 
 
 # In[2]:
@@ -89,7 +90,7 @@ else:
     now = datetime.now()
     dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
     # model_directory = "t5global" + "_" + dt_string
-    model_directory = f'{storage_directory}/training-tbug/{model_name}_{design}_{dt_string}'
+    model_directory = f'{storage_directory}/training-tbug/{model_name}_{design}_{dt_string}_{settings.USE_BUG_TYPE}'
 
 
 # In[8]:

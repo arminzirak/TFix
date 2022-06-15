@@ -2,6 +2,7 @@ import json
 from typing import Any, List
 from typing import Tuple
 from typing import Dict
+import settings
 
 JsonDict = Dict[str, Any]
 
@@ -133,15 +134,19 @@ class DataPoint:
             )
         else:
             inputs = "fix " + self.source_code + " </s>"
-        outputs = "bug "\
-                  + self.linter_report.rule_id \
-                  + " " \
-                  + self.linter_report.message \
-                  + " " \
-                  + self.target_code\
-                  + " </s>" # TODO: use better token to split them
+        if settings.USE_BUG_TYPE:
+            outputs = "bug " \
+                      + self.linter_report.rule_id \
+                      + " " \
+                      + self.linter_report.message \
+                      + " " \
+                      + self.target_code \
+                      + " </s>"  # TODO: use better token to split them
+        else:
+            outputs = "bug " \
+                      + self.target_code \
+                      + " </s>"  # TODO: use better token to split them
         return inputs, outputs
-
 
 
 class MinimalDataPoint(DataPoint):
@@ -162,12 +167,10 @@ class MinimalDataPoint(DataPoint):
             data_list = json.load(f)
         data_points = []
         for data_point in data_list:
-            new_data_point = MinimalDataPoint(data_point['t5_representation'][0], data_point['target_code'], data_point['repo'], data_point['correct'])
+            new_data_point = MinimalDataPoint(data_point['t5_representation'][0], data_point['target_code'],
+                                              data_point['repo'], data_point['correct'])
             data_points.append(new_data_point)
         return data_points
-
-
-
 
 
 def GetDataAsPython(data_json_path: str) -> List[DataPoint]:
