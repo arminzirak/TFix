@@ -25,6 +25,7 @@ from transformers import T5Tokenizer
 from transformers import set_seed
 import numpy as np
 import torch
+import settings
 
 from data_reader import DataPoint, GetDataAsPython, MinimalDataPoint
 from prepare_data import create_data_tbug
@@ -91,9 +92,9 @@ if result_dir != "":
     test_result_directory = args.result_dir
 else:
     if not repo:
-        test_result_directory = f'{storage_directory}/testing-tbug/{now.day}/general_{model_name}_test_{design}_{dt_string}'
+        test_result_directory = f'{storage_directory}/testing-tbug/{now.day}/{settings.USE_BUG_TYPE}/general_{model_name}_test_{design}_{dt_string}'
     else:
-        test_result_directory = f'{storage_directory}/testing-tbug/{now.day}/per-repo/{model_name}_test_{repo.rsplit("/", 1)[1][-20:]}_{dt_string}'
+        test_result_directory = f'{storage_directory}/testing-tbug/{now.day}/{settings.USE_BUG_TYPE}/per-repo/{model_name}_test_{repo.rsplit("/", 1)[1][-20:]}_{dt_string}'
 
 
 # In[ ]:
@@ -319,7 +320,7 @@ for i, warning in enumerate(all_warning_types):
 # In[48]:
 
 
-with open(f'{storage_directory}/bt_data_{model_name}/scores.json', 'w') as f:
+with open(f'{storage_directory}/bt_data_{model_name}/scores_{settings.USE_BUG_TYPE}.json', 'w') as f:
     json.dump(scores, f)
 
 
@@ -415,7 +416,7 @@ for repo, cnt in sorted(repos.items(), key=lambda item: item[1], reverse=True)[:
             if item.repo == repo:
                 data_points.append(MinimalDataPoint(item.predictions, item.target_code, item.repo, item.correct))
                 
-    new_dir = f'{storage_directory}/bt_data_{model_name}/{repo}.json'
+    new_dir = f'{storage_directory}/bt_data_{model_name}_{settings.USE_BUG_TYPE}/{repo}.json'
     print(new_dir)
     os.makedirs(new_dir[:new_dir.rfind('/')],exist_ok=True)
     with open(new_dir, "w", errors="ignore") as f:
