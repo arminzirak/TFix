@@ -78,9 +78,11 @@ repo = None #args.repo
 design = 'repo-based-included' #args.design
 error_type = '' #args.error_type
 if not large:
-    load_model = f'{storage_directory}/training-tbug/t5-small_repo-based_29-04-2022_09-38-17/checkpoint-14235'
+    # load_model = f'{storage_directory}/training-tbug/t5-small_repo-based_29-04-2022_09-38-17/checkpoint-14235'
+    load_model = f'{storage_directory}/training-tbug/t5-small_repo-based_14-06-2022_19-48-31_False/checkpoint-14235/'
 else:
-    load_model = f'{storage_directory}/training-tbug/t5-large_repo-based_07-05-2022_11-32-41/checkpoint-30639'
+    # load_model = f'{storage_directory}/training-tbug/t5-large_repo-based_07-05-2022_11-32-41/checkpoint-30639'
+    load_model = f'{storage_directory}/training-tbug/t5-large_repo-based_15-06-2022_04-19-20_False/checkpoint-4377/'
 batch_size = 16 #args.batch_size
 eval_acc_steps = 1 # eval-acc-steps
 
@@ -320,7 +322,7 @@ for i, warning in enumerate(all_warning_types):
 # In[48]:
 
 
-with open(f'{storage_directory}/bt_data_{model_name}/scores_{settings.USE_BUG_TYPE}.json', 'w') as f:
+with open(f'{storage_directory}/bt_data_{model_name}_{settings.USE_BUG_TYPE}/scores_{settings.USE_BUG_TYPE}.json', 'w') as f:
     json.dump(scores, f)
 
 
